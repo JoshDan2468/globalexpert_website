@@ -1,65 +1,22 @@
 ﻿import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ChevronDown, Phone, MapPin, Clock } from "lucide-react";
-import image1 from "@/assets/home_assets/image1.jpg";
-import image2 from "@/assets/home_assets/image2.jpg";
-import image3 from "@/assets/home_assets/image3.jpeg";
-import image4 from "@/assets/home_assets/image4.jpg";
-import image5 from "@/assets/home_assets/image5.jpg";
-import image6 from "@/assets/home_assets/image6.jpg";
-import image7 from "@/assets/home_assets/image7.jpg";
-import image8 from "@/assets/home_assets/image8.jpg";
-
-const heroImages = [
-  { src: image1, alt: "Consultants reviewing offshore project plans" },
-  { src: image2, alt: "Engineering team with tablet on oil platform" },
-  { src: image3, alt: "Technician inspecting gas pipeline network" },
-  {
-    src: image4,
-    alt: "Operations manager with laptop at refinery control room",
-  },
-  {
-    src: image5,
-    alt: "Corporate executives in energy project strategy meeting",
-  },
-  { src: image6, alt: "Oil and gas infrastructure planning on project map" },
-  { src: image7, alt: "Consultant team at site survey discussion" },
-  {
-    src: image8,
-    alt: "Inspection crew with safety gear at gas extraction site",
-  },
-];
+import heroImage from "@/assets/home_assets/image9.jpg";
 
 const HeroSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const rotate = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % heroImages.length);
-    }, 5500);
-
-    return () => clearInterval(rotate);
-  }, []);
-
   return (
     <section
       id='hero'
       className='relative min-h-[80vh] flex flex-col overflow-hidden'
     >
-      {/* Background carousel */}
+      {/* Background image */}
       <div className='absolute inset-0'>
-        {heroImages.map((image, idx) => (
-          <motion.img
-            key={idx}
-            src={image.src}
-            alt={image.alt}
-            className='absolute inset-0 h-full w-full object-cover'
-            initial={{ opacity: idx === activeIndex ? 1 : 0 }}
-            animate={{ opacity: idx === activeIndex ? 1 : 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-          />
-        ))}
-        <div className='absolute inset-0 bg-gradient-to-r from-primary/65 via-primary/50 to-primary/40' />
+        <img
+          src={heroImage}
+          alt='Energy infrastructure overview'
+          className='absolute inset-0 h-full w-full object-cover'
+        />
+        <div className='absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40' />
         <div className='absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent' />
       </div>
 
@@ -205,4 +162,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
