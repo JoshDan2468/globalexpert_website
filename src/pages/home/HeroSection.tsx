@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <section
       id='hero'
-      className='relative min-h-[80vh] flex flex-col overflow-hidden'
+      className='relative min-h-[90vh] flex flex-col overflow-hidden'
     >
       {/* Background image */}
       <div className='absolute inset-0'>
