@@ -39,16 +39,16 @@ const HeroSection = () => {
       </div>
 
       {/* Main hero content */}
-      <div className='relative z-10 flex-1 flex items-center'>
+      <div className='relative z-50 flex-1 flex items-center'>
         <div className='container mx-auto px-6'>
-          <div className='max-w-3xl'>
+          <div className='max-w-3xl mt-20'>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className='flex items-center gap-3 mb-6'
             >
-              <div className='w-12 h-px bg-accent' />
+              <div className='w-12 mt-2 h-px bg-accent' />
               <span className='text-accent font-display text-lg font-semibold uppercase tracking-widest'>
                 Engineering Excellence Since Inception
               </span>
