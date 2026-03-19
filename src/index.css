@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 120 100% 3%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 120 100% 3%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 100% 3%;
+
+    --primary: 120 100% 7%;
+    --primary-foreground: 80 50% 95%;
+
+    --secondary: 100 8% 92%;
+    --secondary-foreground: 120 60% 10%;
+
+    --muted: 100 10% 94%;
+    --muted-foreground: 100 5% 45%;
+
+    --accent: 45 80% 55%;
+    --accent-foreground: 120 100% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 100 15% 88%;
+    --input: 100 15% 88%;
+    --ring: 120 100% 7%;
+
+    --radius: 0.5rem;
+
+    --brand-dark: 120 100% 4%;
+    --brand-light: 120 30% 95%;
+    --brand-gold: 45 80% 55%;
+    --brand-gold-light: 45 70% 70%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 120 100% 3%;
+    --foreground: 80 50% 95%;
+    --card: 120 50% 5%;
+    --card-foreground: 80 50% 95%;
+    --popover: 120 50% 5%;
+    --popover-foreground: 80 50% 95%;
+    --primary: 80 50% 95%;
+    --primary-foreground: 120 100% 7%;
+    --secondary: 120 30% 12%;
+    --secondary-foreground: 80 50% 95%;
+    --muted: 120 20% 15%;
+    --muted-foreground: 100 10% 60%;
+    --accent: 45 80% 55%;
+    --accent-foreground: 120 100% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 120 20% 15%;
+    --input: 120 20% 15%;
+    --ring: 80 50% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-card/80 border border-border/50 shadow-lg;
+  }
+}
