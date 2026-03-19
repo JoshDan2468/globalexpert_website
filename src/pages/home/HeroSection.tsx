@@ -39,7 +39,7 @@ const HeroSection = () => {
       </div>
 
       {/* Main hero content */}
-      <div className='relative z-50 flex-1 flex items-center'>
+      <div className='relative z-10 flex-1 flex items-center'>
         <div className='container mx-auto px-6'>
           <div className='max-w-3xl mt-20'>
             <motion.div
