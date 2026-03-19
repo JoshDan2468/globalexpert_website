@@ -1,27 +1,34 @@
-﻿import { MapPin, Globe, HardDrive, Sun } from "lucide-react";
+import image1 from "@/assets/home_assets/image1.jpg";
+import image2 from "@/assets/home_assets/image2.jpg";
+import image3 from "@/assets/home_assets/image3.jpeg";
+import image4 from "@/assets/home_assets/image4.jpg";
 
 const CommitmentSection = () => {
   const cardList = [
     {
-      icon: Globe,
+      image: image1,
+      alt: "Pipeline network infrastructure",
       title: "Pipeline Services",
       description:
         "LNG, CNG facilities, onshore pipelines, receiving terminals and distribution networks.",
     },
     {
-      icon: MapPin,
+      image: image2,
+      alt: "Geoscience research and exploration",
       title: "Geoscience Research",
       description:
         "Onshore/offshore exploration and complex production facility support with practical engineering insights.",
     },
     {
-      icon: HardDrive,
+      image: image3,
+      alt: "Engineering and project systems",
       title: "Engineering",
       description:
         "Integrated engineering, project management, integrity and operational consulting for energy and infrastructure.",
     },
     {
-      icon: Sun,
+      image: image4,
+      alt: "Drilling and renewable energy equipment",
       title: "Drilling & Renewables",
       description:
         "Drilling services, renewable energy, gas turbine power plants and transmission network solutions.",
@@ -29,7 +36,7 @@ const CommitmentSection = () => {
   ];
 
   return (
-    <section className='py-20 bg-slate-50'>
+    <section className='py-20' style={{ backgroundColor: "#ebf5ec" }}>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl text-center'>
           <h2 className='text-4xl font-bold text-slate-900 mb-4'>
@@ -48,23 +55,24 @@ const CommitmentSection = () => {
         </div>
 
         <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
-          {cardList.map((card) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={card.title}
-                className='rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg'
-              >
-                <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 text-indigo-600'>
-                  <Icon className='h-6 w-6' />
-                </div>
-                <h3 className='text-xl font-semibold text-slate-800 mb-2'>
-                  {card.title}
-                </h3>
-                <p className='text-sm text-slate-600'>{card.description}</p>
+          {cardList.map((card) => (
+            <div
+              key={card.title}
+              className='rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg'
+            >
+              <div className='mb-4 h-14 w-14 overflow-hidden rounded-xl border border-slate-200 bg-slate-100'>
+                <img
+                  src={card.image}
+                  alt={card.alt}
+                  className='h-full w-full object-cover'
+                />
               </div>
-            );
-          })}
+              <h3 className='text-xl font-semibold text-slate-800 mb-2'>
+                {card.title}
+              </h3>
+              <p className='text-sm text-slate-600'>{card.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -72,5 +80,3 @@ const CommitmentSection = () => {
 };
 
 export default CommitmentSection;
-
-
