@@ -3,6 +3,7 @@ import HeroSection from "@/pages/home/HeroSection";
 import CompanySection from "@/pages/home/CompanySection";
 import CommitmentSection from "@/pages/home/CommitmentSection";
 import FloatingStats from "@/pages/home/floatingStats";
+import IndustriesSection from "@/pages/home/IndustriesSection";
 import CTAFooter from "@/pages/home/CTAFooter";
 
 const Home = () => (
@@ -12,6 +13,7 @@ const Home = () => (
     <CompanySection />
     <CommitmentSection />
     <FloatingStats />
+    <IndustriesSection />
     <CTAFooter />
   </main>
 );

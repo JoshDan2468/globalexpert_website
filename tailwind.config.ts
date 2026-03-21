@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"IBM Plex Sans"', 'sans-serif'],
-        body: ['"IBM Plex Sans"', 'sans-serif'],
+        display: ['"Barlow Condensed"', "sans-serif"],
+        body: ['"Inter"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -71,26 +71,30 @@ const IndustriesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="industries" className="section-padding bg-secondary" ref={ref}>
-      <div className="container mx-auto">
+    <section
+      id="industries"
+      className="py-20 bg-white"
+      ref={ref}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
           <div className="flex items-center gap-3 justify-center mb-4">
-            <div className="w-10 h-px bg-accent" />
-            <span className="text-accent font-display text-sm font-semibold uppercase tracking-widest">
-              Our Commitment
+            <div className="w-10 h-px bg-[#012402]" />
+            <span className="text-[#012402] text-sm font-semibold uppercase tracking-widest">
+              Our Industries
             </span>
-            <div className="w-10 h-px bg-accent" />
+            <div className="w-10 h-px bg-[#012402]" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight mb-4">
-            We Promise the{" "}
-            <span className="text-accent">Best Quality</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-[#012402] leading-tight mb-4">
+            We Serve{" "}
+            <span className="text-[#012402]">Key Industries</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-[#012402]/70">
             We offer multi-discipline services in the following key markets:
             Energy / Oil & Gas, Petrochemicals, Infrastructures, Power, Renewables,
             Manufacturing, Health, Education, Mining, and Information Technology.
@@ -106,23 +110,23 @@ const IndustriesSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                className="group bg-card rounded-xl p-8 border border-border hover:shadow-xl hover:border-accent/30 transition-all relative overflow-hidden"
+                className="group bg-white rounded-xl p-8 border border-[#012402]/10 hover:shadow-xl transition-all relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#ebf5ec] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
-                    <Icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
+                  <div className="w-12 h-12 rounded-lg bg-[#ebf5ec] flex items-center justify-center mb-4 group-hover:scale-110 transition-all">
+                    <Icon className="w-6 h-6 text-[#012402] transition-colors" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-foreground mb-3">
+                  <h3 className="font-bold text-lg text-[#012402] mb-3">
                     {ind.title}
                   </h3>
                   <ul className="space-y-1.5">
                     {ind.items.map((item) => (
                       <li
                         key={item}
-                        className="text-muted-foreground text-sm flex items-start gap-2"
+                        className="text-[#012402]/70 text-sm flex items-start gap-2"
                       >
-                        <span className="text-accent mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#012402] flex-shrink-0" />
                         {item}
                       </li>
                     ))}

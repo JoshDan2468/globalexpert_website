@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import image1 from "@/assets/home_assets/image4.jpg";
 import image2 from "@/assets/home_assets/image8.jpg";
@@ -28,36 +29,51 @@ const cardItems = [
 ];
 
 const CompanySection = () => {
-  return (
-    <section className='py-20 bg-background'>
-      <div className='container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8'>
-        <div className='grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-          {cardItems.map((item) => (
-            <Link
-              key={item.title}
-              to={item.to}
-              className='group block overflow-hidden rounded-2xl border border-border bg-card p-0 text-center shadow-sm transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:border-accent hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
-            >
-              <div className='relative h-56 md:h-64 overflow-hidden'>
-                <img
-                  src={item.image}
-                  alt={item.alt}
-                  className='h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-75'
-                />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
-                <h3 className='absolute left-0 right-0 bottom-3 px-4 text-2xl font-bold text-white drop-shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 opacity-0 translate-y-3'>
-                  {item.title}
-                </h3>
-              </div>
+  const container = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } },
+  };
 
-              <div className='p-6'>
-                <p className='text-sm text-slate-600 transition duration-300 group-hover:text-slate-900'>
-                  {item.text}
-                </p>
-              </div>
-            </Link>
+  const card = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.9 } },
+  };
+
+  return (
+    <section className='relative z-20 -mt-24 pb-12 bg-transparent '>
+      <div className='container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 '>
+        <motion.div
+          variants={container}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.2 }}
+          className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'
+        >
+          {cardItems.map((item) => (
+            <motion.div key={item.title} variants={card}>
+              <Link
+                to={item.to}
+                className='group block overflow-hidden rounded-xl border border-[#012402]/10 bg-[#ebf5ec] p-0 transition duration-600 ease-out hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#012402]/30'
+              >
+                <div className='relative h-40 overflow-hidden'>
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    className='h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-105'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-[#012402]/70 to-transparent' />
+                  <h3 className='absolute left-0 right-0 bottom-3 px-5 text-xl font-bold text-white drop-shadow-lg'>
+                    {item.title}
+                  </h3>
+                </div>
+
+                <div className='p-3 sm:p-5'>
+                  <p className='text-md text-[#000000]'>{item.text}</p>
+                </div>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
