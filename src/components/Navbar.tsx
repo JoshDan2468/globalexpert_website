@@ -157,7 +157,7 @@ const Navbar = () => {
             to='/contact'
             className='ml-3 px-5 py-2.5 bg-white text-[#000000] text-sm font-semibold rounded-full hover:brightness-95 transition-all'
           >
-            Get Started
+            Contact
           </Link>
         </div>
 
