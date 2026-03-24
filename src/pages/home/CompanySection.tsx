@@ -53,22 +53,24 @@ const CompanySection = () => {
             <motion.div key={item.title} variants={card}>
               <Link
                 to={item.to}
-                className='group block overflow-hidden rounded-xl border border-[#012402]/10 bg-[#ebf5ec] p-0 transition duration-600 ease-out hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#012402]/30'
+                className='group block overflow-hidden bg-white p-0 shadow-[0_24px_48px_rgba(15,23,42,0.14)] transition duration-600 ease-out hover:-translate-y-1 hover:shadow-[0_28px_56px_rgba(1,36,2,0.18)] focus-visible:outline-none'
               >
-                <div className='relative h-40 overflow-hidden'>
+                <div className='relative h-56 overflow-hidden'>
                   <img
                     src={item.image}
                     alt={item.alt}
                     className='h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-105'
                   />
-                  <div className='absolute inset-0 bg-gradient-to-t from-[#012402]/70 to-transparent' />
-                  <h3 className='absolute left-0 right-0 bottom-3 px-5 text-xl font-bold text-white drop-shadow-lg'>
-                    {item.title}
-                  </h3>
                 </div>
 
-                <div className='p-3 sm:p-5'>
-                  <p className='text-md text-[#000000]'>{item.text}</p>
+                <div className='bg-white px-5 py-8 text-center sm:px-7'>
+                  <div className='mx-auto h-1 w-14 bg-[#012402]' />
+                  <h3 className='mt-5 text-3xl font-bold text-[#111111]'>
+                    {item.title}
+                  </h3>
+                  <p className='mt-4 text-base leading-relaxed text-gray-600'>
+                    {item.text}
+                  </p>
                 </div>
               </Link>
             </motion.div>

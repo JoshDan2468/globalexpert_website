@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/pages/home/HeroSection";
 import CompanySection from "@/pages/home/CompanySection";
+import AboutSection from "@/pages/home/AboutSection";
 import CommitmentSection from "@/pages/home/CommitmentSection";
 import FloatingStats from "@/pages/home/floatingStats";
 import IndustriesSection from "@/pages/home/IndustriesSection";
@@ -11,6 +12,7 @@ const Home = () => (
     <Navbar />
     <HeroSection />
     <CompanySection />
+    <AboutSection />
     <CommitmentSection />
     <FloatingStats />
     <IndustriesSection />

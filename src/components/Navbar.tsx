@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import gexpertLogo from "@/assets/gexpet logo.jpeg";
 
 type NavLink = {
   label: string;
@@ -90,23 +91,17 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#012402]/85 backdrop-blur-md shadow-lg border-b border-white/10"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200"
+          : "bg-white"
       }`}
     >
-      <div className='container mx-auto flex items-center justify-between h-20 px-6'>
-        <Link to='/' className='flex items-center gap-3'>
-          <div className='w-10 h-10 rounded-full border-2 border-white/70 flex items-center justify-center font-display font-bold text-white text-lg'>
-            G
-          </div>
-          <div className='hidden sm:block'>
-            <span className='font-display font-semibold text-base text-white tracking-tight leading-tight block'>
-              Global Experts
-            </span>
-            <span className='text-white/60 text-[10px] uppercase tracking-widest font-medium'>
-              Consultoria
-            </span>
-          </div>
+      <div className='container mx-auto flex items-center justify-between h-20 px-6 bg-white'>
+        <Link to='/' className='flex items-center'>
+          <img
+            src={gexpertLogo}
+            alt='Global Experts Consultoria logo'
+            className='h-12 w-auto object-contain sm:h-14'
+          />
         </Link>
 
         {/* Desktop */}
@@ -122,11 +117,11 @@ const Navbar = () => {
             >
               <Link
                 to={link.to}
-                className='px-3 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors flex items-center gap-1 relative group'
+                className='px-3 py-2 text-sm font-medium uppercase tracking-[0.08em] text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-1 relative group'
               >
                 {link.label}
                 {link.children && <ChevronDown className='w-3 h-3' />}
-                <span className='absolute bottom-0 left-3 right-3 h-0.5 bg-[#ebf5ec] scale-x-0 group-hover:scale-x-100 transition-transform origin-left' />
+                <span className='absolute bottom-0 left-3 right-3 h-1 bg-[#012402] scale-x-0 group-hover:scale-x-100 transition-transform origin-left' />
               </Link>
 
               <AnimatePresence>
@@ -143,7 +138,7 @@ const Navbar = () => {
                         key={child.label}
                         to={child.to}
                         onClick={() => setActiveDropdown(null)}
-                        className='block px-5 py-3 text-sm text-[#012402] hover:bg-[#ebf5ec] transition-colors'
+                        className='block px-5 py-3 text-sm text-[#012402] hover:bg-[#012402] hover:text-white transition-colors'
                       >
                         {child.label}
                       </Link>
@@ -155,7 +150,7 @@ const Navbar = () => {
           ))}
           <Link
             to='/contact'
-            className='ml-3 px-5 py-2.5 bg-white text-[#000000] text-sm font-semibold rounded-full hover:brightness-95 transition-all'
+            className='ml-3 px-5 py-2.5 bg-[#012402] text-white text-sm font-semibold uppercase tracking-[0.08em] rounded-full hover:bg-[#012402] transition-all'
           >
             Contact
           </Link>
@@ -164,7 +159,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className='lg:hidden text-white'
+          className='lg:hidden text-gray-700'
         >
           {mobileOpen ? (
             <X className='w-6 h-6' />
@@ -181,7 +176,7 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className='lg:hidden bg-[#012402] overflow-hidden'
+            className='lg:hidden bg-white overflow-hidden border-t border-gray-200'
           >
             <div className='px-6 pb-6 space-y-1'>
               {navLinks.map((link) => (
@@ -189,7 +184,7 @@ const Navbar = () => {
                   key={link.label}
                   to={link.to}
                   onClick={() => setMobileOpen(false)}
-                  className='block py-3 text-white/80 hover:text-white font-medium transition-colors'
+                  className='block py-3 text-gray-600 hover:text-gray-800 font-medium uppercase tracking-[0.08em] transition-colors'
                 >
                   {link.label}
                 </Link>
@@ -197,7 +192,7 @@ const Navbar = () => {
               <Link
                 to='/contact'
                 onClick={() => setMobileOpen(false)}
-                className='block mt-4 text-center px-5 py-3 bg-white text-[#012402] font-semibold rounded-full hover:brightness-95 transition-all'
+                className='block mt-4 text-center px-5 py-3 bg-[#012402] text-white font-semibold uppercase tracking-[0.08em] rounded-full hover:bg-[#012402] transition-all'
               >
                 Contact
               </Link>

@@ -1,18 +1,43 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/home_assets/image20.jpg";
+import { CheckCircle } from "lucide-react";
+import heroImage1 from "@/assets/home_assets/image20.jpg";
+import heroImage2 from "@/assets/home_assets/image18.jpg";
+import heroImage3 from "@/assets/home_assets/image14.jpg";
+import heroImage4 from "@/assets/home_assets/image11.jpg";
+
+const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
 
 const HeroSection = () => {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveImageIndex((currentIndex) => (currentIndex + 1) % heroImages.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
     <section id='hero' className='relative min-h-[90vh] overflow-hidden'>
       <div className='absolute inset-0'>
-        <img
-          src={heroImage}
-          alt='Energy infrastructure overview'
-          className='h-full w-full object-cover transition duration-800 ease-out'
-        />
-        <div className='absolute inset-0 bg-black/30' />
-        {/* <div className='absolute inset-0 bg-gradient-to-r from-[#012402] via-[#012402]/65 to-transparent' /> */}
+        {heroImages.map((image, index) => (
+          <motion.img
+            key={image}
+            src={image}
+            alt='Energy infrastructure overview'
+            initial={false}
+            animate={{
+              opacity: index === activeImageIndex ? 1 : 0,
+              scale: index === activeImageIndex ? 1 : 1.04,
+            }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className='absolute inset-0 h-full w-full object-cover'
+          />
+        ))}
+        <div className='absolute inset-0 bg-gradient-to-r from-gray-900/75 via-gray-700/40 to-transparent' />
+        <div className='absolute inset-0 bg-black/15' />
       </div>
 
       <div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-30 sm:pt-28 lg:pt-40 pb-14 sm:pb-16'>
@@ -20,22 +45,13 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          whileHover={{ y: -6, scale: 1.01 }}
-          className='relative max-w-full pt-8 sm:pt-10  bg-[#0f1f12]/60 rounded-2xl backdrop-blur-md shadow-[0_20px_70px_rgba(0,0,0,0.20)] ring-1 ring-white/20 p-8 sm:p-10 transition-transform duration-300 overflow-hidden'
+          className='max-w-5xl pt-8 sm:pt-10'
         >
-          <div
-            className='pointer-events-none absolute inset-0 opacity-70'
-            style={{
-              background:
-                "radial-gradient(120px 120px at 20% 20%, rgba(255,255,255,0.45), rgba(255,255,255,0) 60%), radial-gradient(160px 160px at 80% 30%, rgba(255,255,255,0.35), rgba(255,255,255,0) 60%), radial-gradient(220px 220px at 50% 80%, rgba(255,255,255,0.25), rgba(255,255,255,0) 60%)",
-            }}
-          />
-          <div className='pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 to-transparent' />
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-7xl md:text-6xl lg:text-8xl font-extrabold text-white leading-tight'
+            className='text-5xl md:text-6xl lg:text-8xl font-extrabold text-white leading-tight'
           >
             Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
           </motion.h1>
@@ -44,8 +60,8 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className='mt-5 text-base md:text-2xl text-white/80 max-w-8xl text-left break-keep'
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 500 }}
+            className='mt-5 max-w-3xl text-base md:text-2xl text-white/90 text-left break-keep'
+            style={{ fontWeight: 700 }}
           >
             Delivering world class engineering, project management, asset
             integrity, and maintenance consultancy solutions.
@@ -55,7 +71,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className='mt-6 flex flex-wrap gap-3 sm:gap-4'
+            className='mt-6 flex flex-wrap gap-3 sm:gap-4 pb-20'
           >
             {[
               "Engineering Services",

@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Barlow Condensed"', "sans-serif"],
-        body: ['"Inter"', "sans-serif"],
+        display: ['"Bricolage Grotesque"', "sans-serif"],
+        body: ['"Bricolage Grotesque"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
