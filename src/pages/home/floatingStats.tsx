@@ -7,7 +7,7 @@ const FloatingStats = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
-        transition={{ delay: 0.2 }}
+        transition={{ duration: 0.9, delay: 0.35 }}
         className='py-10 md:py-12'
       >
         <div className='grid grid-cols-2 gap-y-8 gap-x-6 text-center md:grid-cols-4'>

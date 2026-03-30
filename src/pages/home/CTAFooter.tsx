@@ -21,7 +21,7 @@ const CTAFooter = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 1 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Ready to Start Your

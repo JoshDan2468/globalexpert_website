@@ -80,7 +80,7 @@ const IndustriesSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 1 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <div className="flex items-center gap-3 justify-center mb-4">
@@ -109,7 +109,7 @@ const IndustriesSection = () => {
                 key={ind.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                transition={{ duration: 0.85, delay: 0.3 + i * 0.14 }}
                 className="group bg-white rounded-xl p-8 border border-[#012402]/10 hover:shadow-xl transition-all relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#ebf5ec] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

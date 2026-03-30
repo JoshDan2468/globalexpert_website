@@ -31,12 +31,12 @@ const cardItems = [
 const CompanySection = () => {
   const container = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
+    visible: { transition: { staggerChildren: 0.2 } },
   };
 
   const card = {
     hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.9 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.2 } },
   };
 
   return (

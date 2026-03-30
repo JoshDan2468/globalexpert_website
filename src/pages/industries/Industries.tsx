@@ -1,11 +1,13 @@
 import Navbar from "@/components/Navbar";
-import IndustriesSection from "@/pages/home/IndustriesSection";
 import CTAFooter from "@/pages/home/CTAFooter";
+import IndustriesHero from "@/pages/industries/IndustriesHero";
+import IndustriesShowcase from "@/pages/industries/IndustriesShowcase";
 
 const Industries = () => (
   <main className='overflow-x-hidden'>
     <Navbar />
-    <IndustriesSection />
+    <IndustriesHero />
+    <IndustriesShowcase />
     <CTAFooter />
   </main>
 );

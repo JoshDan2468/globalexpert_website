@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
-import heroImage1 from "@/assets/home_assets/image20.jpg";
-import heroImage2 from "@/assets/home_assets/image18.jpg";
-import heroImage3 from "@/assets/home_assets/image14.jpg";
-import heroImage4 from "@/assets/home_assets/image11.jpg";
+import heroImage1 from "@/assets/home_assets/image18.jpg";
+import heroImage2 from "@/assets/home_assets/image14.jpg";
+import heroImage3 from "@/assets/home_assets/image11.jpg";
+import heroImage4 from "@/assets/home_assets/image16.jpg";
 
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
 
@@ -14,7 +14,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveImageIndex((currentIndex) => (currentIndex + 1) % heroImages.length);
-    }, 5000);
+    }, 7000);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -22,20 +22,19 @@ const HeroSection = () => {
   return (
     <section id='hero' className='relative min-h-[90vh] overflow-hidden'>
       <div className='absolute inset-0'>
-        {heroImages.map((image, index) => (
+        <AnimatePresence mode='wait'>
           <motion.img
-            key={image}
-            src={image}
+            key={heroImages[activeImageIndex]}
+            src={heroImages[activeImageIndex]}
             alt='Energy infrastructure overview'
-            initial={false}
-            animate={{
-              opacity: index === activeImageIndex ? 1 : 0,
-              scale: index === activeImageIndex ? 1 : 1.04,
-            }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
             className='absolute inset-0 h-full w-full object-cover'
+            fetchPriority='high'
           />
-        ))}
+        </AnimatePresence>
         <div className='absolute inset-0 bg-gradient-to-r from-gray-900/75 via-gray-700/40 to-transparent' />
         <div className='absolute inset-0 bg-black/15' />
       </div>
@@ -44,13 +43,13 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1 }}
           className='max-w-5xl pt-8 sm:pt-10'
         >
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 1, delay: 0.2 }}
             className='text-5xl md:text-6xl lg:text-8xl font-extrabold text-white leading-tight'
           >
             Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
@@ -59,7 +58,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.35 }}
             className='mt-5 max-w-3xl text-base md:text-2xl text-white/90 text-left break-keep'
             style={{ fontWeight: 700 }}
           >
@@ -70,7 +69,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 1, delay: 0.5 }}
             className='mt-6 flex flex-wrap gap-3 sm:gap-4 pb-20'
           >
             {[
@@ -91,7 +90,7 @@ const HeroSection = () => {
           {/* <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 1, delay: 0.65 }}
             className='mt-8 flex flex-wrap gap-4 sm:gap-6'
           >
             <a

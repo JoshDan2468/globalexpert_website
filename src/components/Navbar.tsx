@@ -70,7 +70,7 @@ const navLinks: NavLink[] = [
   },
   { label: "Guiding Policies", to: "/guiding-policies" },
   { label: "Articles", to: "/articles" },
-  { label: "Our Partners", to: "/about" },
+  { label: "Our Partners", to: "/partners" },
 ];
 
 const Navbar = () => {
@@ -95,13 +95,21 @@ const Navbar = () => {
           : "bg-white"
       }`}
     >
-      <div className='container mx-auto flex items-center justify-between h-20 px-6 bg-white'>
-        <Link to='/' className='flex items-center'>
+      <div className='container mx-auto flex items-center justify-between h-20 px-4 sm:px-6 bg-white'>
+        <Link to='/' className='flex items-center gap-2 sm:gap-3'>
           <img
             src={gexpertLogo}
             alt='Global Experts Consultoria logo'
-            className='h-12 w-auto object-contain sm:h-14'
+            className='h-10 w-auto object-contain sm:h-12 lg:h-14'
           />
+          <div className='flex flex-col gap-1 leading-tight'>
+            <span className='text-[10px] font-bold uppercase tracking-[0.1em] text-[#012402] sm:text-[11px] lg:text-xs'>
+              Global Expert
+            </span>
+            <span className='text-[8px] font-semibold uppercase tracking-[0.14em] text-[#012402]/75 sm:text-[9px] lg:text-[11px]'>
+              Consultoria
+            </span>
+          </div>
         </Link>
 
         {/* Desktop */}
@@ -117,7 +125,7 @@ const Navbar = () => {
             >
               <Link
                 to={link.to}
-                className='px-3 py-2 text-sm font-medium uppercase tracking-[0.08em] text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-1 relative group'
+                className='px-3 py-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-1 relative group'
               >
                 {link.label}
                 {link.children && <ChevronDown className='w-3 h-3' />}
@@ -150,7 +158,7 @@ const Navbar = () => {
           ))}
           <Link
             to='/contact'
-            className='ml-3 px-5 py-2.5 bg-[#012402] text-white text-sm font-semibold uppercase tracking-[0.08em] rounded-full hover:bg-[#012402] transition-all'
+            className='ml-3 px-5 py-2.5 bg-[#012402] text-white text-[12px] font-semibold uppercase tracking-[0.08em] rounded-full hover:bg-[#012402] transition-all'
           >
             Contact
           </Link>
@@ -184,7 +192,7 @@ const Navbar = () => {
                   key={link.label}
                   to={link.to}
                   onClick={() => setMobileOpen(false)}
-                  className='block py-3 text-gray-600 hover:text-gray-800 font-medium uppercase tracking-[0.08em] transition-colors'
+                  className='block py-3 text-[12px] text-gray-600 hover:text-gray-800 font-semibold uppercase tracking-[0.08em] transition-colors'
                 >
                   {link.label}
                 </Link>
@@ -192,7 +200,7 @@ const Navbar = () => {
               <Link
                 to='/contact'
                 onClick={() => setMobileOpen(false)}
-                className='block mt-4 text-center px-5 py-3 bg-[#012402] text-white font-semibold uppercase tracking-[0.08em] rounded-full hover:bg-[#012402] transition-all'
+                className='block mt-4 text-center px-5 py-3 bg-[#012402] text-[12px] text-white font-semibold uppercase tracking-[0.08em] rounded-full hover:bg-[#012402] transition-all'
               >
                 Contact
               </Link>

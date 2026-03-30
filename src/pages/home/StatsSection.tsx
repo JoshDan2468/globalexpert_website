@@ -14,7 +14,7 @@ const AnimatedCounter = ({ target, suffix, inView }: { target: number; suffix: s
   useEffect(() => {
     if (!inView) return;
     let start = 0;
-    const duration = 1500;
+    const duration = 2300;
     const step = target / (duration / 16);
     const timer = setInterval(() => {
       start += step;
@@ -53,7 +53,7 @@ const StatsSection = () => {
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
+              transition={{ duration: 0.95, delay: i * 0.22 }}
               className="text-center"
             >
               <div className="text-4xl md:text-5xl font-display font-bold text-accent mb-2">

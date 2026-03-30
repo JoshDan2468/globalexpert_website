@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, CircleCheckBig } from "lucide-react";
 import image1 from "@/assets/home_assets/image14.jpg";
 import image2 from "@/assets/home_assets/image13.jpg";
 import image3 from "@/assets/home_assets/image16.jpg";
@@ -63,13 +63,13 @@ const CommitmentSection = () => {
   const containerVariants = {
     hidden: {},
     visible: {
-      transition: { staggerChildren: 0.1 },
+      transition: { staggerChildren: 0.18 },
     },
   };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
   return (
@@ -79,10 +79,10 @@ const CommitmentSection = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.9 }}
           className='mx-auto max-w-5xl text-center'
         >
-          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-[#012402]'>
+          <h2 className='text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#012402]'>
             Our Commitment
           </h2>
           <p className='mt-4 text-xl sm:text-2xl font-semibold text-[#012402] text-center'>
@@ -95,7 +95,7 @@ const CommitmentSection = () => {
             Manufacturing, Health, Education, Mining, Information Technology.
           </p>
 
-          <div className='mt-6 flex flex-wrap gap-3'>
+          <div className='mt-6 flex flex-wrap justify-center gap-3'>
             {quickHighlights.map((item) => (
               <span
                 key={item}
@@ -123,13 +123,13 @@ const CommitmentSection = () => {
                 key={card.title}
                 variants={cardVariants}
                 whileHover={{ y: -6 }}
-                className={`group overflow-hidden rounded-2xl border transition-all duration-300 ${
+                className={`group flex h-full min-h-[34rem] flex-col overflow-hidden rounded-2xl border transition-all duration-300 ${
                   isFeatured
                     ? "bg-[#012402] border-[#e3641b]/80 shadow-lg"
                     : "bg-white border-[#012402]/10 shadow-sm hover:shadow-lg"
                 }`}
               >
-                <div className='relative h-40 overflow-hidden'>
+                <div className='relative min-h-[17rem] flex-1 overflow-hidden'>
                   <img
                     src={card.image}
                     alt={card.alt}
@@ -147,21 +147,25 @@ const CommitmentSection = () => {
                   </h3>
                 </div>
 
-                <div className={`p-5 ${isFeatured ? "border-t-2 border-[#e3641b]" : ""}`}>
-                  <ul className='space-y-2'>
+                <div
+                  className={`flex flex-1 flex-col justify-center p-5 ${
+                    isFeatured ? "border-t-2 border-[#e3641b]" : ""
+                  }`}
+                >
+                  <ul className='space-y-3'>
                     {card.points.map((point) => (
                       <li
                         key={point}
-                        className={`flex items-start gap-2 text-sm ${
+                        className={`flex items-start gap-3 text-sm sm:text-[0.95rem] ${
                           isFeatured ? "text-white/85" : "text-[#012402]/80"
                         }`}
                       >
-                        <Check
-                          className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
-                            isFeatured ? "text-[#ff9d63]" : "text-[#012402]"
+                        <CircleCheckBig
+                          className={`mt-0.5 h-5 w-5 flex-shrink-0 ${
+                            isFeatured ? "text-[#ff9d63]" : "text-[#0c6b2f]"
                           }`}
                         />
-                        <span className='text-left'>{point}</span>
+                        <span className='text-left leading-relaxed'>{point}</span>
                       </li>
                     ))}
                   </ul>

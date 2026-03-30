@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import aboutBg from "@/assets/home_assets/image18.jpg";
+import aboutBg from "@/assets/about/image2.jpg";
 import gexpertLogo from "@/assets/gexpet logo.jpeg";
 
 const locations = [
@@ -25,34 +25,32 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1.15 }}
+            transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1] }}
             className='max-w-2xl'
           >
-            <div className='mb-3 flex items-center gap-3'>
-              <div className='h-px w-10 bg-[#a9f3b1]' />
-              <span className='font-display text-xl font-semibold uppercase tracking-widest text-[#a9f3b1]'>
-                Welcome To
-              </span>
-            </div>
-            <h2 className='mb-4 text-3xl font-display font-bold leading-[1.1] text-foreground md:text-5xl'>
+            <h2 className='mb-4 text-3xl font-display font-bold leading-[4.1] text-foreground md:text-5xl'>
               Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
             </h2>
             <p className='mb-4 text-justify leading-7 text-muted-foreground'>
-              We are a global company with presence in Lagos, Nigeria; Maputo,
-              Mozambique; Freetown, Sierra Leone; Accra, Ghana; Windhoek,
-              Namibia; Houston, Texas; Oklahoma City, Oklahoma (USA) and other
-              Africa countries.
+              Global Experts Consultoria is an international based energy,
+              engineering, business and management consulting firm that focuses
+              on supporting its clients to achieve improved performance through
+              providing pragmatic solution(s).
             </p>
             <p className='mb-4 text-justify leading-7 text-muted-foreground'>
-              Incorporated to engage in the provision of: Engineering, Project
-              Management, Market Research, Bid Administration, Health,
-              Information Technology, Registration, Procurement, Automation,
-              Product Management and other services globally.
+              The firm is led by strong willed experienced managers who have
+              worked in major international and local business and management
+              consulting firms with experience in managing multi-disciplinary
+              teams on major designs, improvements and transformational
+              assignments.
             </p>
             <p className='mb-6 text-justify leading-7 text-muted-foreground'>
-              Our focus is to provide world class Engineering, Project
-              Management, Asset Integrity and Operations & Maintenance, Product
-              Management and Consultancy solutions to our clients.
+              Global Experts Consultoria helps its clients build the needed
+              competence and capabilities to deliver on their commitments. The
+              firm has affiliations with internationally renowned professional
+              service providers in order to deliver a full range of high-quality
+              consulting services to its clients (both in the public and private
+              sector).
             </p>
 
             <div>
@@ -65,7 +63,11 @@ const AboutSection = () => {
                     key={loc}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.55, delay: 0.7 + i * 0.1 }}
+                    transition={{
+                      duration: 0.75,
+                      delay: 0.9 + i * 0.12,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                     className='px-3 py-1.5 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/10'
                   >
                     {loc}
@@ -78,7 +80,11 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1.15, delay: 0.3 }}
+            transition={{
+              duration: 1.35,
+              delay: 0.18,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className='relative'
           >
             <div className='rounded-2xl overflow-hidden shadow-2xl'>
