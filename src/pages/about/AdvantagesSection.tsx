@@ -1,69 +1,60 @@
 import { motion } from "framer-motion";
-import {
-  BadgeDollarSign,
-  Compass,
-  Globe2,
-  Lightbulb,
-  Rocket,
-  Route,
-  TimerReset,
-} from "lucide-react";
+import geolocation from "@/assets/about/geo-locations.jpg";
+import market from "@/assets/about/investment1.jpg";
+import investment from "@/assets/about/investment2.jpg";
+import flexibility from "@/assets/about/quality.png";
+import knowledge from "@/assets/about/knowledge.jpg";
+import cost from "@/assets/about/cost-saving.jpg";
+import time from "@/assets/about/cost-effective.jpg";
 
 const leadCards = [
   {
-    icon: Globe2,
     eyebrow: "Comparative Advantages",
     title: "Geo-Strategic Locations",
     text: "Geo-Strategic Locations in Africa and plan to expand beyond.",
-    iconBg: "bg-[linear-gradient(135deg,#dff4ff,#b8e5ff)]",
-    iconColor: "text-[#1c78b8]",
+    image: geolocation,
+    imageAlt: "Offshore oil and gas structure at sea",
   },
   {
-    icon: Compass,
     eyebrow: "Competitive Advantages",
     title: "Preferential Market Access",
     text: "Access to preferential markets: Africa, USA, EU, China, India, UK.",
-    iconBg: "bg-[linear-gradient(135deg,#efe3ff,#d8c1ff)]",
-    iconColor: "text-[#7346d5]",
+    image: market,
+    imageAlt: "Offshore oil and gas structure at sea",
   },
   {
-    icon: Rocket,
     eyebrow: "Pursuing Investment",
     title: "Investment Readiness",
     text: "Ready to exploit any kind of investment for and on-behalf of our clients.",
-    iconBg: "bg-[linear-gradient(135deg,#ffe5cf,#ffc89f)]",
-    iconColor: "text-[#db6b1b]",
+    image: investment,
+    imageAlt: "Offshore oil and gas platform structure",
   },
 ];
 
 const operationalAdvantages = [
   {
-    icon: Route,
     title: "Flexibility",
     text: "High speed response on potential unexpected problems and availability more simply and less expensive.",
-    iconBg: "bg-[linear-gradient(135deg,#d9f8ee,#b8efd9)]",
-    iconColor: "text-[#13895b]",
+    image: flexibility,
+    imageAlt: "Offshore oil and gas structure at sea",
   },
   {
-    icon: Lightbulb,
     title: "Knowledge & Experience",
     text: "Local conditions and regulations, special client's demands, and specific site experience.",
-    iconBg: "bg-[linear-gradient(135deg,#fff1bf,#ffe189)]",
-    iconColor: "text-[#cf9700]",
+    image: knowledge,
+    imageAlt: "Offshore oil and gas platform structure",
   },
   {
-    icon: BadgeDollarSign,
     title: "Cost Saving",
     text: "Due to participation of our competent specialists on early stage of project design concept and clear scope and work content definition.",
-    iconBg: "bg-[linear-gradient(135deg,#dff2ff,#c8e7ff)]",
-    iconColor: "text-[#1e73c9]",
+    image: cost,
+    imageAlt: "Offshore oil and gas structure at sea",
   },
   {
-    icon: TimerReset,
     title: "Time Saving",
     text: "Acceleration of BID and RFQ processes because time overrun equals cost overrun.",
-    iconBg: "bg-[linear-gradient(135deg,#ffe3ef,#ffc6de)]",
-    iconColor: "text-[#c9487d]",
+    image: time,
+    imageAlt: "Offshore oil and gas platform structure",
   },
 ];
 
@@ -88,8 +79,6 @@ const AdvantagesSection = () => {
 
         <div className='grid gap-6 xl:grid-cols-3'>
           {leadCards.map((card, index) => {
-            const Icon = card.icon;
-
             return (
               <motion.article
                 key={card.title}
@@ -101,22 +90,27 @@ const AdvantagesSection = () => {
                   duration: 1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className='rounded-[1.8rem] border border-[#0b3b12]/8 bg-white p-6 shadow-[0_22px_48px_rgba(15,23,42,0.05)] sm:p-7'
+                className='group relative min-h-[430px] overflow-hidden rounded-[1.8rem] shadow-[0_22px_48px_rgba(15,23,42,0.16)]'
               >
-                <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-full ${card.iconBg}`}
-                >
-                  <Icon className={`h-6 w-6 ${card.iconColor}`} />
+                <img
+                  src={card.image}
+                  alt={card.imageAlt}
+                  loading='lazy'
+                  className='absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
+                />
+                <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(9,29,17,0.16)_0%,rgba(4,44,18,0.46)_52%,rgba(2,37,15,0.92)_100%)]' />
+                <div className='absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(3,33,13,0)_0%,rgba(3,33,13,0.66)_100%)]' />
+                <div className='relative flex min-h-[430px] flex-col justify-end p-6 sm:p-7'>
+                  <p className='text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/70'>
+                    {card.eyebrow}
+                  </p>
+                  <h3 className='mt-3 text-3xl font-bold leading-tight text-white'>
+                    {card.title}
+                  </h3>
+                  <p className='mt-3 max-w-[18rem] text-base leading-7 text-[#ffffff]'>
+                    {card.text}
+                  </p>
                 </div>
-                <p className='mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-[#0b3b12]/60'>
-                  {card.eyebrow}
-                </p>
-                <h3 className='mt-3 text-2xl font-bold text-[#132015]'>
-                  {card.title}
-                </h3>
-                <p className='mt-4 text-justify text-[0.98rem] leading-7 text-[#5a6b5d]'>
-                  {card.text}
-                </p>
               </motion.article>
             );
           })}
@@ -124,8 +118,6 @@ const AdvantagesSection = () => {
 
         <div className='mt-8 grid gap-6 sm:grid-cols-2'>
           {operationalAdvantages.map((item, index) => {
-            const Icon = item.icon;
-
             return (
               <motion.article
                 key={item.title}
@@ -140,10 +132,13 @@ const AdvantagesSection = () => {
                 className='rounded-[1.7rem] border border-[#0b3b12]/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf7_100%)] p-6 shadow-[0_20px_42px_rgba(15,23,42,0.04)] sm:p-7'
               >
                 <div className='flex items-center gap-4'>
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-full ${item.iconBg}`}
-                  >
-                    <Icon className={`h-5 w-5 ${item.iconColor}`} />
+                  <div className='h-14 w-14 overflow-hidden rounded-2xl shadow-[0_12px_24px_rgba(15,23,42,0.08)]'>
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      loading='lazy'
+                      className='h-full w-full object-cover'
+                    />
                   </div>
                   <h3 className='text-2xl font-bold text-[#132015]'>
                     {item.title}

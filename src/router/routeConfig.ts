@@ -3,11 +3,15 @@ import { lazy, type ComponentType } from "react";
 const Home = lazy(() => import("@/pages/Home"));
 const About = lazy(() => import("@/pages/about/About"));
 const Services = lazy(() => import("@/pages/services/Services"));
+const ServiceDetail = lazy(() => import("@/pages/services/ServiceDetail"));
 const Industries = lazy(() => import("@/pages/industries/Industries"));
 const Products = lazy(() => import("@/pages/products/Products"));
 const ProductDetail = lazy(() => import("@/pages/product-detail/ProductDetail"));
 const GuidingPolicies = lazy(
   () => import("@/pages/guiding-policies/GuidingPolicies"),
+);
+const PolicyDetail = lazy(
+  () => import("@/pages/guiding-policies/PolicyDetail"),
 );
 const Articles = lazy(() => import("@/pages/articles/Articles"));
 const ArticleDetail = lazy(() => import("@/pages/articles/ArticleDetail"));
@@ -25,10 +29,12 @@ export const routes: AppRoute[] = [
   { path: "/", component: Home, index: true },
   { path: "/about", component: About },
   { path: "/services", component: Services },
+  { path: "/services/:serviceId", component: ServiceDetail },
   { path: "/industries", component: Industries },
   { path: "/products", component: Products },
   { path: "/products/:productId", component: ProductDetail },
   { path: "/guiding-policies", component: GuidingPolicies },
+  { path: "/guiding-policies/:policySlug", component: PolicyDetail },
   { path: "/articles", component: Articles },
   { path: "/articles/:articleSlug", component: ArticleDetail },
   { path: "/partners", component: Partners },

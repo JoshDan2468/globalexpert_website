@@ -90,8 +90,8 @@ const AboutSection = () => {
             <div className='rounded-2xl overflow-hidden shadow-2xl'>
               <img
                 src={aboutBg}
-                alt='GEC engineering team reviewing project blueprints on site'
-                className='w-full h-[500px] object-cover'
+                alt='Offshore production structure showcasing industrial energy infrastructure'
+                className='h-[500px] w-full object-cover'
                 loading='lazy'
               />
             </div>

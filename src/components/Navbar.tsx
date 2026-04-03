@@ -68,7 +68,14 @@ const navLinks: NavLink[] = [
       },
     ],
   },
-  { label: "Guiding Policies", to: "/guiding-policies" },
+  {
+    label: "Guiding Policies",
+    to: "/guiding-policies",
+    children: [
+      { label: "Quality Policy", to: "/guiding-policies/quality-policy" },
+      { label: "HSE Policy", to: "/guiding-policies/hse-policy" },
+    ],
+  },
   { label: "Articles", to: "/articles" },
   { label: "Our Partners", to: "/partners" },
 ];
@@ -188,14 +195,29 @@ const Navbar = () => {
           >
             <div className='px-6 pb-6 space-y-1'>
               {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  onClick={() => setMobileOpen(false)}
-                  className='block py-3 text-[12px] text-gray-600 hover:text-gray-800 font-semibold uppercase tracking-[0.08em] transition-colors'
-                >
-                  {link.label}
-                </Link>
+                <div key={link.label}>
+                  <Link
+                    to={link.to}
+                    onClick={() => setMobileOpen(false)}
+                    className='block py-3 text-[12px] text-gray-600 hover:text-gray-800 font-semibold uppercase tracking-[0.08em] transition-colors'
+                  >
+                    {link.label}
+                  </Link>
+                  {link.children && (
+                    <div className='pb-2 pl-4'>
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          to={child.to}
+                          onClick={() => setMobileOpen(false)}
+                          className='block py-2 text-[11px] text-gray-500 hover:text-gray-800 font-medium uppercase tracking-[0.08em] transition-colors'
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <Link
                 to='/contact'

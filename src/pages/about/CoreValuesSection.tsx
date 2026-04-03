@@ -1,39 +1,33 @@
 import { motion } from "framer-motion";
-import {
-  BadgeCheck,
-  Handshake,
-  ShieldCheck,
-  Users,
-} from "lucide-react";
+import accountabilityImage from "@/assets/about/cost-effective.jpg";
+import respectImage from "@/assets/about/respect.jpg";
+import teamworkImage from "@/assets/about/teamwork.png";
+import qualityImage from "@/assets/about/quality.png";
 
 const values = [
   {
-    icon: ShieldCheck,
     title: "Accountability",
     text: "We are accountable for delivering on our commitments to our clients.",
-    iconBg: "bg-[linear-gradient(135deg,#dcecff,#b7d6ff)]",
-    iconColor: "text-[#2459c6]",
+    image: accountabilityImage,
+    imageAlt: "Professionals reviewing accountability metrics",
   },
   {
-    icon: Handshake,
     title: "Respect for People",
     text: "We value our people and clients, encourage their development, and reward their performance.",
-    iconBg: "bg-[linear-gradient(135deg,#ffe5d5,#ffd1c8)]",
-    iconColor: "text-[#d6632d]",
+    image: respectImage,
+    imageAlt: "People-centered collaboration and growth",
   },
   {
-    icon: Users,
     title: "Teamwork",
     text: "We work together, across boundaries, to meet the needs of our clients.",
-    iconBg: "bg-[linear-gradient(135deg,#e0f7ec,#baf1d3)]",
-    iconColor: "text-[#198754]",
+    image: teamworkImage,
+    imageAlt: "Team collaboration in a professional workspace",
   },
   {
-    icon: BadgeCheck,
     title: "Quality",
     text: "We provide outstanding services that deliver premium value to our clients.",
-    iconBg: "bg-[linear-gradient(135deg,#f2e4ff,#dec5ff)]",
-    iconColor: "text-[#7d43d6]",
+    image: qualityImage,
+    imageAlt: "Precision engineering and quality assurance",
   },
 ];
 
@@ -58,8 +52,6 @@ const CoreValuesSection = () => {
 
         <div className='grid gap-6 sm:grid-cols-2 xl:grid-cols-4'>
           {values.map((value, index) => {
-            const Icon = value.icon;
-
             return (
               <motion.article
                 key={value.title}
@@ -73,10 +65,13 @@ const CoreValuesSection = () => {
                 }}
                 className='rounded-[1.7rem] border border-[#0b3b12]/8 bg-[linear-gradient(180deg,#ffffff_0%,#f5faf5_100%)] p-6 shadow-[0_20px_44px_rgba(15,23,42,0.05)] sm:p-7'
               >
-                <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-full ${value.iconBg}`}
-                >
-                  <Icon className={`h-6 w-6 ${value.iconColor}`} />
+                <div className='mx-auto h-24 w-28 overflow-hidden rounded-[1rem] shadow-[0_12px_24px_rgba(15,23,42,0.08)]'>
+                  <img
+                    src={value.image}
+                    alt={value.imageAlt}
+                    loading='lazy'
+                    className='h-full w-full object-cover'
+                  />
                 </div>
 
                 <h3 className='mt-6 text-2xl font-bold text-[#132015]'>
