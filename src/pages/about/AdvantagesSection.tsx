@@ -72,7 +72,7 @@ const AdvantagesSection = () => {
           <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
             It&apos;s What We Do Best
           </p>
-          <h2 className='mt-3 text-3xl font-bold tracking-tight text-[#132015] sm:text-4xl md:text-5xl'>
+          <h2 className='mt-3 justify-center text-3xl font-bold tracking-tight text-[#132015] sm:text-4xl md:text-5xl lg:flex lg:whitespace-nowrap'>
             Comparative and competitive advantages that strengthen delivery
           </h2>
         </motion.div>

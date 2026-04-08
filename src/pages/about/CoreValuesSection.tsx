@@ -45,7 +45,7 @@ const CoreValuesSection = () => {
           <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
             Core Values
           </p>
-          <h2 className='mt-3 text-3xl font-bold tracking-tight text-[#132015] sm:text-4xl md:text-5xl'>
+          <h2 className='mx-auto mt-3 max-w-fit text-center text-3xl font-bold tracking-tight text-[#132015] sm:text-4xl md:text-5xl lg:whitespace-nowrap'>
             Principles that shape how we work and deliver
           </h2>
         </motion.div>

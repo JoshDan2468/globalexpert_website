@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import gexpertLogo from "@/assets/gexpet logo.jpeg";
+import { serviceLinks } from "@/pages/services/serviceLinks";
 
 type NavLink = {
   label: string;
@@ -16,20 +17,7 @@ const navLinks: NavLink[] = [
   {
     label: "Our Services",
     to: "/services",
-    children: [
-      { label: "Engineering Services", to: "/services/engineering-services" },
-      { label: "Business Processes", to: "/services/business-processes" },
-      { label: "Research & Development", to: "/services/research-development" },
-      {
-        label: "Research and Market Intelligence",
-        to: "/services/research-market-intelligence",
-      },
-      { label: "Oil and Gas Management", to: "/services/oil-gas-management" },
-      {
-        label: "Project Management and Execution",
-        to: "/services/project-management-execution",
-      },
-    ],
+    children: [...serviceLinks],
   },
   {
     label: "Industries",
@@ -70,7 +58,7 @@ const navLinks: NavLink[] = [
   },
   {
     label: "Guiding Policies",
-    to: "/guiding-policies",
+    to: "/guiding-policies/quality-policy",
     children: [
       { label: "Quality Policy", to: "/guiding-policies/quality-policy" },
       { label: "HSE Policy", to: "/guiding-policies/hse-policy" },

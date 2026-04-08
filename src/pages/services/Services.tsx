@@ -11,7 +11,7 @@ const Services = () => (
     <ServicesHero />
     <ServicesShowcase />
     <ServicesCtaBand />
-    <ServicesTestimonials />
+    {/* <ServicesTestimonials /> */}
     <CTAFooter />
   </main>
 );

@@ -161,9 +161,9 @@ const AboutHero = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className='max-w-3xl'
+          className='mx-auto max-w-3xl text-center'
         >
-          <h1 className='mt-2 flex flex-wrap gap-x-4 gap-y-2 text-left text-4xl font-bold leading-none text-white sm:text-5xl md:text-6xl'>
+          <h1 className='mt-2 flex flex-wrap justify-center gap-x-4 gap-y-2 text-4xl font-bold leading-none text-white sm:text-5xl md:text-6xl'>
             {titleWords.map((word, index) => (
               <motion.span
                 key={word}
@@ -185,7 +185,7 @@ const AboutHero = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className='mt-5 max-w-2xl text-left text-white text-lg leading-7 text-white/78 sm:text-base'
+            className='mx-auto mt-5 max-w-2xl text-white text-lg leading-7 text-white/78 sm:text-base'
           >
             Explore who we are, where we operate, and the expertise behind our
             engineering, project management, and consultancy services.

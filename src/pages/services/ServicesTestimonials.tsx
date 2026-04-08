@@ -29,24 +29,24 @@ const testimonials = [
 
 const ServicesTestimonials = () => {
   return (
-    <section className='bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8'>
+    <section className='bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20'>
       <div className='container mx-auto'>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-          className='mx-auto mb-10 max-w-3xl text-center sm:mb-14'
+          className='mx-auto mb-10 max-w-3xl text-center sm:mb-12 lg:mb-14'
         >
-          <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+          <p className='text-xs font-semibold uppercase tracking-[0.24em] text-[#0b3b12] sm:text-sm sm:tracking-[0.28em]'>
             Testimonials
           </p>
-          <h2 className='mt-3 text-3xl font-bold tracking-tight text-[#132015] sm:text-4xl'>
+          <h2 className='mt-3 text-2xl font-bold tracking-tight text-[#132015] sm:text-4xl'>
             What our customers say
           </h2>
         </motion.div>
 
-        <div className='grid gap-6 lg:grid-cols-3'>
+        <div className='grid gap-5 sm:gap-6 lg:grid-cols-3'>
           {testimonials.map((item, index) => (
             <motion.article
               key={item.name}
@@ -58,9 +58,9 @@ const ServicesTestimonials = () => {
                 duration: 0.95,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className='rounded-[1.6rem] border border-[#0b3b12]/8 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf8_100%)] p-6 shadow-[0_20px_42px_rgba(15,23,42,0.04)]'
+              className='rounded-[1.4rem] border border-[#0b3b12]/8 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf8_100%)] p-5 shadow-[0_20px_42px_rgba(15,23,42,0.04)] sm:rounded-[1.6rem] sm:p-6'
             >
-              <p className='text-[0.98rem] leading-7 text-[#5a6b5d]'>
+              <p className='text-sm leading-7 text-[#5a6b5d] sm:text-[0.98rem]'>
                 "{item.quote}"
               </p>
 

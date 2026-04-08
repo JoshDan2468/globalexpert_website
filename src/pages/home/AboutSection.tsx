@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import aboutBg from "@/assets/home_assets/image18.jpg";
+import aboutBg from "@/assets/home_assets/survay.jpg";
 import gexpertLogo from "@/assets/gexpet logo.jpeg";
 
 const locations = [
@@ -28,12 +28,12 @@ const AboutSection = () => {
             transition={{ duration: 1.15 }}
             className='max-w-2xl'
           >
-            <div className='mb-3 flex items-center gap-3'>
+            {/* <div className='mb-3 flex items-center gap-3'>
               <div className='h-px w-10 bg-[#a9f3b1]' />
               <span className='font-display text-xl font-semibold uppercase tracking-widest text-[#a9f3b1]'>
                 Welcome To
               </span>
-            </div>
+            </div> */}
             <h2 className='mb-4 text-3xl font-display font-bold leading-[1.1] text-foreground md:text-5xl'>
               Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
             </h2>

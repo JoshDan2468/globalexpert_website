@@ -107,16 +107,15 @@ const Products = () => {
   const [activeIndex, setActiveIndex] = useState(2);
   const activeProduct = productItems[activeIndex];
 
+  const getWrappedIndex = (index: number) =>
+    (index + productItems.length) % productItems.length;
+
   const showPrevious = () => {
-    setActiveIndex((current) =>
-      current === 0 ? productItems.length - 1 : current - 1,
-    );
+    setActiveIndex((current) => getWrappedIndex(current - 1));
   };
 
   const showNext = () => {
-    setActiveIndex((current) =>
-      current === productItems.length - 1 ? 0 : current + 1,
-    );
+    setActiveIndex((current) => getWrappedIndex(current + 1));
   };
 
   return (
@@ -149,16 +148,10 @@ const Products = () => {
               reliability, safety, and execution readiness.
             </p>
             <div className='mt-8 flex flex-wrap justify-center gap-3'>
-              <a
-                href='#product-selector'
-                className='inline-flex items-center gap-2 rounded-full bg-[#ff7b22] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-transform duration-300 hover:-translate-y-0.5'
-              >
-                Browse Products
-                <ArrowRight className='h-3.5 w-3.5' />
-              </a>
+              
               <Link
                 to='/contact'
-                className='inline-flex rounded-full border border-white/22 bg-white/8 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/14'
+                className='inline-flex rounded-full border border-white/22 bg-white/8 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/14 hover:bg-white/50'
               >
                 Request Support
               </Link>
@@ -214,51 +207,36 @@ const Products = () => {
             </h2>
           </motion.div>
 
-          <div className='flex items-center justify-center gap-3 sm:gap-5'>
+          <div className='mx-auto mb-8 flex max-w-3xl items-center justify-between gap-4'>
             <button
               type='button'
               onClick={showPrevious}
-              className='flex h-12 w-12 items-center justify-center rounded-full border border-[#234a91]/12 bg-white text-[#234a91] shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#f3f7ff]'
+              className='flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#234a91]/12 bg-white text-[#234a91] shadow-sm transition-colors duration-300 hover:bg-[#f3f7ff]'
               aria-label='Show previous product'
             >
               <ArrowLeft className='h-5 w-5' />
             </button>
 
-            <div className='min-w-0 flex-1'>
-              <div className='grid gap-4 sm:grid-cols-3 lg:grid-cols-6'>
-                {productItems.map((product, index) => (
-                  <motion.button
-                    key={product.id}
-                    type='button'
-                    onClick={() => setActiveIndex(index)}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className={`rounded-[1.35rem] border px-3 py-4 text-center transition-all duration-300 ${
-                      index === activeIndex
-                        ? "border-[#234a91] bg-[#234a91] text-white shadow-[0_18px_34px_rgba(35,74,145,0.18)]"
-                        : "border-[#0b3b12]/8 bg-[#f8fbf9] text-[#2f4133] hover:border-[#234a91]/30 hover:bg-white"
-                    }`}
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.alt}
-                      loading='lazy'
-                      className={`mx-auto h-16 w-16 rounded-2xl object-cover ${
-                        index === activeIndex ? "ring-2 ring-white/25" : ""
-                      }`}
-                    />
-                    <span className='mt-3 block text-[11px] font-semibold uppercase tracking-[0.14em]'>
-                      {product.title}
-                    </span>
-                  </motion.button>
-                ))}
-              </div>
+            <div className='flex flex-wrap items-center justify-center gap-3'>
+              {productItems.map((product, index) => (
+                <button
+                  key={product.id}
+                  type='button'
+                  onClick={() => setActiveIndex(index)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    index === activeIndex
+                      ? "w-10 bg-[#234a91]"
+                      : "w-2.5 bg-[#234a91]/25 hover:bg-[#234a91]/45"
+                  }`}
+                  aria-label={`Go to ${product.title}`}
+                />
+              ))}
             </div>
 
             <button
               type='button'
               onClick={showNext}
-              className='flex h-12 w-12 items-center justify-center rounded-full border border-[#234a91]/12 bg-white text-[#234a91] shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#f3f7ff]'
+              className='flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#234a91]/12 bg-white text-[#234a91] shadow-sm transition-colors duration-300 hover:bg-[#f3f7ff]'
               aria-label='Show next product'
             >
               <ArrowRight className='h-5 w-5' />
@@ -272,7 +250,7 @@ const Products = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.98 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className='mx-auto mt-10 max-w-3xl rounded-[1.9rem] border border-[#234a91]/10 bg-[linear-gradient(180deg,#ffffff_0%,#f5f9ff_100%)] p-5 shadow-[0_24px_50px_rgba(15,23,42,0.06)] sm:p-7'
+              className='mx-auto max-w-3xl rounded-[1.9rem] border border-[#234a91]/10 bg-[linear-gradient(180deg,#ffffff_0%,#f5f9ff_100%)] p-5 shadow-[0_24px_50px_rgba(15,23,42,0.06)] sm:p-7'
             >
               <div className='grid gap-6 md:grid-cols-[0.95fr_1.05fr] md:items-center'>
                 <div className='overflow-hidden rounded-[1.6rem]'>
@@ -290,7 +268,7 @@ const Products = () => {
                   <p className='text-xs font-semibold uppercase tracking-[0.24em] text-[#234a91]/72'>
                     Selected Product
                   </p>
-                  <h3 className='mt-3 text-3xl font-bold text-[#132015] sm:text-4xl'>
+                  <h3 className='mt-3 text-center text-3xl font-bold text-[#132015] sm:text-4xl'>
                     {activeProduct.title}
                   </h3>
                   <p className='mt-3 text-sm font-medium uppercase tracking-[0.16em] text-[#5f7081]'>

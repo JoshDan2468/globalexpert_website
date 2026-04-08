@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import aboutBg from "@/assets/about/image2.jpg";
+import aboutBg from "@/assets/home_assets/survay.jpg";
 import gexpertLogo from "@/assets/gexpet logo.jpeg";
 
 const locations = [

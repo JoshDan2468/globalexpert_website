@@ -81,12 +81,11 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    text-align: justify;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
-    text-align: left;
+    text-align: center;
   }
 }
 
@@ -101,5 +100,14 @@
 
   .glass-card {
     @apply backdrop-blur-md bg-card/80 border border-border/50 shadow-lg;
+  }
+
+  .copy-justify {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .copy-left {
+    text-align: left;
   }
 }

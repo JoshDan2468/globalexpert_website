@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   BarChart3,
@@ -10,13 +11,13 @@ import {
   Layers3,
   Pickaxe,
 } from "lucide-react";
-import serviceImage1 from "@/assets/home_assets/image11.jpg";
-import serviceImage2 from "@/assets/home_assets/image12.jpg";
-import serviceImage3 from "@/assets/home_assets/image13.jpg";
-import serviceImage4 from "@/assets/home_assets/image14.jpg";
-import serviceImage5 from "@/assets/home_assets/image16.jpg";
-import serviceImage6 from "@/assets/home_assets/image16.jpg";
-import serviceImage7 from "@/assets/home_assets/image18.jpg";
+import serviceImage1 from "@/assets/home_assets/trac.jpg";
+import serviceImage2 from "@/assets/home_assets/factory.jpg";
+import serviceImage3 from "@/assets/home_assets/scripts.jpg";
+import serviceImage4 from "@/assets/home_assets/image16.jpg";
+import serviceImage5 from "@/assets/home_assets/port.jpg";
+import serviceImage6 from "@/assets/home_assets/technical.jpg";
+import serviceImage7 from "@/assets/home_assets/petrol.jpg";
 
 type ServiceItem = {
   icon: typeof HardHat;
@@ -25,6 +26,7 @@ type ServiceItem = {
   description: string;
   image: string;
   alt: string;
+  to: string;
 };
 
 const services: ServiceItem[] = [
@@ -36,6 +38,7 @@ const services: ServiceItem[] = [
       "GEC delivers technical, safety, and quality support for construction activities. We help clients move from planning to execution with confidence and control.",
     image: serviceImage1,
     alt: "Engineering and construction planning service",
+    to: "/services/engineering-services",
   },
   {
     icon: Layers3,
@@ -45,6 +48,7 @@ const services: ServiceItem[] = [
       "We support organisations across power, mining, automobile, education, health, agriculture, manufacturing, and finance. Our teams adapt solutions to fit each sector's operational needs.",
     image: serviceImage2,
     alt: "Multi-industry professional services",
+    to: "/services/oil-gas-management",
   },
   {
     icon: BriefcaseBusiness,
@@ -54,6 +58,7 @@ const services: ServiceItem[] = [
       "GEC manages projects and subcontractors with a strong focus on coordination, timelines, and fit-for-purpose delivery. We keep execution structured, efficient, and accountable.",
     image: serviceImage3,
     alt: "Project management coordination service",
+    to: "/services/project-management-execution",
   },
   {
     icon: Cog,
@@ -63,6 +68,7 @@ const services: ServiceItem[] = [
       "We work closely with clients to understand technical goals, commercial drivers, and field requirements. This helps us define practical engineering solutions with long-term value.",
     image: serviceImage4,
     alt: "Engineering services and technical design",
+    to: "/services/engineering-services",
   },
   {
     icon: FlaskConical,
@@ -72,6 +78,7 @@ const services: ServiceItem[] = [
       "Our R&D services combine engineering science, digital analysis, and modern software tools to support smarter design decisions. We use FEA, CFD, and testing access to help clients investigate, improve, and innovate.",
     image: serviceImage5,
     alt: "Research and development laboratory service",
+    to: "/services/research-development",
   },
   {
     icon: Pickaxe,
@@ -81,6 +88,7 @@ const services: ServiceItem[] = [
       "Our advisory team helps businesses set up, improve, and manage operations more efficiently. We focus on practical systems, better processes, and cost-effective execution.",
     image: serviceImage6,
     alt: "Technical advisory and business process consulting",
+    to: "/services/business-processes",
   },
   {
     icon: BarChart3,
@@ -90,6 +98,7 @@ const services: ServiceItem[] = [
       "We provide market research, due diligence, and commercial insight that support better business decisions. Our analysis helps clients understand trends, industry players, risks, and emerging opportunities.",
     image: serviceImage7,
     alt: "Market intelligence and due diligence analytics",
+    to: "/services/research-market-intelligence",
   },
 ];
 
@@ -218,20 +227,24 @@ const ServicesSection = () => {
                     <span className='text-[11px] font-medium uppercase tracking-[0.14em] text-[#0b3b12]/55'>
                       Learn More
                     </span>
-                    <motion.button
-                      type='button'
+                    <motion.div
                       className='inline-flex items-center gap-1.5 rounded-full bg-[#0b3b12] px-3 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-[#14501c]'
                       whileHover={{ x: 4 }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
                     >
-                      View Service
-                      <motion.span
-                        whileHover={{ x: 2, y: -2 }}
-                        transition={{ duration: 0.25, ease: "easeOut" }}
+                      <Link
+                        to={service.to}
+                        className='inline-flex items-center gap-1.5'
                       >
-                        <ArrowUpRight className='h-4 w-4' />
-                      </motion.span>
-                    </motion.button>
+                        View Service
+                        <motion.span
+                          whileHover={{ x: 2, y: -2 }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
+                        >
+                          <ArrowUpRight className='h-4 w-4' />
+                        </motion.span>
+                      </Link>
+                    </motion.div>
                   </div>
                 </motion.div>
               </motion.article>

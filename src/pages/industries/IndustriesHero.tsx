@@ -55,18 +55,9 @@ const IndustriesHero = () => {
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className='max-w-4xl'
+          className='mx-auto max-w-4xl text-center'
         >
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.7 }}
-            className='inline-flex max-w-full items-center rounded-full border border-white/12 bg-white/6 px-3 py-2 text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-[#d8fadb]/82 backdrop-blur-sm sm:px-4 sm:text-[0.68rem] sm:tracking-[0.34em]'
-          >
-            Dedicated Industries Page
-          </motion.div>
-
-          <h1 className='mt-5 flex max-w-4xl flex-wrap gap-x-3 gap-y-2 text-left text-[2.2rem] font-bold leading-[0.96] text-white sm:mt-6 sm:gap-x-4 sm:text-5xl md:text-6xl'>
+          <h1 className='mx-auto mt-5 flex max-w-4xl flex-wrap justify-center gap-x-3 gap-y-2 text-[2.2rem] font-bold leading-[0.96] text-white sm:mt-6 sm:gap-x-4 sm:text-5xl md:text-6xl'>
             {titleWords.map((word, index) => (
               <motion.span
                 key={word}
@@ -88,7 +79,7 @@ const IndustriesHero = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.52, duration: 0.82 }}
-            className='mt-4 max-w-2xl text-left text-[0.98rem] leading-7 text-white/78 sm:mt-5 sm:text-base sm:leading-8 md:max-w-3xl'
+            className='mx-auto mt-4 max-w-2xl text-[#ffffff] text-[0.98rem] leading-7 text-white/78 sm:mt-5 sm:text-base sm:leading-8 md:max-w-3xl'
           >
             Explore the sectors we support through engineering, project
             execution, operational advisory, and technology-led solutions built

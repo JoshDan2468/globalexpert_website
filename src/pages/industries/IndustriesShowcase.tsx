@@ -1,18 +1,11 @@
 import { motion } from "framer-motion";
-import {
-  Cpu,
-  Droplets,
-  Factory,
-  Leaf,
-  Pickaxe,
-  Zap,
-} from "lucide-react";
-import oilAndGasImage from "@/assets/home_assets/image20.jpg";
-import energyImage from "@/assets/home_assets/image18.jpg";
-import manufacturingImage from "@/assets/home_assets/image14.jpg";
-import miningImage from "@/assets/home_assets/image16.jpg";
-import agricultureImage from "@/assets/home_assets/image13.jpg";
-import technologyImage from "@/assets/home_assets/image11.jpg";
+import { Cpu, Droplets, Factory, Leaf, Pickaxe, Zap } from "lucide-react";
+import oilAndGasImage from "@/assets/industries/oil.jpg";
+import energyImage from "@/assets/industries/grid.jpg";
+import manufacturingImage from "@/assets/industries/constructs.jpg";
+import miningImage from "@/assets/industries/mining.jpg";
+import agricultureImage from "@/assets/industries/agric.jpg";
+import technologyImage from "@/assets/industries/technology.jpg";
 
 type Industry = {
   icon: typeof Droplets;
@@ -119,15 +112,15 @@ const IndustriesShowcase = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className='mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-16'
+          className='mx-auto mb-10 max-w-4xl text-center sm:mb-14 lg:mb-16'
         >
-          <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+          <p className='mx-auto max-w-fit text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
             Industry Coverage
           </p>
-          <h2 className='mt-3 text-[2rem] font-bold tracking-tight text-[#081b09] sm:text-4xl md:text-5xl'>
+          <h2 className='mx-auto mt-3 max-w-fit justify-center  text-[2rem] font-bold tracking-tight text-[#081b09] sm:text-4xl md:text-5xl '>
             Expertise presented with a cleaner, premium structure
           </h2>
-          <p className='mt-4 text-sm leading-7 text-[#415244] sm:text-base'>
+          <p className='mt-4 text-sm leading-7 text-[#415244] sm:text-base '>
             Each sector combines practical engineering experience, delivery
             discipline, and tailored support for high-value operations.
           </p>
@@ -155,16 +148,7 @@ const IndustriesShowcase = () => {
                   }}
                   className={reverseLayout ? "lg:order-2" : ""}
                 >
-                  <div className='mb-4 inline-flex max-w-full items-center gap-3 rounded-full border border-[#0b3b12]/10 bg-[#eef6ef] px-3 py-2 text-[#0b3b12] sm:mb-5 sm:px-4'>
-                    <span className='flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-[0_10px_24px_rgba(1,36,2,0.1)] sm:h-10 sm:w-10'>
-                      <Icon className='h-4 w-4 sm:h-5 sm:w-5' />
-                    </span>
-                    <span className='text-[10px] font-semibold uppercase tracking-[0.22em] sm:text-[11px] sm:tracking-[0.28em]'>
-                      Sector Focus
-                    </span>
-                  </div>
-
-                  <h3 className='max-w-xl text-[2.2rem] font-semibold tracking-tight text-[#012402] sm:text-4xl md:text-[3.05rem] md:leading-[1.08]'>
+                  <h3 className='mx-auto max-w-xl text-center text-[2.2rem] font-semibold tracking-tight text-[#012402] sm:text-4xl md:text-[3.05rem] md:leading-[1.08]'>
                     {industry.title}
                   </h3>
 
@@ -191,7 +175,9 @@ const IndustriesShowcase = () => {
                           className='flex items-start gap-3 sm:gap-4 text-[#2f4233]'
                         >
                           <span className='mt-2.5 h-2 w-2 flex-shrink-0 rounded-full bg-[#17a34a] sm:mt-3' />
-                          <span className='text-[0.98rem] leading-7 sm:text-base'>{item}</span>
+                          <span className='text-[0.98rem] leading-7 sm:text-base'>
+                            {item}
+                          </span>
                         </motion.li>
                       ))}
                     </ul>

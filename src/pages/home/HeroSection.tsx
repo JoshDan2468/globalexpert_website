@@ -1,112 +1,190 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
-import heroImage1 from "@/assets/home_assets/image18.jpg";
-import heroImage2 from "@/assets/home_assets/image14.jpg";
-import heroImage3 from "@/assets/home_assets/image11.jpg";
-import heroImage4 from "@/assets/home_assets/image16.jpg";
+import heroImage1 from "@/assets/home_assets/image20.jpg";
+import heroImage3 from "@/assets/home_assets/image19.jpg";
 
-const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
+type HeroImage = {
+  src: string;
+  alt: string;
+};
+
+type HeroHighlight = {
+  title: string;
+};
+
+const heroImages: HeroImage[] = [
+  {
+    src: heroImage1,
+    alt: "Engineering professionals reviewing infrastructure operations",
+  },
+  {
+    src: heroImage3,
+    alt: "Industrial facility supporting high-value asset operations",
+  },
+];
+
+const heroHighlights: HeroHighlight[] = [
+  { title: "Engineering Services" },
+  { title: "Project Management" },
+  { title: "Asset Integrity" },
+];
+
+const sectionClasses = "relative min-h-[88vh] overflow-hidden bg-[#08130a]";
+
+const contentWrapperClasses =
+  "relative z-10 container mx-auto flex min-h-[88vh] items-center px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28";
+
+const eyebrowClasses =
+  "text-left text-xs font-semibold uppercase tracking-[0.24em] text-[#a9f3b1] sm:text-base sm:tracking-[0.32em]";
+
+const headingClasses =
+  "mt-4 max-w-[13ch] text-left text-[2.1rem] font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:mt-6 sm:max-w-4xl sm:text-5xl md:max-w-5xl md:text-5xl lg:text-[5.25rem] xl:text-[6rem]";
+
+const bodyTextClasses =
+  "mt-5 max-w-[54rem] text-left text-base leading-7 text-white sm:mt-6 sm:text-xl md:text-[1.35rem] md:leading-9";
+
+const badgeClasses =
+  "inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm sm:px-5 sm:py-3 sm:text-base";
+
+const overlayClasses = {
+  primary:
+    "absolute inset-0 bg-[linear-gradient(90deg,rgba(7,18,10,0.56)_0%,rgba(7,18,10,0.28)_42%,rgba(7,18,10,0.05)_100%)]",
+};
+
+const textContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const textItemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
+const badgeContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.45,
+    },
+  },
+};
+
+const badgeItemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
 
 const HeroSection = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const currentImage = useMemo(
+    () => heroImages[activeImageIndex],
+    [activeImageIndex],
+  );
 
   useEffect(() => {
+    heroImages.forEach((image) => {
+      const preloadImage = new Image();
+      preloadImage.src = image.src;
+    });
+
     const interval = window.setInterval(() => {
-      setActiveImageIndex((currentIndex) => (currentIndex + 1) % heroImages.length);
-    }, 7000);
+      setActiveImageIndex(
+        (currentIndex) => (currentIndex + 1) % heroImages.length,
+      );
+    }, 6500);
 
     return () => window.clearInterval(interval);
   }, []);
 
   return (
-    <section id='hero' className='relative min-h-[90vh] overflow-hidden'>
+    <section id='hero' className={sectionClasses}>
+      {/* Background image slider */}
       <div className='absolute inset-0'>
-        <AnimatePresence mode='wait'>
+        {heroImages.map((image, index) => (
           <motion.img
-            key={heroImages[activeImageIndex]}
-            src={heroImages[activeImageIndex]}
-            alt='Energy infrastructure overview'
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 1.4, ease: "easeInOut" }}
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            initial={false}
+            animate={{
+              opacity: index === activeImageIndex ? 1 : 0,
+              scale: index === activeImageIndex ? 1 : 1.035,
+            }}
+            transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
             className='absolute inset-0 h-full w-full object-cover'
-            fetchPriority='high'
+            fetchPriority={index === 0 ? "high" : "auto"}
+            loading={index === 0 ? "eager" : "lazy"}
           />
-        </AnimatePresence>
-        <div className='absolute inset-0 bg-gradient-to-r from-gray-900/75 via-gray-700/40 to-transparent' />
-        <div className='absolute inset-0 bg-black/15' />
+        ))}
+        <div className={overlayClasses.primary} />
       </div>
 
-      <div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-30 sm:pt-28 lg:pt-40 pb-14 sm:pb-16'>
+      {/* Main content */}
+      <div className={contentWrapperClasses}>
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className='max-w-5xl pt-8 sm:pt-10'
+          variants={textContainerVariants}
+          initial='hidden'
+          animate='visible'
+          className='w-full max-w-5xl text-left'
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className='text-5xl md:text-6xl lg:text-8xl font-extrabold text-white leading-tight'
-          >
-            Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.35 }}
-            className='mt-5 max-w-3xl text-base md:text-2xl text-white/90 text-left break-keep'
-            style={{ fontWeight: 700 }}
-          >
-            Delivering world class engineering, project management, asset
-            integrity, and maintenance consultancy solutions.
+          {/* Small top label */}
+          <motion.p variants={textItemVariants} className={eyebrowClasses}>
+            Global Experts Consultoria
           </motion.p>
 
+          {/* Main heading */}
+          <motion.h1 variants={textItemVariants} className={headingClasses}>
+            Engineering and asset support for high-value operations.
+          </motion.h1>
+
+          {/* Supporting text */}
+          <motion.p variants={textItemVariants} className={bodyTextClasses}>
+            We deliver practical engineering, project delivery, asset integrity,
+            and maintenance consultancy solutions with clarity, discipline, and
+            execution confidence.
+          </motion.p>
+
+          {/* Service highlight badges */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className='mt-6 flex flex-wrap gap-3 sm:gap-4 pb-20'
+            variants={badgeContainerVariants}
+            className='mt-7 flex flex-wrap items-start justify-start gap-3 sm:gap-4'
           >
-            {[
-              "Engineering Services",
-              "Project Management",
-              "Asset Integrity",
-            ].map((label) => (
-              <span
-                key={label}
-                className='inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-sm text-white/85'
+            {heroHighlights.map((highlight) => (
+              <motion.span
+                key={highlight.title}
+                variants={badgeItemVariants}
+                className={badgeClasses}
               >
                 <CheckCircle className='h-4 w-4 text-[#a9f3b1]' />
-                {label}
-              </span>
+                {highlight.title}
+              </motion.span>
             ))}
           </motion.div>
 
-          {/* <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.65 }}
-            className='mt-8 flex flex-wrap gap-4 sm:gap-6'
-          >
-            <a
-              href='/contact'
-              className='px-6 py-3 rounded-full bg-[#ebf5ec] text-[#012402] text-sm font-semibold hover:brightness-95 transition-all'
-            >
-              Contact Our Team
-            </a>
-            <a
-              href='/services'
-              className='px-6 py-3 rounded-full border border-white/40 text-white text-sm font-semibold hover:bg-white/10 transition-all inline-flex items-center gap-2'
-            >
-              Stay Powerful
-              <ArrowRight className='w-4 h-4' />
-            </a>
-          </motion.div> */}
+          {/* Screen-reader-only context for the active background image */}
+          <p className='sr-only'>{currentImage.alt}</p>
         </motion.div>
       </div>
     </section>

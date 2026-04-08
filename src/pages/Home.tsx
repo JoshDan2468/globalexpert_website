@@ -12,21 +12,36 @@ const CTAFooter = lazy(() => import("@/pages/home/CTAFooter"));
 
 const Home = () => (
   <main className='overflow-x-hidden'>
+    {/* Site navigation */}
     <Navbar />
+
+    {/* Hero / first impression */}
     <HeroSection />
+
+    {/* Company snapshot */}
     <CompanySection />
+
+    {/* Company introduction */}
     <DeferredSection minHeight='640px'>
       <AboutSection />
     </DeferredSection>
+
+    {/* Trust and commitment section */}
     <DeferredSection minHeight='720px'>
       <CommitmentSection />
     </DeferredSection>
+
+    {/* Service cards */}
     <DeferredSection minHeight='820px'>
       <ServicesSection />
     </DeferredSection>
+
+    {/* Floating business stats */}
     <DeferredSection minHeight='220px'>
       <FloatingStats />
     </DeferredSection>
+
+    {/* Final call to action */}
     <DeferredSection minHeight='560px' rootMargin='220px'>
       <CTAFooter />
     </DeferredSection>
