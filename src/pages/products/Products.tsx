@@ -17,7 +17,6 @@ import image3 from "@/assets/home_assets/image13.jpg";
 import image4 from "@/assets/home_assets/image14.jpg";
 import image5 from "@/assets/home_assets/image16.jpg";
 import image6 from "@/assets/about/image2.jpg";
-import { productDetails } from "@/pages/products/productData";
 
 type ProductItem = {
   id: string;
@@ -30,7 +29,7 @@ type ProductItem = {
 
 const productItems: ProductItem[] = [
   {
-    id: productDetails[0].slug,
+    id: "digitalization-edge",
     title: "Digitalization",
     short: "Smart connected systems",
     image: image1,
@@ -39,7 +38,7 @@ const productItems: ProductItem[] = [
       "Edge-enabled digital solutions for real-time visibility, control, and decision-making across operations.",
   },
   {
-    id: productDetails[1].slug,
+    id: "digital-twin",
     title: "Digital Twin",
     short: "Live asset simulation",
     image: image2,
@@ -48,7 +47,7 @@ const productItems: ProductItem[] = [
       "Simulation-backed operational insight that helps teams monitor assets, predict issues, and improve performance.",
   },
   {
-    id: productDetails[2].slug,
+    id: "electrical-safety",
     title: "Electrical Safety",
     short: "Certified protection systems",
     image: image3,
@@ -57,7 +56,7 @@ const productItems: ProductItem[] = [
       "Protection, monitoring, and safety solutions designed for demanding industrial and hazardous environments.",
   },
   {
-    id: productDetails[4].slug,
+    id: "flowmeters-sensors",
     title: "Flowmeters",
     short: "Precision measurement tools",
     image: image4,
@@ -66,7 +65,7 @@ const productItems: ProductItem[] = [
       "Accurate monitoring equipment for process control, multiphase flow measurement, and field instrumentation.",
   },
   {
-    id: productDetails[6].slug,
+    id: "renewable-energy",
     title: "Renewable Energy",
     short: "Hybrid energy systems",
     image: image5,
@@ -75,7 +74,7 @@ const productItems: ProductItem[] = [
       "Reliable renewable power solutions that support energy resilience, optimization, and sustainability targets.",
   },
   {
-    id: productDetails[11].slug,
+    id: "valves-flanges-pumps",
     title: "Valves & Pumps",
     short: "Industrial flow control",
     image: image6,

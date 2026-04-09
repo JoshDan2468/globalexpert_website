@@ -9,12 +9,12 @@ import {
   Pickaxe,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import serviceImage1 from "@/assets/home_assets/image11.jpg";
-import serviceImage2 from "@/assets/home_assets/image14.jpg";
-import serviceImage3 from "@/assets/home_assets/image12.jpg";
-import serviceImage4 from "@/assets/home_assets/image16.jpg";
+import serviceImage1 from "@/assets/home_assets/build.jpg";
+import serviceImage2 from "@/assets/services/renovate.jpg";
+import serviceImage3 from "@/assets/services/arche.jpg";
+import serviceImage4 from "@/assets/about/interior.jpg";
 import serviceImage5 from "@/assets/about/image2.jpg";
-import serviceImage6 from "@/assets/home_assets/image10.jpg";
+import serviceImage6 from "@/assets/home_assets/survay.jpg";
 
 type ServiceItem = {
   icon: typeof HardHat;

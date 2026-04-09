@@ -1,9 +1,12 @@
+import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle2, ClipboardList, Target } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
 import engineeringImage from "@/assets/home_assets/build.jpg";
-import ServicePageTemplate, {
-  type ServicePageData,
-} from "@/pages/services/details/ServicePageTemplate";
+import engineeringIllustration from "@/assets/services/const.jpg";
+import CTAFooter from "@/pages/home/CTAFooter";
 
-const engineeringService: ServicePageData = {
+const engineeringService = {
   title: "Engineering Services",
   eyebrow: "Technical Delivery",
   summary:
@@ -149,12 +152,260 @@ const engineeringService: ServicePageData = {
   ],
 };
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 as const },
+  transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
+};
+
 const EngineeringServicesPage = () => {
   return (
-    <ServicePageTemplate
-      service={engineeringService}
-      isEngineeringService
-    />
+    <main className='overflow-x-hidden bg-white'>
+      <Navbar />
+
+      <section className='relative isolate overflow-hidden bg-[#ffffff] px-4 pb-14 pt-24 sm:px-6 sm:pb-18 sm:pt-28 lg:px-8 lg:pb-20 lg:pt-32'>
+        <div className='absolute inset-0'>
+          <img
+            src={engineeringService.image}
+            alt=''
+            aria-hidden='true'
+            className='h-full w-full object-cover opacity-30'
+          />
+          <div className='absolute inset-0 bg-[linear-gradient(135deg,rgba(1,36,2,0.94)_0%,rgba(4,51,18,0.84)_46%,rgba(8,24,17,0.92)_100%)]' />
+        </div>
+
+        <div className='relative z-10 container mx-auto grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10'>
+          <motion.div
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className='max-w-3xl'
+          >
+            <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#a9f3b1]'>
+              {engineeringService.eyebrow}
+            </p>
+            <h1 className='mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl'>
+              {engineeringService.title}
+            </h1>
+            <p className='mt-5 max-w-2xl text-[0.98rem] leading-7 text-white/82 sm:text-lg sm:leading-8'>
+              {engineeringService.summary}
+            </p>
+            <div className='mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap'>
+              <Link
+                to='/contact'
+                className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#102313] sm:w-auto'
+              >
+                Request Consultation
+                <ArrowRight className='h-4 w-4' />
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{
+              delay: 0.18,
+              duration: 0.95,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className='overflow-hidden rounded-[1.6rem] border border-white/12 bg-white/8 p-2.5 backdrop-blur-sm sm:rounded-[2rem] sm:p-3'
+          >
+            <img
+              src={engineeringService.image}
+              alt={engineeringService.imageAlt}
+              className='h-[260px] w-full rounded-[1.2rem] object-cover sm:h-[360px] sm:rounded-[1.4rem] lg:h-[460px]'
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      <section className='bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf7_100%)] px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20'>
+        <div className='container mx-auto max-w-6xl'>
+          <motion.div
+            {...fadeInUp}
+            className='grid gap-10 border-y border-[#0b3b12]/10 py-8 lg:grid-cols-[1.25fr_0.75fr] lg:py-12'
+          >
+            <div>
+              <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+                Engineering Overview
+              </p>
+              <h2 className='mt-4 text-2xl font-bold text-[#132015] sm:text-3xl'>
+                A complete engineering scope from feasibility to start-up
+              </h2>
+              <p className='mt-5 text-sm leading-7 text-[#5a6b5d] sm:text-[0.98rem] sm:leading-8'>
+                {engineeringService.intro}
+              </p>
+            </div>
+
+            <div className='lg:border-l lg:border-[#0b3b12]/10 lg:pl-8'>
+              <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+                Delivery Highlights
+              </p>
+              <div className='mt-5 space-y-4'>
+                <div className='flex items-start gap-3'>
+                  <ClipboardList className='mt-0.5 h-5 w-5 shrink-0 text-[#0b3b12]' />
+                  <p className='text-sm leading-7 text-[#526654]'>
+                    Structured to cover EPC activities including feasibility,
+                    authority engineering, detailed design, procurement support,
+                    construction, and commissioning readiness.
+                  </p>
+                </div>
+                <div className='flex items-start gap-3'>
+                  <Target className='mt-0.5 h-5 w-5 shrink-0 text-[#0b3b12]' />
+                  <p className='text-sm leading-7 text-[#526654]'>
+                    Built around practical problem-solving, partner-backed
+                    delivery strength, and systems thinking across field
+                    development and plant performance.
+                  </p>
+                </div>
+                <div className='flex items-start gap-3'>
+                  <CheckCircle2 className='mt-0.5 h-5 w-5 shrink-0 text-[#0b3b12]' />
+                  <p className='text-sm leading-7 text-[#526654]'>
+                    Supported by specialist engineering tools, design
+                    experience, and technical assurance through construction and
+                    start-up.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: 0.08 }}
+            className='mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]'
+          >
+            <div className='overflow-hidden rounded-[1.8rem] border border-[#0b3b12]/10 bg-white shadow-[0_22px_44px_rgba(15,23,42,0.06)]'>
+              <img
+                src={engineeringIllustration}
+                alt='Engineering team coordination and technical design review'
+                className='h-[280px] w-full object-cover sm:h-[360px] lg:h-[420px]'
+                loading='lazy'
+              />
+            </div>
+
+            <div className='flex flex-col justify-center rounded-[1.8rem] border border-[#0b3b12]/10 bg-[#f5faf5] p-6 sm:p-8'>
+              <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+                Visual Context
+              </p>
+              <h3 className='mt-4 text-2xl font-bold text-[#132015]'>
+                Engineering support grounded in design, coordination, and
+                delivery readiness
+              </h3>
+              <p className='mt-4 text-sm leading-7 text-[#5a6b5d] sm:text-[0.98rem] sm:leading-8'>
+                These illustrations reinforce the practical nature of our
+                engineering delivery, showing the balance between technical
+                design work, field execution planning, and infrastructure
+                systems support.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: 0.12 }}
+            className='mt-10 grid gap-8 lg:grid-cols-2'
+          >
+            <div className='rounded-[1.8rem] border border-[#0b3b12]/10 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.05)] sm:p-8'>
+              <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+                Core Capabilities
+              </p>
+              <div className='mt-6 space-y-4'>
+                {engineeringService.capabilities.map((item) => (
+                  <div key={item} className='flex items-start gap-3'>
+                    <CheckCircle2 className='mt-1 h-5 w-5 shrink-0 text-[#0b3b12]' />
+                    <p className='text-sm leading-7 text-[#526654]'>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className='rounded-[1.8rem] border border-[#0b3b12]/10 bg-[#0c2314] p-6 text-white shadow-[0_18px_40px_rgba(5,22,12,0.16)] sm:p-8'>
+              <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#a9f3b1]'>
+                Delivery Outcomes
+              </p>
+              <div className='mt-6 space-y-4'>
+                {engineeringService.outcomes.map((item) => (
+                  <div
+                    key={item}
+                    className='flex items-start gap-3 rounded-[1.1rem] border border-white/10 bg-white/6 px-4 py-4'
+                  >
+                    <Target className='mt-1 h-5 w-5 shrink-0 text-[#a9f3b1]' />
+                    <p className='text-sm leading-7 text-white/86'>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: 0.16 }}
+            className='mt-10 rounded-[1.8rem] border border-[#0b3b12]/10 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf7_100%)] p-6 shadow-[0_18px_40px_rgba(15,23,42,0.05)] sm:p-8'
+          >
+            <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+              Delivery Process
+            </p>
+            <div className='mt-6 grid gap-5 lg:grid-cols-2'>
+              {engineeringService.process.map((step, index) => (
+                <div
+                  key={step}
+                  className='flex gap-4 rounded-[1.2rem] bg-white p-5'
+                >
+                  <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0b3b12] text-sm font-bold text-white'>
+                    {index + 1}
+                  </div>
+                  <p className='pt-1 text-sm leading-7 text-[#526654]'>
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: 0.2 }}
+            className='mt-10'
+          >
+            <p className='text-sm font-semibold uppercase tracking-[0.28em] text-[#0b3b12]'>
+              Service Areas
+            </p>
+            <div className='mt-6 grid gap-6 lg:grid-cols-2'>
+              {engineeringService.sectionGroups.map((group) => (
+                <div
+                  key={group.title}
+                  className='rounded-[1.6rem] border border-[#0b3b12]/10 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.05)]'
+                >
+                  <h3 className='text-xl font-bold text-[#132015]'>
+                    {group.title}
+                  </h3>
+                  {group.description ? (
+                    <p className='mt-3 text-sm leading-7 text-[#5a6b5d]'>
+                      {group.description}
+                    </p>
+                  ) : null}
+                  <div className='mt-5 space-y-3'>
+                    {group.items.map((item) => (
+                      <div key={item} className='flex items-start gap-3'>
+                        <CheckCircle2 className='mt-1 h-5 w-5 shrink-0 text-[#0b3b12]' />
+                        <p className='text-sm leading-7 text-[#526654]'>
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <CTAFooter />
+    </main>
   );
 };
 
