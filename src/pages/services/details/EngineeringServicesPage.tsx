@@ -188,7 +188,7 @@ const EngineeringServicesPage = () => {
             <h1 className='mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl'>
               {engineeringService.title}
             </h1>
-            <p className='mt-5 max-w-2xl text-[0.98rem] leading-7 text-white/82 sm:text-lg sm:leading-8'>
+            <p className='mt-5 max-w-2xl text-[0.98rem] leading-7 text-white sm:text-lg sm:leading-8'>
               {engineeringService.summary}
             </p>
             <div className='mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap'>

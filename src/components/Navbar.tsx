@@ -134,8 +134,13 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
+          type='button'
           onClick={() => setMobileOpen(!mobileOpen)}
-          className='lg:hidden text-gray-700'
+          aria-expanded={mobileOpen}
+          aria-label={
+            mobileOpen ? "Close navigation menu" : "Open navigation menu"
+          }
+          className='lg:hidden text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#012402]/50 rounded'
         >
           {mobileOpen ? (
             <X className='w-6 h-6' />
@@ -156,29 +161,14 @@ const Navbar = () => {
           >
             <div className='px-6 pb-6 space-y-1'>
               {navLinks.map((link) => (
-                <div key={link.label}>
-                  <Link
-                    to={link.to}
-                    onClick={() => setMobileOpen(false)}
-                    className='block py-3 text-[12px] text-gray-600 hover:text-gray-800 font-semibold uppercase tracking-[0.08em] transition-colors'
-                  >
-                    {link.label}
-                  </Link>
-                  {link.children && (
-                    <div className='pb-2 pl-4'>
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          to={child.to}
-                          onClick={() => setMobileOpen(false)}
-                          className='block py-2 text-[11px] text-gray-500 hover:text-gray-800 font-medium uppercase tracking-[0.08em] transition-colors'
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  onClick={() => setMobileOpen(false)}
+                  className='block py-3 text-[12px] text-gray-600 hover:text-gray-800 font-semibold uppercase tracking-[0.08em] transition-colors'
+                >
+                  {link.label}
+                </Link>
               ))}
               <Link
                 to='/contact'

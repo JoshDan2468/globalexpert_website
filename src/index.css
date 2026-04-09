@@ -75,17 +75,44 @@
 }
 
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   * {
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+    min-height: 100%;
+  }
+
+  img,
+  picture,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
     text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .text-justify,
+    .copy-justify {
+      text-align: left !important;
+      text-justify: auto !important;
+    }
   }
 }
 

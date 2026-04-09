@@ -136,6 +136,7 @@ const HeroSection = () => {
             className='absolute inset-0 h-full w-full object-cover'
             fetchPriority={index === 0 ? "high" : "auto"}
             loading={index === 0 ? "eager" : "lazy"}
+            decoding='async'
           />
         ))}
         <div className={overlayClasses.primary} />
