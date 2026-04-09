@@ -67,7 +67,10 @@ const OilGasManagementPage = () => {
             src={oilGasManagementService.image}
             alt=''
             aria-hidden='true'
-            className='h-full w-full object-cover opacity-30'
+            className='h-full w-full object-cover opacity-30 lcp-image'
+            loading='eager'
+            decoding='async'
+            data-lcp='true'
           />
           <div className='absolute inset-0 bg-[linear-gradient(135deg,rgba(1,36,2,0.94)_0%,rgba(4,51,18,0.84)_46%,rgba(8,24,17,0.92)_100%)]' />
         </div>
@@ -111,6 +114,8 @@ const OilGasManagementPage = () => {
               src={oilGasManagementService.image}
               alt={oilGasManagementService.imageAlt}
               className='h-[260px] w-full rounded-[1.2rem] object-cover sm:h-[360px] sm:rounded-[1.4rem] lg:h-[460px]'
+              loading='eager'
+              decoding='async'
             />
           </motion.div>
         </div>

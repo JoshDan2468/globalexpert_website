@@ -9,4 +9,28 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    minify: "terser",
+    terserOptions: {
+      compress: { drop_console: true },
+      mangle: true,
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor": ["react", "react-dom", "react-router-dom"],
+          "animations": ["framer-motion"],
+        },
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        css: {
+          parser: "postcss",
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+    reportCompressedSize: false,
+  },
 });

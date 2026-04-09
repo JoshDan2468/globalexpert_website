@@ -12,8 +12,13 @@ const App = () => {
       document
         .querySelectorAll<HTMLImageElement>("img:not([loading])")
         .forEach((img) => {
-          img.loading = "lazy";
-        });
+          const isLCP =
+            img.alt?.toLowerCase().includes("hero") ||
+            img.classList.contains("lcp-image") ||
+            img.closest("[data-lcp]") ||
+            (img.parentElement?.classList.contains("hero-section") ||
+              img.parentElement?.classList.contains("hero-image"));
+          img.loading = isLCP ? "eager" : "lazy";
     };
 
     setImageDefaults();

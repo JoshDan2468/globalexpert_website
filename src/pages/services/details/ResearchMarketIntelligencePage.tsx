@@ -110,6 +110,8 @@ const ResearchMarketIntelligencePage = () => {
               src={researchMarketIntelligenceService.image}
               alt={researchMarketIntelligenceService.imageAlt}
               className='h-[260px] w-full rounded-[1.2rem] object-cover sm:h-[360px] sm:rounded-[1.4rem] lg:h-[460px]'
+              loading='eager'
+              decoding='async'
             />
           </motion.div>
         </div>

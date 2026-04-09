@@ -133,10 +133,11 @@ const HeroSection = () => {
               scale: index === activeImageIndex ? 1 : 1.035,
             }}
             transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
-            className='absolute inset-0 h-full w-full object-cover'
+            className='absolute inset-0 h-full w-full object-cover lcp-image'
             fetchPriority={index === 0 ? "high" : "auto"}
             loading={index === 0 ? "eager" : "lazy"}
             decoding='async'
+            data-lcp={index === 0 ? "true" : undefined}
           />
         ))}
         <div className={overlayClasses.primary} />
