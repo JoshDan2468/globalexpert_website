@@ -75,7 +75,7 @@ export interface AppRoute {
 }
 
 export const routes: AppRoute[] = [
-  { path: "/", component: Home, index: true },
+  { path: "/", component: Home },
   { path: "/about", component: About },
   { path: "/services", component: Services },
   {

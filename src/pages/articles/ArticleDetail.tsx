@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, CalendarDays, User2 } from "lucide-react";
+import { ArrowLeft, CalendarDays, User2 } from '@/lib/icons';
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import CTAFooter from "@/pages/home/CTAFooter";

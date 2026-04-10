@@ -7,7 +7,7 @@ import {
   HardHat,
   Layers3,
   Pickaxe,
-} from "lucide-react";
+} from "@/lib/icons";
 import { Link } from "react-router-dom";
 import serviceImage1 from "@/assets/home_assets/build.jpg";
 import serviceImage2 from "@/assets/services/renovate.jpg";

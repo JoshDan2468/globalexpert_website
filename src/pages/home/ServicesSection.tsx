@@ -10,7 +10,7 @@ import {
   HardHat,
   Layers3,
   Pickaxe,
-} from "lucide-react";
+} from '@/lib/icons';
 import serviceImage1 from "@/assets/home_assets/trac.jpg";
 import serviceImage2 from "@/assets/home_assets/factory.jpg";
 import serviceImage3 from "@/assets/home_assets/scripts.jpg";

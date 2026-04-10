@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, ShieldCheck, Wrench } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, Wrench } from '@/lib/icons';
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import image from "@/assets/about/image2.jpg";

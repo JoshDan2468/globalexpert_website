@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, ClipboardList, Target } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardList, Target } from '@/lib/icons';
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import heroImage from "@/assets/home_assets/build.jpg";

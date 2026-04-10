@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle } from '@/lib/icons';
 import heroImage1 from "@/assets/home_assets/image20.jpg";
 import heroImage3 from "@/assets/home_assets/image19.jpg";
 import {

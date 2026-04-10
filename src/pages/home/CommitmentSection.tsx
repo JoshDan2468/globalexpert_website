@@ -14,7 +14,7 @@ import {
   Wrench,
   Zap,
   type LucideIcon,
-} from "lucide-react";
+} from '@/lib/icons';
 
 // Card images
 import image1 from "@/assets/home_assets/oil_fac.jpg";

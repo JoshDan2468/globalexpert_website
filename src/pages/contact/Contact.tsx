@@ -10,7 +10,7 @@ import {
   Twitter,
   Youtube,
   MessageCircle,
-} from "lucide-react";
+} from "@/lib/icons";
 import Navbar from "@/components/Navbar";
 import heroImage from "@/assets/home_assets/image11.jpg";
 
@@ -132,6 +132,9 @@ const Contact = () => {
             alt=''
             aria-hidden='true'
             className='h-full w-full object-cover'
+            width={712}
+            height={1024}
+            fetchpriority='high'
             animate={
               inView
                 ? {

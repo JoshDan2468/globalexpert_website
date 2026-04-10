@@ -41,7 +41,13 @@ const AppRouter = () => {
     >
       <ScrollToTop />
       {/* Suspense provides loading state for lazy-loaded components */}
-      <Suspense fallback={null}>
+      <Suspense
+        fallback={
+          <div className='min-h-screen flex items-center justify-center text-gray-600'>
+            Loading…
+          </div>
+        }
+      >
         <Routes>
           {routes.map((route) => (
             <Route

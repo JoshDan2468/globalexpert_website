@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Cpu, Droplets, Factory, Leaf, Pickaxe, Zap } from "lucide-react";
+import { Cpu, Droplets, Factory, Leaf, Pickaxe, Zap } from '@/lib/icons';
 import oilAndGasImage from "@/assets/industries/oil.jpg";
 import energyImage from "@/assets/industries/grid.jpg";
 import manufacturingImage from "@/assets/industries/constructs.jpg";

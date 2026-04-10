@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { ArrowRight, Mail, Phone, MapPin, Clock } from '@/lib/icons';
 
 const CTAFooter = () => {
   const ref = useRef(null);

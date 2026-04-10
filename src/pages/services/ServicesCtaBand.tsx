@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from '@/lib/icons';
 import { Link } from "react-router-dom";
 import ctaImage from "@/assets/home_assets/factory.jpg";
 

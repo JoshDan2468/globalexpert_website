@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Handshake, Mail, Search, X } from "lucide-react";
+import { ArrowRight, Handshake, Mail, Search, X } from '@/lib/icons';
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import CTAFooter from "@/pages/home/CTAFooter";

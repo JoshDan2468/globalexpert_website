@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Droplets, Zap, Factory, Leaf, Pickaxe, Cpu } from "lucide-react";
+import { Droplets, Zap, Factory, Leaf, Pickaxe, Cpu } from '@/lib/icons';
 
 const industries = [
   {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck } from '@/lib/icons';
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import CTAFooter from "@/pages/home/CTAFooter";
