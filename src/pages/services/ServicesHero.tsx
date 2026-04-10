@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/services/pipe.jpg";
+import { shouldAnimateOnMount } from "@/lib/animation-utils";
 
 const titleWords = ["Our", "Services"];
 
@@ -13,17 +14,31 @@ const ServicesHero = () => {
           alt=''
           aria-hidden='true'
           className='absolute inset-0 h-full w-full object-cover opacity'
-          animate={{
-            scale: [1, 1.08, 1.02, 1],
-            x: [0, 18, -20, 0],
-            y: [0, -10, 14, 0],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut",
-          }}
+          animate={
+            shouldAnimateOnMount()
+              ? {
+                  scale: [1, 1.08, 1.02, 1],
+                  x: [0, 18, -20, 0],
+                  y: [0, -10, 14, 0],
+                }
+              : { scale: 1 }
+          }
+          transition={
+            shouldAnimateOnMount()
+              ? {
+                  duration: 24,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                }
+              : { duration: 0 }
+          }
+          loading='eager'
+          decoding='async'
+          fetchPriority='high'
+          data-lcp='true'
+          width={1920}
+          height={1080}
         />
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(169,243,177,0.14),_transparent_20%),linear-gradient(135deg,_rgba(255,255,255,0.04),_transparent_30%),linear-gradient(180deg,_rgba(2,49,2,0.8)_0%,_rgba(1,36,2,0.88)_100%,_rgba(0,20,0,0.95)_100%)]' />
         <motion.div
