@@ -16,9 +16,10 @@ const App = () => {
             img.alt?.toLowerCase().includes("hero") ||
             img.classList.contains("lcp-image") ||
             img.closest("[data-lcp]") ||
-            (img.parentElement?.classList.contains("hero-section") ||
-              img.parentElement?.classList.contains("hero-image"));
+            img.parentElement?.classList.contains("hero-section") ||
+            img.parentElement?.classList.contains("hero-image");
           img.loading = isLCP ? "eager" : "lazy";
+        });
     };
 
     setImageDefaults();
