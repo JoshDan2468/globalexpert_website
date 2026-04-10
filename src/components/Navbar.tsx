@@ -3,14 +3,90 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "@/lib/icons";
 import { Link } from "react-router-dom";
 import gexpertLogo from "@/assets/gexpet logo.jpeg";
-import { serviceLinks } from "@/pages/services/serviceLinks";
-import { productLinks } from "@/pages/products/productLinks";
 
 type NavLink = {
   label: string;
   to: string;
   children?: Array<{ label: string; to: string }>;
 };
+
+const serviceLinks = [
+  {
+    label: "Engineering Services",
+    to: "/services/engineering-services",
+  },
+  {
+    label: "Business Processes",
+    to: "/services/business-processes",
+  },
+  {
+    label: "Research & Development",
+    to: "/services/research-development",
+  },
+  {
+    label: "Research and Market Intelligence",
+    to: "/services/research-market-intelligence",
+  },
+  {
+    label: "Oil and Gas Management",
+    to: "/services/oil-gas-management",
+  },
+  {
+    label: "Project Management and Execution",
+    to: "/services/project-management-execution",
+  },
+] as const;
+
+const productLinks = [
+  {
+    label: "Digitalization and Edge Computing",
+    to: "/products/digitalization-edge",
+  },
+  {
+    label: "Digital Twin Services",
+    to: "/products/digital-twin",
+  },
+  {
+    label: "Electrical Equipment & Safety",
+    to: "/products/electrical-safety",
+  },
+  {
+    label: "Flexible Tank",
+    to: "/products/flexible-tank",
+  },
+  {
+    label: "Flowmeters and Sensors",
+    to: "/products/flowmeters-sensors",
+  },
+  {
+    label: "NDT Products Innovation & Laser Scanning",
+    to: "/products/ndt-laser",
+  },
+  {
+    label: "Renewable Energy",
+    to: "/products/renewable-energy",
+  },
+  {
+    label: "Safety/HSE",
+    to: "/products/safety-hse",
+  },
+  {
+    label: "Software and Hardware Forecourt Automation",
+    to: "/products/forecourt-automation",
+  },
+  {
+    label: "Test Equipment",
+    to: "/products/test-equipment",
+  },
+  {
+    label: "Thermal Monitoring",
+    to: "/products/thermal-monitoring",
+  },
+  {
+    label: "Valves, Flanges and Pumps",
+    to: "/products/valves-flanges-pumps",
+  },
+] as const;
 
 const navLinks: NavLink[] = [
   { label: "Home", to: "/" },
