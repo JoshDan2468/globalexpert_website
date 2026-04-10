@@ -1,1 +1,0 @@
-const e=()=>{if("undefined"==typeof window)return!1;if("undefined"!=typeof window&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return!1;const e=navigator.connection;return!e?.saveData};export{e as s};
