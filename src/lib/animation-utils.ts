@@ -1,20 +1,107 @@
 /**
- * Animation utility for performance optimization
- * Detects user preferences and defers animations
+ * Animation System
+ * Handles performance-optimized animations based on user preferences and device type
  */
 
-// Check if user prefers reduced motion
+// ============================================================================
+// CORE DETECTION FUNCTIONS
+// ============================================================================
+
+/**
+ * Check if user has enabled "reduce motion" preference
+ * Respects accessibility settings
+ */
 export const prefersReducedMotion = (): boolean => {
   if (typeof window === "undefined") return false;
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 };
 
-// Get animation duration based on user preferences
-export const getAnimationDuration = (defaultDuration: number): number => {
-  return prefersReducedMotion() ? 0 : defaultDuration;
+/**
+ * Check if device is mobile (viewport < 768px)
+ */
+export const isMobileDevice = (): boolean => {
+  if (typeof window === "undefined") return false;
+  return window.innerWidth < 768;
 };
 
-// Variant for potentially enabling animations only on InView
+/**
+ * Check if user is on slow network or data-saving mode
+ */
+const isSlowConnection = (): boolean => {
+  if (typeof window === "undefined") return false;
+  const connection = (navigator as NavigatorWithConnection).connection;
+  return connection?.saveData === true;
+};
+
+// ============================================================================
+// ANIMATION CONFIGURATION FUNCTIONS
+// ============================================================================
+
+/**
+ * Get optimized animation duration based on device and user preferences
+ * Mobile: 70% of desktop duration
+ * Reduced motion: 0 (no animation)
+ */
+export const getAnimationDuration = (defaultDuration: number): number => {
+  if (prefersReducedMotion()) return 0;
+  if (isMobileDevice()) return Math.max(defaultDuration * 0.7, 200);
+  return defaultDuration;
+};
+
+/**
+ * Get optimized stagger delay for batch animations
+ * Mobile: 60% of desktop delay
+ * Reduced motion: 0
+ */
+export const getStaggerDelay = (defaultDelay: number): number => {
+  if (prefersReducedMotion()) return 0;
+  if (isMobileDevice()) return defaultDelay * 0.6;
+  return defaultDelay;
+};
+
+/**
+ * Check if animations should play on component mount
+ * Returns false if:
+ * - User prefers reduced motion
+ * - User is on slow/data-saving connection
+ */
+export const shouldAnimateOnMount = (): boolean => {
+  if (typeof window === "undefined") return false;
+  if (prefersReducedMotion()) return false;
+  if (isSlowConnection()) return false;
+  return true;
+};
+
+/**
+ * Get mobile-optimized animation configuration
+ */
+export const batchAnimationConfig = {
+  staggerChildren: isMobileDevice() ? 0.08 : 0.12,
+  delayChildren: isMobileDevice() ? 0.05 : 0.08,
+};
+
+/**
+ * Get transition configuration optimized for device
+ * 
+ * @param baseEase - Easing function (default smoothEase)
+ * @returns Object with duration and easing
+ */
+export const getMobileOptimizedTransition = (
+  baseEase: number[] = [0.22, 1, 0.36, 1]
+) => {
+  const isMobile = isMobileDevice();
+  const shouldAnimate = shouldAnimateOnMount();
+
+  return {
+    duration: shouldAnimate ? (isMobile ? 0.4 : 0.6) : 0,
+    ease: baseEase,
+  };
+};
+
+/**
+ * Create animation variants for InView animations
+ * Useful for deferring animations until element enters viewport
+ */
 export const createInViewVariants = (
   visibleVariant: unknown,
   hiddenVariant: unknown = { opacity: 0 }
@@ -23,23 +110,13 @@ export const createInViewVariants = (
   visible: visibleVariant,
 });
 
-// Detect if component should render animations based on:
-// 1. User preferences (prefers-reduced-motion)
-// 2. Device capability (not-reduced-data)  
-export const shouldAnimateOnMount = (): boolean => {
-  if (typeof window === "undefined") return false;
-  
-  // Check prefers-reduced-motion
-  if (prefersReducedMotion()) return false;
-  
-  // Check save-data preference (for users on slow connections)
-  const connection = (navigator as NavigatorWithConnection).connection;
-  if (connection?.saveData) return false;
-  
-  return true;
-};
+// ============================================================================
+// TYPE DEFINITIONS
+// ============================================================================
 
-// Type for navigator with connection info
+/**
+ * Extended Navigator interface with connection info
+ */
 interface NavigatorWithConnection extends Navigator {
   connection?: {
     saveData: boolean;
@@ -47,18 +124,3 @@ interface NavigatorWithConnection extends Navigator {
     downlink: number;
   };
 }
-
-// Batch animation configuration that respects user preferences
-export const batchAnimationConfig = (
-  staggerChildren: number = 0.1,
-  delayChildren: number = 0
-) => {
-  const shouldAnimate = shouldAnimateOnMount();
-  
-  return {
-    transition: {
-      staggerChildren: shouldAnimate ? staggerChildren : 0,
-      delayChildren: shouldAnimate ? delayChildren : 0,
-    },
-  };
-};

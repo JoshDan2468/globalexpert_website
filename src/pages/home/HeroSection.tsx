@@ -6,6 +6,8 @@ import heroImage3 from "@/assets/home_assets/image19.jpg";
 import {
   shouldAnimateOnMount,
   getAnimationDuration,
+  getStaggerDelay,
+  isMobileDevice,
   batchAnimationConfig,
 } from "@/lib/animation-utils";
 
@@ -57,15 +59,16 @@ const overlayClasses = {
     "absolute inset-0 bg-[linear-gradient(90deg,rgba(7,18,10,0.56)_0%,rgba(7,18,10,0.28)_42%,rgba(7,18,10,0.05)_100%)]",
 };
 
-// Create animation variants that respect user preferences
+// Create animation variants that respect user preferences and device type
 const getTextContainerVariants = () => {
   const shouldAnimate = shouldAnimateOnMount();
+  const isMobile = isMobileDevice();
   return {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: shouldAnimate ? 0.16 : 0,
-        delayChildren: shouldAnimate ? 0.15 : 0,
+        staggerChildren: shouldAnimate ? getStaggerDelay(0.16) : 0,
+        delayChildren: shouldAnimate ? getStaggerDelay(0.15) : 0,
       },
     },
   };
@@ -73,13 +76,14 @@ const getTextContainerVariants = () => {
 
 const getTextItemVariants = () => {
   const shouldAnimate = shouldAnimateOnMount();
+  const isMobile = isMobileDevice();
   return {
     hidden: { opacity: 0, y: shouldAnimate ? 24 : 0 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: shouldAnimate ? 0.8 : 0,
+        duration: getAnimationDuration(isMobile ? 0.6 : 0.8),
         ease: [0.22, 1, 0.36, 1] as const,
       },
     },
@@ -92,34 +96,23 @@ const getBadgeContainerVariants = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: shouldAnimate ? 0.1 : 0,
-        delayChildren: shouldAnimate ? 0.45 : 0,
+        staggerChildren: shouldAnimate ? getStaggerDelay(0.1) : 0,
+        delayChildren: shouldAnimate ? getStaggerDelay(0.45) : 0,
       },
     },
   };
 };
 
-const badgeItemVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
 const getBadgeItemVariants = () => {
   const shouldAnimate = shouldAnimateOnMount();
+  const isMobile = isMobileDevice();
   return {
     hidden: { opacity: 0, y: shouldAnimate ? 16 : 0 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: shouldAnimate ? 0.55 : 0,
+        duration: getAnimationDuration(isMobile ? 0.4 : 0.55),
         ease: [0.22, 1, 0.36, 1] as const,
       },
     },
