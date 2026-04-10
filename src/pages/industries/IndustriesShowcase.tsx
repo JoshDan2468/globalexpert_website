@@ -200,6 +200,9 @@ const IndustriesShowcase = () => {
                       src={industry.image}
                       alt={industry.alt}
                       loading='lazy'
+                      decoding='async'
+                      width={500}
+                      height={390}
                       className='h-[240px] w-full object-cover sm:h-[300px] md:h-[340px] lg:h-[390px]'
                       whileHover={{ scale: 1.04 }}
                       transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}

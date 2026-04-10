@@ -42,8 +42,7 @@ const serviceCards: ServiceCard[] = [
     alt: "Oil and gas operations",
     title: "Oil & Gas",
     eyebrow: "Core market",
-    summary:
-      "Support across production, transport, storage, and supply.",
+    summary: "Support across production, transport, storage, and supply.",
     points: [
       "LNG & CNG facilities",
       "Onshore pipelines and receiving terminals",
@@ -135,10 +134,7 @@ const getPointStyle = (
 ): { icon: LucideIcon; iconClassName: string; badgeClassName: string } => {
   const label = point.toLowerCase();
 
-  if (
-    label.includes("renewable") ||
-    label.includes("environment")
-  ) {
+  if (label.includes("renewable") || label.includes("environment")) {
     return {
       icon: Leaf,
       iconClassName: isFeatured ? "text-[#9ef5b0]" : "text-[#2f9e44]",
@@ -146,10 +142,7 @@ const getPointStyle = (
     };
   }
 
-  if (
-    label.includes("water") ||
-    label.includes("wastewater")
-  ) {
+  if (label.includes("water") || label.includes("wastewater")) {
     return {
       icon: Droplets,
       iconClassName: isFeatured ? "text-[#8fd3ff]" : "text-[#1677c8]",
@@ -157,10 +150,7 @@ const getPointStyle = (
     };
   }
 
-  if (
-    label.includes("power") ||
-    label.includes("transmission")
-  ) {
+  if (label.includes("power") || label.includes("transmission")) {
     return {
       icon: Zap,
       iconClassName: isFeatured ? "text-[#ffd76a]" : "text-[#d99700]",
@@ -182,10 +172,7 @@ const getPointStyle = (
     };
   }
 
-  if (
-    label.includes("research") ||
-    label.includes("technical")
-  ) {
+  if (label.includes("research") || label.includes("technical")) {
     return {
       icon: ShieldCheck,
       iconClassName: isFeatured ? "text-[#b7c9ff]" : "text-[#516fc6]",
@@ -193,10 +180,7 @@ const getPointStyle = (
     };
   }
 
-  if (
-    label.includes("medicine") ||
-    label.includes("health")
-  ) {
+  if (label.includes("medicine") || label.includes("health")) {
     return {
       icon: Stethoscope,
       iconClassName: isFeatured ? "text-[#ffacc6]" : "text-[#d94878]",
@@ -212,10 +196,7 @@ const getPointStyle = (
     };
   }
 
-  if (
-    label.includes("automation") ||
-    label.includes("systems")
-  ) {
+  if (label.includes("automation") || label.includes("systems")) {
     return {
       icon: Settings2,
       iconClassName: isFeatured ? "text-[#b7f0ff]" : "text-[#1388a5]",
@@ -319,6 +300,10 @@ const CommitmentSection = () => {
                     src={card.image}
                     alt={card.alt}
                     className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
+                    loading='lazy'
+                    decoding='async'
+                    width={400}
+                    height={192}
                   />
                   <div
                     className={`absolute inset-0 ${
@@ -388,7 +373,9 @@ const CommitmentSection = () => {
                               transition={{ duration: 0.2, ease: "easeOut" }}
                               className={`mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${badgeClassName}`}
                             >
-                              <PointIcon className={`h-4 w-4 ${iconClassName}`} />
+                              <PointIcon
+                                className={`h-4 w-4 ${iconClassName}`}
+                              />
                             </motion.span>
                           );
                         })()}

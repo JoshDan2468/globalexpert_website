@@ -33,7 +33,8 @@ const services: ServiceItem[] = [
   {
     icon: HardHat,
     label: "Construction Delivery",
-    title: "Engineering, Procurement, Construction, Installation Consultancy & Services",
+    title:
+      "Engineering, Procurement, Construction, Installation Consultancy & Services",
     description:
       "GEC delivers technical, safety, and quality support for construction activities. We help clients move from planning to execution with confidence and control.",
     image: serviceImage1,
@@ -188,6 +189,9 @@ const ServicesSection = () => {
                     alt={service.alt}
                     className='h-[150px] w-full object-cover sm:h-[160px] lg:h-[170px]'
                     loading='lazy'
+                    decoding='async'
+                    width={452}
+                    height={170}
                     whileHover={{ scale: 1.07 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   />
