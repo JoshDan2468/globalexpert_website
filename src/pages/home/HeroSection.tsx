@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import heroImage1 from "@/assets/home_assets/image20.jpg";
 import heroImage3 from "@/assets/home_assets/image19.jpg";
+import {
+  shouldAnimateOnMount,
+  getAnimationDuration,
+  batchAnimationConfig,
+} from "@/lib/animation-utils";
 
 type HeroImage = {
   src: string;
@@ -52,36 +57,46 @@ const overlayClasses = {
     "absolute inset-0 bg-[linear-gradient(90deg,rgba(7,18,10,0.56)_0%,rgba(7,18,10,0.28)_42%,rgba(7,18,10,0.05)_100%)]",
 };
 
-const textContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.15,
+// Create animation variants that respect user preferences
+const getTextContainerVariants = () => {
+  const shouldAnimate = shouldAnimateOnMount();
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: shouldAnimate ? 0.16 : 0,
+        delayChildren: shouldAnimate ? 0.15 : 0,
+      },
     },
-  },
+  };
 };
 
-const textItemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
+const getTextItemVariants = () => {
+  const shouldAnimate = shouldAnimateOnMount();
+  return {
+    hidden: { opacity: 0, y: shouldAnimate ? 24 : 0 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldAnimate ? 0.8 : 0,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
     },
-  },
+  };
 };
 
-const badgeContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.45,
+const getBadgeContainerVariants = () => {
+  const shouldAnimate = shouldAnimateOnMount();
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: shouldAnimate ? 0.1 : 0,
+        delayChildren: shouldAnimate ? 0.45 : 0,
+      },
     },
-  },
+  };
 };
 
 const badgeItemVariants = {
@@ -96,12 +111,33 @@ const badgeItemVariants = {
   },
 };
 
+const getBadgeItemVariants = () => {
+  const shouldAnimate = shouldAnimateOnMount();
+  return {
+    hidden: { opacity: 0, y: shouldAnimate ? 16 : 0 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldAnimate ? 0.55 : 0,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
+  };
+};
+
 const HeroSection = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const currentImage = useMemo(
     () => heroImages[activeImageIndex],
     [activeImageIndex],
   );
+
+  // Compute animation variants based on user preferences
+  const textContainerVariants = useMemo(() => getTextContainerVariants(), []);
+  const textItemVariants = useMemo(() => getTextItemVariants(), []);
+  const badgeContainerVariants = useMemo(() => getBadgeContainerVariants(), []);
+  const badgeItemVariants = useMemo(() => getBadgeItemVariants(), []);
 
   useEffect(() => {
     heroImages.forEach((image) => {
@@ -138,6 +174,8 @@ const HeroSection = () => {
             loading={index === 0 ? "eager" : "lazy"}
             decoding='async'
             data-lcp={index === 0 ? "true" : undefined}
+            width={1920}
+            height={1080}
           />
         ))}
         <div className={overlayClasses.primary} />

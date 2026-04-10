@@ -12,14 +12,23 @@ export default defineConfig({
   build: {
     minify: "terser",
     terserOptions: {
-      compress: { drop_console: true },
+      compress: {
+        drop_console: true,
+        passes: 2,
+        pure_funcs: ["console.log", "console.warn"],
+      },
       mangle: true,
+      format: {
+        comments: false,
+      },
     },
     rollupOptions: {
       output: {
         manualChunks: {
           "vendor": ["react", "react-dom", "react-router-dom"],
           "animations": ["framer-motion"],
+          "ui-components": ["@radix-ui/react-accordion", "@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu"],
+          "charts": ["recharts"],
         },
       },
     },
@@ -29,8 +38,13 @@ export default defineConfig({
           parser: "postcss",
         },
       },
+      minify: true,
     },
     chunkSizeWarningLimit: 600,
     reportCompressedSize: false,
+    // Optimize build output
+    target: "ES2020",
+    sourcemap: false,
+    // Reduce bundle size by not including unused dependencies info
   },
 });
