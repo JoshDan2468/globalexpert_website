@@ -163,7 +163,7 @@ const HeroSection = () => {
             }}
             transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
             className='absolute inset-0 h-full w-full object-cover lcp-image'
-            fetchPriority={index === 0 ? "high" : "auto"}
+            fetchpriority={index === 0 ? "high" : "auto"}
             loading={index === 0 ? "eager" : "lazy"}
             decoding='async'
             data-lcp={index === 0 ? "true" : undefined}

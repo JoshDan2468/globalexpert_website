@@ -9,28 +9,77 @@ import {
   Phone,
   Twitter,
   Youtube,
+  MessageCircle,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import heroImage from "@/assets/home_assets/image11.jpg";
 
+/**
+ * Contact Page Component
+ *
+ * Features:
+ * - Hero section with animated background
+ * - Office locations with country flags
+ * - Contact form
+ * - Interactive map
+ * - Social media links
+ */
+
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
-const contactDetails = [
+// Office locations data with flag images and contact details
+const officeLocations = [
   {
-    icon: MapPin,
-    value: "41B Isaac John, Ikeja, New York",
+    country: "Nigeria",
+    flagAlt:
+      "Flag of Nigeria waving with highly detailed textile texture pattern",
+    flagSrc: "https://flagcdn.com/w160/ng.png", // Nigeria flag
+    address: "Head Office\nGExperts Consultoria Limited,\nLagos, Nigeria.",
+    whatsapp: "(+234)-80683446254",
+    status: null,
   },
   {
-    icon: Mail,
-    value: "user@itchco.com",
+    country: "Ghana",
+    flagAlt: "Image of the flag of Ghana. Series Africa",
+    flagSrc: "https://flagcdn.com/w160/gh.png", // Ghana flag
+    address: "Ghana Office\nGExperts Consultoria Limited,\nAccra, Ghana.",
+    whatsapp: "(+234)-8068336254",
+    status: null,
   },
   {
-    icon: Phone,
-    value: "+1 182 357 0192",
+    country: "Sierra Leone",
+    flagAlt: "Flag of Sierra Leone",
+    flagSrc: "https://flagcdn.com/w160/sl.png", // Sierra Leone flag
+    address:
+      "Sierra Leone Office\nGlobal Experts Consultoria Limited,\nFreetown, Sierra Leone.",
+    whatsapp: "(+234)-80683446254",
+    status: null,
   },
   {
-    icon: Phone,
-    value: "+1 818 347 902",
+    country: "Uganda",
+    flagAlt: "3d render Uganda Flag (Close-up)",
+    flagSrc: "https://flagcdn.com/w160/ug.png", // Uganda flag
+    address: "Uganda Office\nGExperts Consultoria Limited,\nKampala, Uganda.",
+    whatsapp: "(+234)-80683446254",
+    status: "(Registration in Progress)",
+  },
+  {
+    country: "Mozambique",
+    flagAlt: "Mozambique flag",
+    flagSrc: "https://flagcdn.com/w160/mz.png", // Mozambique flag
+    address:
+      "Mozambique Office\nGlobal Experts Consultoria Limitada,\nMaputo, Mozambique.",
+    whatsapp: "(+234)-80683446254",
+    status: null,
+  },
+  {
+    country: "Namibia",
+    flagAlt: "Namibia flag",
+    flagSrc: "https://flagcdn.com/w160/na.png", // Namibia flag
+    address:
+      "Namibia Office\nGExpats-Felikanah Consultating Services (PTY) Limited & BIDQ Consultating Services (PTY) Limited\nWindhoek, Namibia.",
+    whatsapp: "(+234)-80683446254",
+    status: null,
   },
 ];
 
@@ -72,6 +121,7 @@ const Contact = () => {
     <main className='overflow-x-hidden bg-white'>
       <Navbar />
 
+      {/* Hero Section */}
       <section
         className='relative isolate overflow-hidden px-4 pb-10 pt-28 sm:px-6 sm:pb-12 sm:pt-32 lg:px-8'
         ref={ref}
@@ -111,172 +161,317 @@ const Contact = () => {
             variants={itemVariants}
             className='text-[2.2rem] font-bold sm:text-[2.55rem]'
           >
-            Contact Us
+            Office Locations
           </motion.h1>
           <motion.p
             variants={itemVariants}
             className='mt-1 text-[0.55rem] font-semibold uppercase tracking-[0.28em] text-[#dcb861]'
           >
-            Get In Touch
+            Get in touch with us
           </motion.p>
         </motion.div>
       </section>
 
-      <section className='bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8'>
-        <div className='container mx-auto max-w-[860px]'>
-          <div className='grid gap-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14 lg:items-start'>
-            <motion.aside
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.85, ease: smoothEase }}
-              className='bg-[#033b35] px-6 py-8 text-white sm:px-7 sm:py-9'
-            >
-              <h2 className='text-[1.6rem] font-bold'>Contact Us</h2>
-              <motion.div
-                variants={containerVariants}
-                initial='hidden'
-                whileInView='show'
-                viewport={{ once: true, amount: 0.28 }}
-                className='mt-8 space-y-4'
-              >
-                {contactDetails.map((item) => {
-                  const Icon = item.icon;
+      {/* Office Locations Section */}
+      <section className='bg-gray-50 px-4 py-16 sm:px-6 lg:px-8'>
+        <div className='container mx-auto max-w-7xl'>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: smoothEase }}
+            className='text-center mb-12'
+          >
+            <h2 className='text-3xl font-bold text-[#27312c] sm:text-4xl'>
+              Our Global Presence
+            </h2>
+            <p className='mt-4 text-lg text-gray-600 max-w-2xl mx-auto'>
+              Connect with us across multiple countries in Africa. We're here to
+              serve your engineering and consulting needs.
+            </p>
+          </motion.div>
 
-                  return (
-                    <motion.div
-                      key={item.value}
-                      variants={itemVariants}
-                      className='flex items-start gap-3'
-                    >
-                      <span className='mt-1 flex h-4 w-4 shrink-0 items-center justify-center text-[#d9bf73]'>
-                        <Icon className='h-3.5 w-3.5' />
-                      </span>
+          <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
+            {officeLocations.map((office, index) => (
+              <motion.div
+                key={office.country}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.6,
+                  ease: smoothEase,
+                  delay: index * 0.1,
+                }}
+                className='bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300'
+              >
+                {/* Flag Image */}
+                <div className='h-32 bg-gradient-to-r from-[#012402] to-[#033b35] flex items-center justify-center relative overflow-hidden'>
+                  <img
+                    src={office.flagSrc}
+                    alt={office.flagAlt}
+                    className='w-16 h-10 object-cover rounded shadow-lg'
+                    loading='lazy'
+                  />
+                  <div className='absolute inset-0 bg-black/20' />
+                </div>
+
+                {/* Office Details */}
+                <div className='p-6'>
+                  <h3 className='text-xl font-bold text-[#27312c] mb-3'>
+                    {office.country} Office
+                  </h3>
+
+                  <div className='space-y-4'>
+                    {/* Address */}
+                    <div className='flex items-start gap-3'>
+                      <MapPin className='h-5 w-5 text-[#d9bf73] mt-0.5 flex-shrink-0' />
+                      <div className='text-sm text-gray-600 leading-relaxed'>
+                        {office.address.split("\n").map((line, i) => (
+                          <div key={i}>{line}</div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* WhatsApp */}
+                    <div className='flex items-center gap-3'>
+                      <MessageCircle className='h-5 w-5 text-[#d9bf73] flex-shrink-0' />
                       <div>
-                        <p className='text-[11px] leading-5 text-white/86'>
-                          {item.value}
+                        <p className='text-sm font-medium text-[#27312c]'>
+                          WhatsApp
+                        </p>
+                        <a
+                          href={`https://wa.me/${office.whatsapp.replace(/[^0-9]/g, "")}`}
+                          className='text-sm text-[#d9bf73] hover:text-[#c79439] transition-colors'
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
+                          {office.whatsapp}
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Status if applicable */}
+                    {office.status && (
+                      <div className='mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded-md'>
+                        <p className='text-xs text-yellow-800 font-medium'>
+                          {office.status}
                         </p>
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    )}
+                  </div>
+
+                  {/* Social Media Links */}
+                  <div className='mt-6 pt-4 border-t border-gray-200'>
+                    <p className='text-sm font-medium text-[#27312c] mb-3'>
+                      Social Media
+                    </p>
+                    <div className='flex gap-3'>
+                      {socialLinks.map((social) => {
+                        const Icon = social.icon;
+                        return (
+                          <a
+                            key={social.label}
+                            href={social.href}
+                            aria-label={social.label}
+                            className='w-8 h-8 bg-gray-100 hover:bg-[#d9bf73] rounded-full flex items-center justify-center transition-colors duration-200 group'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                          >
+                            <Icon className='h-4 w-4 text-gray-600 group-hover:text-white transition-colors' />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
-            </motion.aside>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* Contact Form Section */}
+      <section className='bg-white px-4 py-16 sm:px-6 lg:px-8'>
+        <div className='container mx-auto max-w-4xl'>
+          <div className='grid gap-12 lg:grid-cols-2 lg:gap-16'>
+            {/* Contact Info */}
             <motion.div
-              initial={{ opacity: 0, x: 24 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.24 }}
-              transition={{ duration: 0.85, ease: smoothEase }}
-              className='bg-white py-1'
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: smoothEase }}
+              className='bg-[#033b35] p-8 rounded-lg text-white'
             >
-              <h2 className='text-[1.55rem] font-bold text-[#27312c] sm:text-[1.75rem]'>
-                Get In Touch With Us
-              </h2>
-              <p className='mt-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#d9bf73]'>
-                And we will get back to you.
+              <h2 className='text-2xl font-bold mb-6'>Get In Touch</h2>
+              <p className='text-gray-300 mb-8'>
+                Have questions about our services? We'd love to hear from you.
+                Send us a message and we'll respond as soon as possible.
               </p>
-              <div className='mt-4 h-px w-8 bg-[#d9bf73]' />
 
-              <motion.form
-                variants={containerVariants}
-                initial='hidden'
-                whileInView='show'
-                viewport={{ once: true, amount: 0.2 }}
-                className='mt-6 space-y-3'
-              >
-                <div className='grid gap-3 sm:grid-cols-2'>
-                  <motion.input
-                    variants={itemVariants}
-                    type='text'
-                    placeholder='First Name'
-                    className='h-10 w-full border border-[#efefef] bg-[#f8f8f8] px-3 text-[10px] text-[#27312c] outline-none transition-colors duration-200 placeholder:text-[#b0aca5] focus:border-[#d9bf73] focus:bg-white'
-                  />
-                  <motion.input
-                    variants={itemVariants}
-                    type='text'
-                    placeholder='Last Name'
-                    className='h-10 w-full border border-[#efefef] bg-[#f8f8f8] px-3 text-[10px] text-[#27312c] outline-none transition-colors duration-200 placeholder:text-[#b0aca5] focus:border-[#d9bf73] focus:bg-white'
+              <div className='space-y-6'>
+                <div className='flex items-start gap-4'>
+                  <Mail className='h-6 w-6 text-[#d9bf73] mt-1' />
+                  <div>
+                    <p className='font-medium'>Email</p>
+                    <a
+                      href='mailto:info@gexpertconsultoria.com'
+                      className='text-gray-300 hover:text-[#d9bf73] transition-colors'
+                    >
+                      info@gexpertconsultoria.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className='flex items-start gap-4'>
+                  <Phone className='h-6 w-6 text-[#d9bf73] mt-1' />
+                  <div>
+                    <p className='font-medium'>Phone</p>
+                    <a
+                      href='tel:+23480683446254'
+                      className='text-gray-300 hover:text-[#d9bf73] transition-colors'
+                    >
+                      +234 806 834 46254
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: smoothEase }}
+              className='bg-gray-50 p-8 rounded-lg'
+            >
+              <h3 className='text-2xl font-bold text-[#27312c] mb-6'>
+                Send us a Message
+              </h3>
+
+              <form className='space-y-6'>
+                <div className='grid gap-4 sm:grid-cols-2'>
+                  <div>
+                    <input
+                      type='text'
+                      placeholder='First Name'
+                      className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d9bf73] focus:border-transparent outline-none transition-all'
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type='text'
+                      placeholder='Last Name'
+                      className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d9bf73] focus:border-transparent outline-none transition-all'
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <input
+                    type='email'
+                    placeholder='Email Address'
+                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d9bf73] focus:border-transparent outline-none transition-all'
+                    required
                   />
                 </div>
 
-                <motion.input
-                  variants={itemVariants}
-                  type='email'
-                  placeholder='Email'
-                  className='h-10 w-full border border-[#efefef] bg-[#f8f8f8] px-3 text-[10px] text-[#27312c] outline-none transition-colors duration-200 placeholder:text-[#b0aca5] focus:border-[#d9bf73] focus:bg-white'
-                />
+                <div>
+                  <input
+                    type='text'
+                    placeholder='Subject'
+                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d9bf73] focus:border-transparent outline-none transition-all'
+                    required
+                  />
+                </div>
 
-                <motion.input
-                  variants={itemVariants}
-                  type='text'
-                  placeholder='Subject'
-                  className='h-10 w-full border border-[#efefef] bg-[#f8f8f8] px-3 text-[10px] text-[#27312c] outline-none transition-colors duration-200 placeholder:text-[#b0aca5] focus:border-[#d9bf73] focus:bg-white'
-                />
+                <div>
+                  <textarea
+                    placeholder='Your Message'
+                    rows={5}
+                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d9bf73] focus:border-transparent outline-none transition-all resize-none'
+                    required
+                  />
+                </div>
 
-                <motion.textarea
-                  variants={itemVariants}
-                  placeholder='Message'
-                  rows={5}
-                  className='min-h-[108px] w-full border border-[#efefef] bg-[#f8f8f8] px-3 py-3 text-[10px] text-[#27312c] outline-none transition-colors duration-200 placeholder:text-[#b0aca5] focus:border-[#d9bf73] focus:bg-white'
-                />
-
-                <motion.div variants={itemVariants} className='pt-1'>
-                  <button
-                    type='submit'
-                    className='inline-flex min-w-24 items-center justify-center bg-[#d9a441] px-5 py-2.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-white transition-colors duration-300 hover:bg-[#c79439]'
-                  >
-                    Submit
-                  </button>
-                </motion.div>
-              </motion.form>
+                <button
+                  type='submit'
+                  className='w-full bg-[#d9a441] hover:bg-[#c79439] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 focus:ring-2 focus:ring-[#d9bf73] focus:ring-offset-2'
+                >
+                  Send Message
+                </button>
+              </form>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Map Section */}
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.9, ease: smoothEase }}
-        className='bg-white px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8'
+        className='bg-gray-100 px-4 py-16 sm:px-6 lg:px-8'
       >
-        <div className='mx-auto max-w-[920px] overflow-hidden'>
-          <div className='h-[280px] w-full sm:h-[320px] lg:h-[340px]'>
-            <iframe
-              title='Global Expert location map'
-              src='https://www.google.com/maps?q=Ikeja%20Lagos&z=13&output=embed'
-              loading='lazy'
-              referrerPolicy='no-referrer-when-downgrade'
-              className='h-full w-full border-0'
-            />
+        <div className='container mx-auto max-w-6xl'>
+          <div className='text-center mb-8'>
+            <h2 className='text-3xl font-bold text-[#27312c] mb-4'>
+              Find Us Globally
+            </h2>
+            <p className='text-lg text-gray-600'>
+              Our offices span across multiple African countries
+            </p>
+          </div>
+
+          <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
+            <div className='h-96 w-full'>
+              <iframe
+                title='Global Expert locations map'
+                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424286.2740345001!2d-118.7413804844!3d34.0206088917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzQuMDIwNjA4ODkxNywgLTExOC43NDEzODA0ODQwMDAwMDAx!5e0!3m2!1sen!2s!4v1234567890!5m2!1sen!2s'
+                loading='lazy'
+                referrerPolicy='no-referrer-when-downgrade'
+                className='h-full w-full border-0'
+              />
+            </div>
           </div>
         </div>
       </motion.section>
 
-      <section className='bg-white px-4 pb-12 pt-5 sm:px-6 lg:px-8'>
+      {/* Social Media Section */}
+      <section className='bg-white px-4 py-16 sm:px-6 lg:px-8'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: smoothEase }}
-          className='mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-4 text-[#202020]'
+          className='text-center'
         >
-          {socialLinks.map((item) => {
-            const Icon = item.icon;
+          <h2 className='text-2xl font-bold text-[#27312c] mb-4'>Follow Us</h2>
+          <p className='text-gray-600 mb-8 max-w-md mx-auto'>
+            Stay connected with our latest updates and industry insights
+          </p>
 
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                aria-label={item.label}
-                className='transition-colors duration-200 hover:text-[#d9a441]'
-              >
-                <Icon className='h-[13px] w-[13px]' />
-              </a>
-            );
-          })}
+          <div className='flex justify-center gap-6'>
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  className='w-12 h-12 bg-gray-100 hover:bg-[#d9bf73] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <Icon className='h-6 w-6 text-gray-600 group-hover:text-white transition-colors' />
+                </a>
+              );
+            })}
+          </div>
         </motion.div>
       </section>
     </main>

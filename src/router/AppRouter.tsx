@@ -33,7 +33,12 @@ function ScrollToTop() {
  */
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <ScrollToTop />
       {/* Suspense provides loading state for lazy-loaded components */}
       <Suspense fallback={null}>
