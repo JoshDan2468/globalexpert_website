@@ -35,7 +35,10 @@ export const useIdleCallbackTask = (callback: () => void) => {
         timeout: 2000,
       });
     } else {
-      idRef.current = window.setTimeout(callbackRef.current, 0) as unknown as number;
+      idRef.current = window.setTimeout(
+        callbackRef.current,
+        0,
+      ) as unknown as number;
     }
 
     return () => {
