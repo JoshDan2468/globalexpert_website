@@ -15,8 +15,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Bricolage Grotesque"', "sans-serif"],
-        body: ['"Bricolage Grotesque"', "sans-serif"],
+        display: ['"Lato"', "sans-serif"],
+        body: ['"Lato"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

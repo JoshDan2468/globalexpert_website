@@ -1,5 +1,6 @@
 // Centralized icon exports for better tree shaking
 export {
+  ArrowUp,
   ArrowRight,
   ArrowLeft,
   ArrowUpRight,

@@ -4,7 +4,9 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/pages/home/HeroSection";
 import CompanySection from "@/pages/home/CompanySection";
 
-const AboutSection = lazy(() => import("@/pages/home/AboutSection"));
+const MissionVisionSection = lazy(
+  () => import("@/pages/about/MissionVisionSection"),
+);
 const ServicesSection = lazy(() => import("@/pages/home/ServicesSection"));
 const CommitmentSection = lazy(() => import("@/pages/home/CommitmentSection"));
 const FloatingStats = lazy(() => import("@/pages/home/floatingStats"));
@@ -21,9 +23,9 @@ const Home = () => (
     {/* Company snapshot */}
     <CompanySection />
 
-    {/* Company introduction */}
+    {/* Mission and vision section */}
     <DeferredSection minHeight='640px'>
-      <AboutSection />
+      <MissionVisionSection />
     </DeferredSection>
 
     {/* Trust and commitment section */}

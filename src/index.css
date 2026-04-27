@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -85,12 +85,21 @@
 
   html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
     overflow-x: hidden;
     min-height: 100%;
+    min-width: 320px;
+    text-rendering: optimizeLegibility;
+  }
+
+  p,
+  li {
+    overflow-wrap: anywhere;
   }
 
   img,
@@ -179,7 +188,6 @@
     /* Enable GPU acceleration for smoother scrolling */
     main,
     section {
-      scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }

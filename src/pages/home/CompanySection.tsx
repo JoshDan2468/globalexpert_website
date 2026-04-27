@@ -8,21 +8,21 @@ const cardItems = [
   {
     to: "/about",
     title: "Who We Are",
-    text: "Global Experts Consultoria is an international based energy, engineering, business and management consulting firm that focuses on supporting its clients to achieve improved performance through providing pragmatic solution(s).",
+    text: "Global Experts Consultoria is an international energy, engineering, business, and management consulting firm focused on helping clients improve performance through practical solutions.",
     image: image1,
     alt: "Team strategy and governance",
   },
   {
     to: "/about",
     title: "Why Global Experts",
-    text: "Global Experts Consultoria helps its clients build the needed competence and capabilities to deliver on their commitments. We are committed to delivering value to our clients and stakeholders by providing high-quality services that meet their needs and exceed their expectations.",
+    text: "We help clients build the competence and capability needed to deliver on their commitments, with high-quality support that creates clear value for clients and stakeholders.",
     image: image2,
     alt: "Executive leadership strategy",
   },
   {
-    to: "/services",
-    title: "Operations",
-    text: "Our interests in the Niger Delta are predominantly land-based. In addition to our upstream activities, we are constantly exploring opportunities across the value chain.",
+    to: "/about",
+    title: "Who we Serve",
+    text: "Our Niger Delta interests are predominantly land-based, and alongside upstream activities we continue to explore opportunities across the wider value chain.",
     image: image3,
     alt: "Field operations in energy sector",
   },
@@ -50,10 +50,10 @@ const CompanySection = () => {
           className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'
         >
           {cardItems.map((item) => (
-            <motion.div key={item.title} variants={card}>
+            <motion.div key={item.title} variants={card} className='h-full'>
               <Link
                 to={item.to}
-                className='group block overflow-hidden bg-white p-0 shadow-[0_24px_48px_rgba(15,23,42,0.14)] transition duration-600 ease-out hover:-translate-y-1 hover:shadow-[0_28px_56px_rgba(1,36,2,0.18)] focus-visible:outline-none'
+                className='group flex h-full flex-col overflow-hidden bg-white p-0 shadow-[0_24px_48px_rgba(15,23,42,0.14)] transition duration-600 ease-out hover:-translate-y-1 hover:shadow-[0_28px_56px_rgba(1,36,2,0.18)] focus-visible:outline-none'
               >
                 <div className='relative h-56 overflow-hidden'>
                   <img
@@ -63,12 +63,12 @@ const CompanySection = () => {
                   />
                 </div>
 
-                <div className='bg-white px-5 py-8 text-center sm:px-7'>
+                <div className='flex flex-1 flex-col bg-white px-5 py-8 text-center sm:px-7'>
                   <div className='mx-auto h-1 w-14 bg-[#012402]' />
                   <h3 className='mt-5 text-3xl font-bold text-[#111111]'>
                     {item.title}
                   </h3>
-                  <p className='mt-4 text-base leading-relaxed text-gray-600'>
+                  <p className='mt-4 flex-1 text-base leading-relaxed text-gray-600'>
                     {item.text}
                   </p>
                 </div>

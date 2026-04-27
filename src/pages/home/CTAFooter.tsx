@@ -1,6 +1,28 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Mail, Phone, MapPin, Clock } from '@/lib/icons';
+import { Link } from "react-router-dom";
+import { ArrowRight, Mail, Phone, MapPin, Clock } from "@/lib/icons";
+
+const footerColumnVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.08 + index * 0.08,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
+const companyLinks = [
+  { label: "About Us", to: "/about" },
+  { label: "Our Partners", to: "/partners" },
+  { label: "Articles", to: "/articles" },
+  { label: "Guiding Policies", to: "/guiding-policies" },
+  { label: "Contact Us", to: "/contact" },
+] as const;
 
 const CTAFooter = () => {
   const ref = useRef(null);
@@ -8,78 +30,101 @@ const CTAFooter = () => {
 
   return (
     <>
-      {/* CTA Section */}
       <section
-        id="contact"
-        className="py-20 bg-[#012402] relative overflow-hidden"
+        id='contact'
+        className='relative overflow-hidden bg-[#012402] py-16 sm:py-20'
         ref={ref}
       >
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ebf5ec] rounded-full blur-3xl" />
+        <div className='absolute inset-0 opacity-5'>
+          <div className='absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ebf5ec] blur-3xl sm:h-[800px] sm:w-[800px]' />
         </div>
-        <div className="container mx-auto relative z-10 text-center px-4 sm:px-6 lg:px-8">
+        <div className='container relative z-10 mx-auto px-4 text-center sm:px-6 lg:px-8'>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className='mb-6 text-3xl font-bold leading-tight text-white md:text-5xl'>
               Ready to Start Your
               <br />
-              <span className="text-[#ebf5ec]">Next Project?</span>
+              <span className='text-[#ebf5ec]'>Next Project?</span>
             </h2>
-            <p className="text-white/70 text-lg max-w-xl mx-auto mb-10">
+            <p className='mx-auto mb-10 max-w-xl text-base leading-8 text-white/70 sm:text-lg'>
               Partner with Global Experts Consultoria and leverage our
               multi-discipline expertise to deliver exceptional results across
               industries.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="mailto:info@globalexpertsconsultoria.com"
-                className="px-8 py-4 bg-white text-[#012402] font-semibold rounded-lg hover:brightness-95 transition-all flex items-center gap-2"
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                delay: 0.12,
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className='flex flex-col items-center justify-center gap-4 sm:flex-row'
+            >
+              <motion.a
+                href='mailto:info@globalexpertsconsultoria.com'
+                whileHover={{ y: -2, scale: 1.01 }}
+                transition={{ duration: 0.25 }}
+                className='inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-center font-semibold text-[#012402] transition-all hover:brightness-95'
               >
                 Start a Conversation
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="tel:+2348068970938"
-                className="px-8 py-4 border border-white/40 text-white font-semibold rounded-lg hover:bg-white/10 transition-all"
+                <ArrowRight className='h-4 w-4' />
+              </motion.a>
+              <motion.a
+                href='tel:+2348068970938'
+                whileHover={{ y: -2, scale: 1.01 }}
+                transition={{ duration: 0.25 }}
+                className='inline-flex items-center justify-center rounded-lg border border-white/40 px-8 py-4 text-center font-semibold text-white transition-all hover:bg-white/10'
               >
                 Call Us Now
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#012402] py-16 px-6">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-10 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-11 h-11 rounded-full border-2 border-white/60 flex items-center justify-center font-bold text-white text-xl">
+      <footer className='bg-[#012402] px-6 py-16'>
+        <div className='container mx-auto'>
+          <div className='mb-12 grid gap-10 sm:grid-cols-2 xl:grid-cols-4'>
+            <motion.div
+              custom={0}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.15 }}
+              variants={footerColumnVariants}
+            >
+              <div className='mb-4 flex items-center gap-3'>
+                <div className='flex h-11 w-11 items-center justify-center rounded-full border-2 border-white/60 text-xl font-bold text-white'>
                   G
                 </div>
                 <div>
-                  <span className="font-semibold text-white block leading-tight">
+                  <span className='block leading-tight text-white font-semibold'>
                     Global Experts
                   </span>
-                  <span className="text-white/50 text-[10px] uppercase tracking-widest">
+                  <span className='text-[10px] uppercase tracking-widest text-white/50'>
                     Consultoria
                   </span>
                 </div>
               </div>
-              <p className="text-white/60 text-sm leading-relaxed">
-                GExperts Consultoria Limited - providing world class engineering,
-                project management, asset integrity & maintenance consultancy
-                solutions globally.
+              <p className='text-sm leading-relaxed text-white/60'>
+                GExperts Consultoria Limited - providing world class
+                engineering, project management, asset integrity & maintenance
+                consultancy solutions globally.
               </p>
-            </div>
+            </motion.div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-white/60">
+            <motion.div
+              custom={1}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.15 }}
+              variants={footerColumnVariants}
+            >
+              <h4 className='mb-4 font-semibold text-white'>Services</h4>
+              <ul className='space-y-2 text-sm text-white/60'>
                 {[
                   "EPCI Consultancy",
                   "Project Management",
@@ -87,75 +132,89 @@ const CTAFooter = () => {
                   "Research & Development",
                   "Technical Advisory",
                   "Market Intelligence",
-                ].map((s) => (
-                  <li key={s}>
-                    <a href="#services" className="hover:text-white transition-colors">
-                      {s}
-                    </a>
+                ].map((service) => (
+                  <li key={service}>
+                    <Link
+                      to='/services'
+                      className='transition-colors hover:text-white'
+                    >
+                      {service}
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-white/60">
-                {[
-                  "About Us",
-                  "Our Partners",
-                  "Industries",
-                  "Articles",
-                  "Guiding Policies",
-                  "Contact Us",
-                ].map((s) => (
-                  <li key={s}>
-                    <a href="#" className="hover:text-white transition-colors">
-                      {s}
-                    </a>
+            <motion.div
+              custom={2}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.15 }}
+              variants={footerColumnVariants}
+            >
+              <h4 className='mb-4 font-semibold text-white'>Company</h4>
+              <ul className='space-y-2 text-sm text-white/60'>
+                {companyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className='transition-colors hover:text-white'
+                    >
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-4">Contact</h4>
-              <ul className="space-y-3 text-sm text-white/60">
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-white flex-shrink-0" />
+            <motion.div
+              custom={3}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.15 }}
+              variants={footerColumnVariants}
+            >
+              <h4 className='mb-4 font-semibold text-white'>Contact</h4>
+              <ul className='space-y-3 text-sm text-white/60'>
+                <li className='flex items-center gap-2'>
+                  <Phone className='h-4 w-4 flex-shrink-0 text-white' />
                   +2348068970938
                 </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-white flex-shrink-0" />
+                <li className='flex items-center gap-2'>
+                  <Mail className='h-4 w-4 flex-shrink-0 text-white' />
                   info@globalexpertsconsultoria.com
                 </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-white flex-shrink-0" />
+                <li className='flex items-center gap-2'>
+                  <Mail className='h-4 w-4 flex-shrink-0 text-white' />
                   globalexpertsconsultoria@gmail.com
                 </li>
-                <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                <li className='flex items-start gap-2'>
+                  <MapPin className='mt-0.5 h-4 w-4 flex-shrink-0 text-white' />
                   31 Ademola Street, off Awolowo Road, Ikoyi, Lagos
                 </li>
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-white flex-shrink-0" />
+                <li className='flex items-center gap-2'>
+                  <Clock className='h-4 w-4 flex-shrink-0 text-white' />
                   Mon - Fri: 8am - 5pm
                 </li>
               </ul>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/50">
+          <div className='flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-center text-sm text-white/50 md:flex-row md:text-left'>
             <p>(c) 2026 GExperts Consultoria Limited. All rights reserved.</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">
+            <div className='flex flex-wrap justify-center gap-4 md:justify-end md:gap-6'>
+              <a href='#' className='transition-colors hover:text-white'>
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href='#' className='transition-colors hover:text-white'>
                 Terms
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <Link
+                to='/guiding-policies'
+                className='transition-colors hover:text-white'
+              >
                 Guiding Policies
-              </a>
+              </Link>
             </div>
           </div>
         </div>

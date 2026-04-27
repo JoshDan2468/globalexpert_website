@@ -117,3 +117,9 @@ export const policyDetails: PolicyDetailItem[] = [
 export const policyDetailMap = Object.fromEntries(
   policyDetails.map((policy) => [policy.slug, policy]),
 ) as Record<string, PolicyDetailItem>;
+
+export const policyLinks = policyDetails.map((policy) => ({
+  slug: policy.slug,
+  title: policy.title,
+  subtitle: policy.subtitle ?? policy.eyebrow,
+}));

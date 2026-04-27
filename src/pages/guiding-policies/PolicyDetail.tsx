@@ -3,12 +3,16 @@ import { ArrowRight, CheckCircle2, ShieldCheck } from '@/lib/icons';
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import CTAFooter from "@/pages/home/CTAFooter";
-import { policyDetailMap } from "@/pages/guiding-policies/policyData";
+import {
+  policyDetailMap,
+  policyLinks,
+} from "@/pages/guiding-policies/policyData";
 import verified from "@/assets/policies/verified.jpg";
 
 const PolicyDetail = () => {
   const { policySlug } = useParams<{ policySlug: string }>();
-  const policy = policySlug ? policyDetailMap[policySlug] : null;
+  const activePolicySlug = policySlug ?? "quality-policy";
+  const policy = policyDetailMap[activePolicySlug] ?? null;
   const narrative = policy?.policyNarrative;
   const detailPoints =
     narrative?.checklistItems ?? policy?.assurancePoints ?? policy?.commitments;
@@ -63,6 +67,39 @@ const PolicyDetail = () => {
             <p className='mt-4 text-lg leading-8 text-[#516252] sm:text-xl'>
               {policy.subtitle ?? narrative?.leadTitle ?? policy.intro}
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            className='mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2'
+          >
+            {policyLinks.map((policyLink) => {
+              const isActive = policyLink.slug === activePolicySlug;
+
+              return (
+                <Link
+                  key={policyLink.slug}
+                  to={`/guiding-policies/${policyLink.slug}`}
+                  className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all duration-300 ${
+                    isActive
+                      ? "border-[#0b3b12] bg-[#0b3b12] text-white shadow-[0_18px_40px_rgba(11,59,18,0.18)]"
+                      : "border-[#dce9dc] bg-white text-[#17311a] hover:-translate-y-0.5 hover:border-[#0b3b12]/30 hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)]"
+                  }`}
+                >
+                  <p className={`text-sm font-semibold uppercase tracking-[0.18em] ${isActive ? "text-white/70" : "text-[#0b3b12]/65"}`}>
+                    Guiding Policy
+                  </p>
+                  <h2 className='mt-3 text-xl font-semibold'>
+                    {policyLink.subtitle}
+                  </h2>
+                  <p className={`mt-2 text-sm ${isActive ? "text-white/82" : "text-[#4f5f51]"}`}>
+                    {policyLink.title}
+                  </p>
+                </Link>
+              );
+            })}
           </motion.div>
         </div>
       </section>

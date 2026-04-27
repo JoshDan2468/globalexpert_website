@@ -21,44 +21,7 @@ const OilGasManagementPage = lazy(
 const ProjectManagementExecutionPage = lazy(
   () => import("@/pages/services/details/ProjectManagementExecutionPage"),
 );
-const Industries = lazy(() => import("@/pages/industries/Industries"));
 const Products = lazy(() => import("@/pages/products/Products"));
-const DigitalizationEdgePage = lazy(
-  () => import("@/pages/products/details/DigitalizationEdgePage"),
-);
-const DigitalTwinPage = lazy(
-  () => import("@/pages/products/details/DigitalTwinPage"),
-);
-const ElectricalSafetyPage = lazy(
-  () => import("@/pages/products/details/ElectricalSafetyPage"),
-);
-const FlexibleTankPage = lazy(
-  () => import("@/pages/products/details/FlexibleTankPage"),
-);
-const FlowmetersSensorsPage = lazy(
-  () => import("@/pages/products/details/FlowmetersSensorsPage"),
-);
-const NdtLaserPage = lazy(
-  () => import("@/pages/products/details/NdtLaserPage"),
-);
-const RenewableEnergyPage = lazy(
-  () => import("@/pages/products/details/RenewableEnergyPage"),
-);
-const SafetyHsePage = lazy(
-  () => import("@/pages/products/details/SafetyHsePage"),
-);
-const ForecourtAutomationPage = lazy(
-  () => import("@/pages/products/details/ForecourtAutomationPage"),
-);
-const TestEquipmentPage = lazy(
-  () => import("@/pages/products/details/TestEquipmentPage"),
-);
-const ThermalMonitoringPage = lazy(
-  () => import("@/pages/products/details/ThermalMonitoringPage"),
-);
-const ValvesFlangesPumpsPage = lazy(
-  () => import("@/pages/products/details/ValvesFlangesPumpsPage"),
-);
 const PolicyDetail = lazy(
   () => import("@/pages/guiding-policies/PolicyDetail"),
 );
@@ -102,35 +65,20 @@ export const routes: AppRoute[] = [
     path: "/services/project-management-execution",
     component: ProjectManagementExecutionPage,
   },
-  { path: "/industries", component: Industries },
   { path: "/products", component: Products },
-  {
-    path: "/products/digitalization-edge",
-    component: DigitalizationEdgePage,
-  },
-  { path: "/products/digital-twin", component: DigitalTwinPage },
-  {
-    path: "/products/electrical-safety",
-    component: ElectricalSafetyPage,
-  },
-  { path: "/products/flexible-tank", component: FlexibleTankPage },
-  {
-    path: "/products/flowmeters-sensors",
-    component: FlowmetersSensorsPage,
-  },
-  { path: "/products/ndt-laser", component: NdtLaserPage },
-  { path: "/products/renewable-energy", component: RenewableEnergyPage },
-  { path: "/products/safety-hse", component: SafetyHsePage },
-  {
-    path: "/products/forecourt-automation",
-    component: ForecourtAutomationPage,
-  },
-  { path: "/products/test-equipment", component: TestEquipmentPage },
-  { path: "/products/thermal-monitoring", component: ThermalMonitoringPage },
-  {
-    path: "/products/valves-flanges-pumps",
-    component: ValvesFlangesPumpsPage,
-  },
+  { path: "/products/digitalization-edge", component: Products },
+  { path: "/products/digital-twin", component: Products },
+  { path: "/products/electrical-safety", component: Products },
+  { path: "/products/flexible-tank", component: Products },
+  { path: "/products/flowmeters-sensors", component: Products },
+  { path: "/products/ndt-laser", component: Products },
+  { path: "/products/renewable-energy", component: Products },
+  { path: "/products/safety-hse", component: Products },
+  { path: "/products/forecourt-automation", component: Products },
+  { path: "/products/test-equipment", component: Products },
+  { path: "/products/thermal-monitoring", component: Products },
+  { path: "/products/valves-flanges-pumps", component: Products },
+  { path: "/guiding-policies", component: PolicyDetail },
   { path: "/guiding-policies/:policySlug", component: PolicyDetail },
   { path: "/articles", component: Articles },
   { path: "/articles/:articleSlug", component: ArticleDetail },
