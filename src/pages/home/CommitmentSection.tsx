@@ -1,4 +1,3 @@
-// Animation tools
 import { motion } from "framer-motion";
 import {
   Check,
@@ -14,35 +13,33 @@ import {
   Wrench,
   Zap,
   type LucideIcon,
-} from '@/lib/icons';
-
-// Card images
+} from "@/lib/icons";
 import image1 from "@/assets/home_assets/oil_fac.jpg";
 import image2 from "@/assets/home_assets/image5.jpg";
 import image3 from "@/assets/home_assets/build.jpg";
 
-// This defines the shape of each commitment card.
-type ServiceCard = {
+type CommitmentItem = {
   image: string;
   alt: string;
   title: string;
   eyebrow: string;
   summary: string;
+  details: string;
   points: string[];
-  featured?: boolean;
 };
 
-// Small highlight pills shown below the section intro.
 const quickHighlights = ["LNG", "Renewable energy", "Environment", "Water"];
 
-// Main cards shown in the commitment section.
-const serviceCards: ServiceCard[] = [
+const commitmentItems: CommitmentItem[] = [
   {
     image: image1,
     alt: "Oil and gas operations",
     title: "Oil & Gas",
     eyebrow: "Core market",
-    summary: "Support across production, transport, storage, and supply.",
+    summary:
+      "We support clients across production, transport, storage, and supply with practical technical expertise and dependable delivery discipline.",
+    details:
+      "Our oil and gas commitment covers LNG and CNG infrastructure, onshore pipelines, receiving terminals, offshore and onshore production facilities, LPG systems, and petroleum product supply support built around operational reliability.",
     points: [
       "LNG & CNG facilities",
       "Onshore pipelines and receiving terminals",
@@ -57,9 +54,10 @@ const serviceCards: ServiceCard[] = [
     alt: "Power infrastructure and transmission",
     title: "Energy & Power",
     eyebrow: "Power sector",
-    featured: true,
     summary:
-      "Support across generation, transmission, and cleaner energy systems with disciplined technical delivery.",
+      "We contribute to stronger generation, transmission, and cleaner energy systems with disciplined technical planning and project support.",
+    details:
+      "Our teams help across gas turbine power plants, transmission networks, renewable energy systems, and broader operational planning where technical guidance and execution clarity are essential to long-term performance.",
     points: [
       "Renewable energy systems",
       "Gas turbine power plants",
@@ -73,7 +71,9 @@ const serviceCards: ServiceCard[] = [
     title: "Manufacturing & Infrastructure",
     eyebrow: "Broader industries",
     summary:
-      "Helping industrial clients improve reliability and systems delivery.",
+      "We help industrial and public-sector clients improve reliability, delivery capability, and system performance across essential sectors.",
+    details:
+      "This commitment extends into environment, water, transport, medicine, research, and automation services, where we apply the same structured support model to strengthen operational continuity and smarter system outcomes.",
     points: [
       "Environment",
       "Water and wastewater",
@@ -85,76 +85,80 @@ const serviceCards: ServiceCard[] = [
   },
 ];
 
-// Animation for the full card grid.
 const sectionVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.16 },
-  },
-};
-
-// Animation for each card.
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.75,
-      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.16,
     },
   },
 };
 
-// Animation for each list group inside a card.
-const listVariants = {
+const imageVariants = {
+  hidden: { opacity: 0, x: -28, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const imageVariantsReverse = {
+  hidden: { opacity: 0, x: 28, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const textGroupVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
-  },
-};
-
-// Animation for each list item inside a card.
-const listItemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.1,
+      delayChildren: 0.06,
     },
   },
 };
 
-// This picks a simple icon and color style for each bullet point.
+const textItemVariants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 const getPointStyle = (
   point: string,
-  isFeatured: boolean,
 ): { icon: LucideIcon; iconClassName: string; badgeClassName: string } => {
   const label = point.toLowerCase();
 
   if (label.includes("renewable") || label.includes("environment")) {
     return {
       icon: Leaf,
-      iconClassName: isFeatured ? "text-[#9ef5b0]" : "text-[#2f9e44]",
-      badgeClassName: isFeatured ? "bg-[#12381c]" : "bg-[#e6f7ea]",
+      iconClassName: "text-[#2f9e44]",
+      badgeClassName: "bg-[#e6f7ea]",
     };
   }
 
   if (label.includes("water") || label.includes("wastewater")) {
     return {
       icon: Droplets,
-      iconClassName: isFeatured ? "text-[#8fd3ff]" : "text-[#1677c8]",
-      badgeClassName: isFeatured ? "bg-[#0d2d46]" : "bg-[#e8f4ff]",
+      iconClassName: "text-[#1677c8]",
+      badgeClassName: "bg-[#e8f4ff]",
     };
   }
 
   if (label.includes("power") || label.includes("transmission")) {
     return {
       icon: Zap,
-      iconClassName: isFeatured ? "text-[#ffd76a]" : "text-[#d99700]",
-      badgeClassName: isFeatured ? "bg-[#3b2f0b]" : "bg-[#fff6db]",
+      iconClassName: "text-[#d99700]",
+      badgeClassName: "bg-[#fff6db]",
     };
   }
 
@@ -167,40 +171,40 @@ const getPointStyle = (
   ) {
     return {
       icon: Fuel,
-      iconClassName: isFeatured ? "text-[#ffb38a]" : "text-[#e76f1f]",
-      badgeClassName: isFeatured ? "bg-[#452313]" : "bg-[#fff0e8]",
+      iconClassName: "text-[#e76f1f]",
+      badgeClassName: "bg-[#fff0e8]",
     };
   }
 
   if (label.includes("research") || label.includes("technical")) {
     return {
       icon: ShieldCheck,
-      iconClassName: isFeatured ? "text-[#b7c9ff]" : "text-[#516fc6]",
-      badgeClassName: isFeatured ? "bg-[#1c254a]" : "bg-[#eef2ff]",
+      iconClassName: "text-[#516fc6]",
+      badgeClassName: "bg-[#eef2ff]",
     };
   }
 
   if (label.includes("medicine") || label.includes("health")) {
     return {
       icon: Stethoscope,
-      iconClassName: isFeatured ? "text-[#ffacc6]" : "text-[#d94878]",
-      badgeClassName: isFeatured ? "bg-[#4b1d2f]" : "bg-[#fff0f5]",
+      iconClassName: "text-[#d94878]",
+      badgeClassName: "bg-[#fff0f5]",
     };
   }
 
   if (label.includes("transport")) {
     return {
       icon: TowerControl,
-      iconClassName: isFeatured ? "text-[#cbb7ff]" : "text-[#7a52d1]",
-      badgeClassName: isFeatured ? "bg-[#2e1f4f]" : "bg-[#f3edff]",
+      iconClassName: "text-[#7a52d1]",
+      badgeClassName: "bg-[#f3edff]",
     };
   }
 
   if (label.includes("automation") || label.includes("systems")) {
     return {
       icon: Settings2,
-      iconClassName: isFeatured ? "text-[#b7f0ff]" : "text-[#1388a5]",
-      badgeClassName: isFeatured ? "bg-[#123946]" : "bg-[#e7fbff]",
+      iconClassName: "text-[#1388a5]",
+      badgeClassName: "bg-[#e7fbff]",
     };
   }
 
@@ -211,34 +215,32 @@ const getPointStyle = (
   ) {
     return {
       icon: Factory,
-      iconClassName: isFeatured ? "text-[#d6d6d6]" : "text-[#5f6b76]",
-      badgeClassName: isFeatured ? "bg-[#2f363b]" : "bg-[#eff2f4]",
+      iconClassName: "text-[#5f6b76]",
+      badgeClassName: "bg-[#eff2f4]",
     };
   }
 
   if (label.includes("pipeline")) {
     return {
       icon: Waves,
-      iconClassName: isFeatured ? "text-[#8fd3ff]" : "text-[#1677c8]",
-      badgeClassName: isFeatured ? "bg-[#0d2d46]" : "bg-[#e8f4ff]",
+      iconClassName: "text-[#1677c8]",
+      badgeClassName: "bg-[#e8f4ff]",
     };
   }
 
   return {
     icon: Wrench,
-    iconClassName: isFeatured ? "text-[#a9f3b1]" : "text-[#0c6b2f]",
-    badgeClassName: isFeatured ? "bg-[#15361b]" : "bg-[#e8f6ec]",
+    iconClassName: "text-[#0c6b2f]",
+    badgeClassName: "bg-[#e8f6ec]",
   };
 };
 
 const CommitmentSection = () => {
   return (
-    // Main commitment section wrapper
-    <section className='border-t border-[#012402]/10 bg-[#ebf5ec] py-16 lg:py-20'>
+    <section className='border-t border-[#012402]/10 bg-[#eef3ef] py-16 lg:py-20'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* Section heading and short introduction */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
@@ -257,7 +259,6 @@ const CommitmentSection = () => {
             clear delivery, dependable quality, and practical value.
           </p>
 
-          {/* Quick market highlight tags */}
           <div className='mt-6 flex flex-wrap justify-center gap-3'>
             {quickHighlights.map((item) => (
               <span
@@ -271,125 +272,112 @@ const CommitmentSection = () => {
           </div>
         </motion.div>
 
-        {/* Commitment cards grid */}
-        <motion.div
-          className='mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3'
-          variants={sectionVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {serviceCards.map((card) => {
-            const isFeatured = Boolean(card.featured);
+        <div className='mt-12 overflow-hidden rounded-[2rem] border border-[#d7e0d8] bg-white shadow-[0_24px_60px_rgba(15,23,42,0.06)]'>
+          {commitmentItems.map((item, index) => {
+            const reverse = index % 2 === 1;
 
             return (
-              // Individual service card
-              <motion.article
-                key={card.title}
-                variants={cardVariants}
-                whileHover={{ y: -6 }}
-                className={`group flex h-full flex-col overflow-hidden rounded-[28px] border transition-all duration-300 ${
-                  isFeatured
-                    ? "border-[#0c6b2f]/20 bg-[#012402] shadow-[0_20px_45px_rgba(1,36,2,0.20)]"
-                    : "border-[#012402]/10 bg-white shadow-[0_18px_40px_rgba(1,36,2,0.10)] hover:shadow-[0_24px_50px_rgba(1,36,2,0.16)]"
-                }`}
+              <motion.section
+                key={item.title}
+                variants={sectionVariants}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
+                className='border-t border-[#d7e0d8] first:border-t-0'
               >
-                {/* Card image and title area */}
-                <div className='relative h-44 overflow-hidden sm:h-48'>
-                  <img
-                    src={card.image}
-                    alt={card.alt}
-                    className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
-                    loading='lazy'
-                    decoding='async'
-                    width={400}
-                    height={192}
-                  />
-                  <div
-                    className={`absolute inset-0 ${
-                      isFeatured
-                        ? "bg-gradient-to-t from-[#012402]/80 via-[#012402]/32 to-transparent"
-                        : "bg-gradient-to-t from-[#012402]/78 via-[#012402]/38 to-transparent"
-                    }`}
-                  />
-
-                  {/* Card eyebrow and title */}
-                  <div className='absolute inset-x-0 bottom-0 p-5'>
-                    <p
-                      className={`text-xs font-semibold uppercase tracking-[0.24em] ${
-                        isFeatured ? "text-[#d8ffe0]" : "text-white/80"
-                      }`}
-                    >
-                      {card.eyebrow}
-                    </p>
-                    <h3 className='mt-2 text-2xl font-bold text-white sm:text-[1.75rem]'>
-                      {card.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Card body content */}
-                <div className='flex flex-1 flex-col p-5'>
-                  {/* Short card summary */}
-                  <p
-                    className={`text-left leading-7 ${
-                      isFeatured
-                        ? "text-sm text-white"
-                        : "text-sm text-[#012402]/76"
-                    }`}
+                <div
+                  className={`grid items-start lg:grid-cols-[1.05fr_0.95fr] ${
+                    reverse
+                      ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1"
+                      : ""
+                  }`}
+                >
+                  <motion.div
+                    variants={reverse ? imageVariantsReverse : imageVariants}
+                    className='relative h-[240px] overflow-hidden bg-[#dfe7ee] sm:h-[300px] lg:h-[400px]'
                   >
-                    {card.summary}
-                  </p>
+                    <motion.img
+                      src={item.image}
+                      alt={item.alt}
+                      className='h-full w-full object-cover'
+                      loading='lazy'
+                      whileHover={{ scale: 1.04 }}
+                      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                    <div className='absolute inset-0 bg-[linear-gradient(90deg,rgba(1,36,2,0.16)_0%,rgba(1,36,2,0.02)_48%,rgba(1,36,2,0)_100%)]' />
+                  </motion.div>
 
-                  {/* Card bullet points */}
-                  <motion.ul
-                    variants={listVariants}
-                    initial='hidden'
-                    whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
-                    className='mt-4 space-y-2.5'
+                  <motion.div
+                    variants={textGroupVariants}
+                    className='flex items-center bg-[#f5f5f2] px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-12 lg:py-12'
                   >
-                    {card.points.map((point) => (
-                      <motion.li
-                        key={point}
-                        variants={listItemVariants}
-                        whileHover={{ x: 4 }}
-                        transition={{ duration: 0.22, ease: "easeOut" }}
-                        className={`flex items-start gap-3 text-sm ${
-                          isFeatured ? "text-white" : "text-[#012402]/82"
-                        }`}
+                    <div className='mx-auto w-full max-w-xl overflow-hidden'>
+                      <motion.p
+                        variants={textItemVariants}
+                        className='text-left text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#0c6b2f]'
                       >
-                        {/* Bullet icon */}
-                        {(() => {
+                        {item.eyebrow}
+                      </motion.p>
+                      <motion.h3
+                        variants={textItemVariants}
+                        className='mt-4 text-left text-3xl font-bold uppercase tracking-[0.04em] text-[#012402] sm:text-4xl'
+                      >
+                        {item.title}
+                      </motion.h3>
+                      <motion.div
+                        variants={textItemVariants}
+                        className='mt-5 h-px w-16 bg-[#0c6b2f]/25'
+                      />
+                      <motion.p
+                        variants={textItemVariants}
+                        className='mt-6 max-w-lg text-left text-[0.96rem] leading-7 text-[#27372a]'
+                      >
+                        {item.summary}
+                      </motion.p>
+                      <motion.p
+                        variants={textItemVariants}
+                        className='mt-4 max-w-lg text-left text-[0.96rem] leading-7 text-[#27372a]'
+                      >
+                        {item.details}
+                      </motion.p>
+
+                      <motion.ul
+                        variants={textItemVariants}
+                        className='mt-6 grid gap-3 sm:grid-cols-2'
+                      >
+                        {item.points.map((point) => {
                           const {
                             icon: PointIcon,
                             iconClassName,
                             badgeClassName,
-                          } = getPointStyle(point, isFeatured);
+                          } = getPointStyle(point);
 
                           return (
-                            <motion.span
-                              whileHover={{ scale: 1.08, rotate: 4 }}
-                              transition={{ duration: 0.2, ease: "easeOut" }}
-                              className={`mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${badgeClassName}`}
+                            <li
+                              key={point}
+                              className='flex items-start gap-3 rounded-[1.1rem] bg-white px-4 py-3 shadow-sm'
                             >
-                              <PointIcon
-                                className={`h-4 w-4 ${iconClassName}`}
-                              />
-                            </motion.span>
+                              <span
+                                className={`mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${badgeClassName}`}
+                              >
+                                <PointIcon
+                                  className={`h-4 w-4 ${iconClassName}`}
+                                />
+                              </span>
+                              <span className='text-left text-sm leading-6 text-[#012402]/82'>
+                                {point}
+                              </span>
+                            </li>
                           );
-                        })()}
-
-                        {/* Bullet text */}
-                        <span className='text-left leading-5'>{point}</span>
-                      </motion.li>
-                    ))}
-                  </motion.ul>
+                        })}
+                      </motion.ul>
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.article>
+              </motion.section>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
