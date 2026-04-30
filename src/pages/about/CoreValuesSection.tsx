@@ -78,7 +78,7 @@ const CoreValuesSection = () => {
                   {value.title}
                 </h3>
 
-                <p className='mt-4 text-justify text-[0.98rem] leading-7 text-[#5a6b5d]'>
+                <p className='mt-4 text-[0.98rem] leading-7 text-[#5a6b5d]'>
                   {value.text}
                 </p>
               </motion.article>

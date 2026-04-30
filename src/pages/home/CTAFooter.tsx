@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail, Phone, MapPin, Clock } from "@/lib/icons";
+import gexpertLogo from "@/assets/gexpet logo.jpeg";
+import ctaBackground from "@/assets/home_assets/technical.jpg";
 
 const footerColumnVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -35,8 +37,21 @@ const CTAFooter = () => {
         className='relative overflow-hidden bg-[#012402] py-16 sm:py-20'
         ref={ref}
       >
-        <div className='absolute inset-0 opacity-5'>
-          <div className='absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ebf5ec] blur-3xl sm:h-[800px] sm:w-[800px]' />
+        <div className='absolute inset-0'>
+          <motion.img
+            src={ctaBackground}
+            alt=''
+            aria-hidden='true'
+            className='h-full w-full object-cover'
+            initial={{ scale: 1.08 }}
+            animate={inView ? { scale: 1.01 } : { scale: 1.08 }}
+            transition={{ duration: 4.5, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <div className='absolute inset-0 bg-[linear-gradient(115deg,rgba(1,36,2,0.94)_0%,rgba(1,36,2,0.82)_42%,rgba(12,107,47,0.62)_100%)]' />
+          <div className='absolute inset-0 bg-black/20' />
+        </div>
+        <div className='absolute inset-0 opacity-20'>
+          <div className='absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d8b84f] blur-3xl sm:h-[800px] sm:w-[800px]' />
         </div>
         <div className='container relative z-10 mx-auto px-4 text-center sm:px-6 lg:px-8'>
           <motion.div
@@ -44,12 +59,12 @@ const CTAFooter = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className='mb-6 text-3xl font-bold leading-tight text-white md:text-5xl'>
+            <h2 className='mb-6 text-3xl font-bold leading-tight text-white drop-shadow-sm md:text-5xl'>
               Ready to Start Your
               <br />
-              <span className='text-[#ebf5ec]'>Next Project?</span>
+              <span className='text-[#f1d36b]'>Next Project?</span>
             </h2>
-            <p className='mx-auto mb-10 max-w-xl text-base leading-8 text-white/70 sm:text-lg'>
+            <p className='mx-auto mb-10 max-w-xl text-base leading-8 text-white/82 sm:text-lg'>
               Partner with Global Experts Consultoria and leverage our
               multi-discipline expertise to deliver exceptional results across
               industries.
@@ -68,7 +83,7 @@ const CTAFooter = () => {
                 href='mailto:info@globalexpertsconsultoria.com'
                 whileHover={{ y: -2, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className='inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-center font-semibold text-[#012402] transition-all hover:brightness-95'
+                className='inline-flex items-center justify-center gap-2 rounded-lg bg-[#f1d36b] px-8 py-4 text-center font-semibold text-[#012402] shadow-[0_18px_35px_rgba(0,0,0,0.22)] transition-all hover:bg-[#ffe28a]'
               >
                 Start a Conversation
                 <ArrowRight className='h-4 w-4' />
@@ -77,7 +92,7 @@ const CTAFooter = () => {
                 href='tel:+2348068970938'
                 whileHover={{ y: -2, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className='inline-flex items-center justify-center rounded-lg border border-white/40 px-8 py-4 text-center font-semibold text-white transition-all hover:bg-white/10'
+                className='inline-flex items-center justify-center rounded-lg border border-white/55 bg-white/10 px-8 py-4 text-center font-semibold text-white shadow-[0_18px_35px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all hover:border-[#f1d36b] hover:bg-[#f1d36b]/15 hover:text-[#fff4c4]'
               >
                 Call Us Now
               </motion.a>
@@ -96,23 +111,25 @@ const CTAFooter = () => {
               viewport={{ once: true, amount: 0.15 }}
               variants={footerColumnVariants}
             >
-              <div className='mb-4 flex items-center gap-3'>
-                <div className='flex h-11 w-11 items-center justify-center rounded-full border-2 border-white/60 text-xl font-bold text-white'>
-                  G
-                </div>
-                <div>
-                  <span className='block leading-tight text-white font-semibold'>
-                    Global Experts
+              <Link to='/' className='mb-4 flex items-center gap-2 sm:gap-3'>
+                <img
+                  src={gexpertLogo}
+                  alt='Global Experts Consultoria logo'
+                  className='h-10 w-auto rounded-sm bg-white object-contain sm:h-12 lg:h-14'
+                />
+                <div className='flex flex-col gap-1 leading-tight'>
+                  <span className='text-[10px] font-bold uppercase tracking-[0.1em] text-white sm:text-[11px] lg:text-xs'>
+                    Global Expert
                   </span>
-                  <span className='text-[10px] uppercase tracking-widest text-white/50'>
+                  <span className='text-[8px] font-semibold uppercase tracking-[0.14em] text-white/70 sm:text-[9px] lg:text-[11px]'>
                     Consultoria
                   </span>
                 </div>
-              </div>
+              </Link>
               <p className='text-sm leading-relaxed text-white/60'>
-                GExperts Consultoria Limited - providing world class
-                engineering, project management, asset integrity & maintenance
-                consultancy solutions globally.
+                We are a global company with presence in Lagos-Nigeria,
+                Maputo-Mozambique, Freetown-Sierra Leone, Accra-Ghana,
+                Kampala-Uganda, Namibia and other Africa countries.
               </p>
             </motion.div>
 
@@ -123,7 +140,9 @@ const CTAFooter = () => {
               viewport={{ once: true, amount: 0.15 }}
               variants={footerColumnVariants}
             >
-              <h4 className='mb-4 font-semibold text-white'>Services</h4>
+              <h4 className='mb-4 text-left font-semibold text-white'>
+                Services
+              </h4>
               <ul className='space-y-2 text-sm text-white/60'>
                 {[
                   "EPCI Consultancy",
@@ -152,7 +171,9 @@ const CTAFooter = () => {
               viewport={{ once: true, amount: 0.15 }}
               variants={footerColumnVariants}
             >
-              <h4 className='mb-4 font-semibold text-white'>Company</h4>
+              <h4 className='mb-4 text-left font-semibold text-white'>
+                Company
+              </h4>
               <ul className='space-y-2 text-sm text-white/60'>
                 {companyLinks.map((link) => (
                   <li key={link.label}>
@@ -174,7 +195,9 @@ const CTAFooter = () => {
               viewport={{ once: true, amount: 0.15 }}
               variants={footerColumnVariants}
             >
-              <h4 className='mb-4 font-semibold text-white'>Contact</h4>
+              <h4 className='mb-4 text-left font-semibold text-white'>
+                Contact
+              </h4>
               <ul className='space-y-3 text-sm text-white/60'>
                 <li className='flex items-center gap-2'>
                   <Phone className='h-4 w-4 flex-shrink-0 text-white' />

@@ -145,7 +145,7 @@ const AdvantagesSection = () => {
                   </h3>
                 </div>
 
-                <p className='mt-5 text-justify text-[0.98rem] leading-7 text-[#5a6b5d]'>
+                <p className='mt-5 text-[0.98rem] leading-7 text-[#5a6b5d]'>
                   {item.text}
                 </p>
               </motion.article>

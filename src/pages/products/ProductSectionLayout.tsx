@@ -81,20 +81,20 @@ const ProductSectionLayout = ({
       className='scroll-mt-28 border-t border-[#d7e0d8] bg-white'
     >
       <div
-        className={`grid items-start lg:grid-cols-[1.05fr_0.95fr] ${
+        className={`grid items-stretch lg:grid-cols-[1.05fr_0.95fr] ${
           reverse ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""
         }`}
       >
         <motion.div
           variants={reverse ? imageVariantsReverse : imageVariants}
-          className={`relative h-[240px] overflow-hidden bg-[#dfe7ee] sm:h-[300px] lg:h-[380px] ${
+          className={`relative min-h-[260px] overflow-hidden bg-[#dfe7ee] sm:min-h-[320px] lg:min-h-full ${
             imageClassName ?? ""
           }`}
         >
           <motion.img
             src={image}
             alt={imageAlt}
-            className='h-full w-full object-cover'
+            className='absolute inset-0 h-full w-full object-cover'
             loading='lazy'
             whileHover={{ scale: 1.04 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -104,7 +104,7 @@ const ProductSectionLayout = ({
 
         <motion.div
           variants={textGroupVariants}
-          className='flex items-center bg-[#f5f5f2] px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[380px] lg:px-12 lg:py-12'
+          className='flex items-center bg-[#f5f5f2] px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[420px] lg:px-12 lg:py-12'
         >
           <div className='mx-auto w-full max-w-xl overflow-hidden'>
             <motion.h2

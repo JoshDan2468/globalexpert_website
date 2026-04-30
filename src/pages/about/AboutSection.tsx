@@ -31,20 +31,20 @@ const AboutSection = () => {
             <h2 className='mb-4 text-3xl font-display font-bold leading-[4.1] text-foreground md:text-5xl'>
               Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
             </h2>
-            <p className='mb-4 text-justify leading-7 text-muted-foreground'>
+            <p className='mb-4 leading-7 text-muted-foreground'>
               Global Experts Consultoria is an international based energy,
               engineering, business and management consulting firm that focuses
               on supporting its clients to achieve improved performance through
               providing pragmatic solution(s).
             </p>
-            <p className='mb-4 text-justify leading-7 text-muted-foreground'>
+            <p className='mb-4 leading-7 text-muted-foreground'>
               The firm is led by strong willed experienced managers who have
               worked in major international and local business and management
               consulting firms with experience in managing multi-disciplinary
               teams on major designs, improvements and transformational
               assignments.
             </p>
-            <p className='mb-6 text-justify leading-7 text-muted-foreground'>
+            <p className='mb-6 leading-7 text-muted-foreground'>
               Global Experts Consultoria helps its clients build the needed
               competence and capabilities to deliver on their commitments. The
               firm has affiliations with internationally renowned professional

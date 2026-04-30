@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const stats = [
   { value: 7, suffix: "+", label: "Global Offices" },
@@ -8,62 +8,145 @@ const stats = [
   { value: 3, suffix: "", label: "Continents" },
 ];
 
-const AnimatedCounter = ({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) => {
+const easeOutCubic = (progress: number) => 1 - Math.pow(1 - progress, 3);
+
+type AnimatedCounterProps = {
+  target: number;
+  suffix: string;
+  inView: boolean;
+  delay?: number;
+};
+
+const AnimatedCounter = ({
+  target,
+  suffix,
+  inView,
+  delay = 0,
+}: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const duration = 2300;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
+    if (!inView) {
+      return;
+    }
+
+    if (prefersReducedMotion) {
+      setCount(target);
+      return;
+    }
+
+    let frameId = 0;
+    let timeoutId = 0;
+    const duration = 1800;
+
+    const startCounter = () => {
+      const startedAt = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const easedProgress = easeOutCubic(progress);
+
+        setCount(Math.round(target * easedProgress));
+
+        if (progress < 1) {
+          frameId = requestAnimationFrame(tick);
+          return;
+        }
+
         setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target]);
+      };
+
+      frameId = requestAnimationFrame(tick);
+    };
+
+    timeoutId = window.setTimeout(startCounter, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      cancelAnimationFrame(frameId);
+    };
+  }, [delay, inView, prefersReducedMotion, target]);
 
   return (
-    <span>
+    <motion.span
+      initial={{ scale: 0.86, opacity: 0 }}
+      animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.86, opacity: 0 }}
+      transition={{
+        duration: 0.65,
+        delay: delay / 1000,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
       {count}
       {suffix}
-    </span>
+    </motion.span>
   );
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 34 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: index * 0.16,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
 };
 
 const StatsSection = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section className="py-20 bg-primary relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+    <section className='relative overflow-hidden bg-primary py-20' ref={ref}>
+      <div className='absolute inset-0 opacity-10'>
+        <div className='absolute left-0 top-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent blur-3xl' />
+        <div className='absolute bottom-0 right-0 h-96 w-96 translate-x-1/2 translate-y-1/2 rounded-full bg-accent blur-3xl' />
       </div>
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.95, delay: i * 0.22 }}
-              className="text-center"
-            >
-              <div className="text-4xl md:text-5xl font-display font-bold text-accent mb-2">
-                <AnimatedCounter target={stat.value} suffix={stat.suffix} inView={inView} />
-              </div>
-              <div className="text-primary-foreground/60 text-sm font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+
+      <div className='container relative z-10 mx-auto px-6'>
+        <div className='grid grid-cols-2 gap-8 lg:grid-cols-4'>
+          {stats.map((stat, index) => {
+            const counterDelay = index * 160;
+
+            return (
+              <motion.div
+                key={stat.label}
+                custom={index}
+                variants={cardVariants}
+                initial='hidden'
+                animate={inView ? "visible" : "hidden"}
+                className='text-center'
+              >
+                <div className='mb-2 font-display text-4xl font-bold text-accent md:text-5xl'>
+                  <AnimatedCounter
+                    target={stat.value}
+                    suffix={stat.suffix}
+                    inView={inView}
+                    delay={counterDelay}
+                  />
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={
+                    inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+                  }
+                  transition={{
+                    duration: 0.65,
+                    delay: 0.24 + index * 0.16,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className='text-sm font-medium text-primary-foreground/60'
+                >
+                  {stat.label}
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

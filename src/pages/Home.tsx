@@ -5,7 +5,7 @@ import HeroSection from "@/pages/home/HeroSection";
 import CompanySection from "@/pages/home/CompanySection";
 
 const MissionVisionSection = lazy(
-  () => import("@/pages/about/MissionVisionSection"),
+  () => import("@/pages/home/MissionVisionSection"),
 );
 const ServicesSection = lazy(() => import("@/pages/home/ServicesSection"));
 const CommitmentSection = lazy(() => import("@/pages/home/CommitmentSection"));

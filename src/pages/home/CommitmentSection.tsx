@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import {
-  Check,
   Droplets,
   Factory,
   Fuel,
@@ -27,8 +26,6 @@ type CommitmentItem = {
   details: string;
   points: string[];
 };
-
-const quickHighlights = ["LNG", "Renewable energy", "Environment", "Water"];
 
 const commitmentItems: CommitmentItem[] = [
   {
@@ -252,27 +249,15 @@ const CommitmentSection = () => {
           <h2 className='mt-3 text-4xl font-extrabold tracking-tight text-[#012402] sm:text-5xl lg:text-6xl'>
             Professional support across the markets we serve
           </h2>
-          <p className='mx-auto mt-5 max-w-4xl text-left text-base leading-7 text-[#012402]/80 sm:text-lg'>
+          <p className='copy-justify mx-auto mt-5 max-w-4xl text-base leading-7 text-[#012402]/80 sm:text-lg'>
             We offer multi-discipline services across Energy, Oil & Gas,
             Petrochemicals, Infrastructure, Power, Renewables, Manufacturing,
             Health, Education, Mining, and Information Technology. Our focus is
             clear delivery, dependable quality, and practical value.
           </p>
-
-          <div className='mt-6 flex flex-wrap justify-center gap-3'>
-            {quickHighlights.map((item) => (
-              <span
-                key={item}
-                className='inline-flex items-center gap-2 rounded-full border border-[#012402]/15 bg-white px-4 py-2 text-sm font-medium text-[#012402] shadow-sm'
-              >
-                <Check className='h-4 w-4 text-[#0c6b2f]' />
-                {item}
-              </span>
-            ))}
-          </div>
         </motion.div>
 
-        <div className='mt-12 overflow-hidden rounded-[2rem] border border-[#d7e0d8] bg-white shadow-[0_24px_60px_rgba(15,23,42,0.06)]'>
+        <div className='mt-12 space-y-8'>
           {commitmentItems.map((item, index) => {
             const reverse = index % 2 === 1;
 
@@ -283,10 +268,12 @@ const CommitmentSection = () => {
                 initial='hidden'
                 whileInView='visible'
                 viewport={{ once: true, amount: 0.2 }}
-                className='border-t border-[#d7e0d8] first:border-t-0'
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className='overflow-hidden rounded-[1.5rem] border border-[#d7e0d8] bg-white shadow-[0_24px_60px_rgba(15,23,42,0.06)]'
               >
                 <div
-                  className={`grid items-start lg:grid-cols-[1.05fr_0.95fr] ${
+                  className={`grid items-stretch lg:grid-cols-[1.05fr_0.95fr] ${
                     reverse
                       ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1"
                       : ""
@@ -294,12 +281,12 @@ const CommitmentSection = () => {
                 >
                   <motion.div
                     variants={reverse ? imageVariantsReverse : imageVariants}
-                    className='relative h-[240px] overflow-hidden bg-[#dfe7ee] sm:h-[300px] lg:h-[400px]'
+                    className='relative min-h-[260px] overflow-hidden bg-[#dfe7ee] sm:min-h-[320px] lg:min-h-full'
                   >
                     <motion.img
                       src={item.image}
                       alt={item.alt}
-                      className='h-full w-full object-cover'
+                      className='absolute inset-0 h-full w-full object-cover'
                       loading='lazy'
                       whileHover={{ scale: 1.04 }}
                       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -309,7 +296,7 @@ const CommitmentSection = () => {
 
                   <motion.div
                     variants={textGroupVariants}
-                    className='flex items-center bg-[#f5f5f2] px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-12 lg:py-12'
+                    className='flex items-center bg-[#f5f5f2] px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[440px] lg:px-12 lg:py-12'
                   >
                     <div className='mx-auto w-full max-w-xl overflow-hidden'>
                       <motion.p
@@ -328,24 +315,24 @@ const CommitmentSection = () => {
                         variants={textItemVariants}
                         className='mt-5 h-px w-16 bg-[#0c6b2f]/25'
                       />
-                      <motion.p
-                        variants={textItemVariants}
-                        className='mt-6 max-w-lg text-left text-[0.96rem] leading-7 text-[#27372a]'
+                    <motion.p
+                      variants={textItemVariants}
+                        className='copy-justify mt-6 max-w-lg text-[0.96rem] leading-7 text-[#27372a]'
                       >
                         {item.summary}
                       </motion.p>
                       <motion.p
                         variants={textItemVariants}
-                        className='mt-4 max-w-lg text-left text-[0.96rem] leading-7 text-[#27372a]'
+                        className='copy-justify mt-4 max-w-lg text-[0.96rem] leading-7 text-[#27372a]'
                       >
                         {item.details}
                       </motion.p>
 
                       <motion.ul
-                        variants={textItemVariants}
-                        className='mt-6 grid gap-3 sm:grid-cols-2'
+                        variants={textGroupVariants}
+                        className='mt-7 grid gap-x-8 gap-y-4 border-t border-[#012402]/10 pt-6 sm:grid-cols-2'
                       >
-                        {item.points.map((point) => {
+                        {item.points.map((point, pointIndex) => {
                           const {
                             icon: PointIcon,
                             iconClassName,
@@ -353,9 +340,15 @@ const CommitmentSection = () => {
                           } = getPointStyle(point);
 
                           return (
-                            <li
+                            <motion.li
                               key={point}
-                              className='flex items-start gap-3 rounded-[1.1rem] bg-white px-4 py-3 shadow-sm'
+                              variants={textItemVariants}
+                              className='flex items-start gap-3'
+                              transition={{
+                                delay: pointIndex * 0.04,
+                                duration: 0.5,
+                                ease: [0.22, 1, 0.36, 1],
+                              }}
                             >
                               <span
                                 className={`mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${badgeClassName}`}
@@ -364,10 +357,10 @@ const CommitmentSection = () => {
                                   className={`h-4 w-4 ${iconClassName}`}
                                 />
                               </span>
-                              <span className='text-left text-sm leading-6 text-[#012402]/82'>
+                              <span className='copy-justify text-sm leading-6 text-[#012402]/82'>
                                 {point}
                               </span>
-                            </li>
+                            </motion.li>
                           );
                         })}
                       </motion.ul>

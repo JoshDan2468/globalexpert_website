@@ -37,19 +37,19 @@ const AboutSection = () => {
             <h2 className='mb-4 text-3xl font-display font-bold leading-[1.1] text-foreground md:text-5xl'>
               Global Experts <span className='text-[#a9f3b1]'>Consultoria</span>
             </h2>
-            <p className='mb-4 text-justify leading-7 text-muted-foreground'>
+            <p className='mb-4 leading-7 text-muted-foreground'>
               We are a global company with presence in Lagos, Nigeria; Maputo,
               Mozambique; Freetown, Sierra Leone; Accra, Ghana; Windhoek,
               Namibia; Houston, Texas; Oklahoma City, Oklahoma (USA) and other
               Africa countries.
             </p>
-            <p className='mb-4 text-justify leading-7 text-muted-foreground'>
+            <p className='mb-4 leading-7 text-muted-foreground'>
               Incorporated to engage in the provision of: Engineering, Project
               Management, Market Research, Bid Administration, Health,
               Information Technology, Registration, Procurement, Automation,
               Product Management and other services globally.
             </p>
-            <p className='mb-6 text-justify leading-7 text-muted-foreground'>
+            <p className='mb-6 leading-7 text-muted-foreground'>
               Our focus is to provide world class Engineering, Project
               Management, Asset Integrity and Operations & Maintenance, Product
               Management and Consultancy solutions to our clients.
