@@ -1,11 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import {
+  BriefcaseBusiness,
+  Factory,
+  Layers3,
+  MapPin,
+  type LucideIcon,
+} from "@/lib/icons";
+import statsBackground from "@/assets/home_assets/port.jpg";
 
 const stats = [
-  { value: 7, suffix: "+", label: "Global Offices" },
-  { value: 6, suffix: "+", label: "Services Offered" },
-  { value: 10, suffix: "+", label: "Key Industries" },
-  { value: 3, suffix: "", label: "Continents" },
+  {
+    value: 7,
+    suffix: "+",
+    label: "Global Offices",
+    icon: MapPin,
+  },
+  {
+    value: 6,
+    suffix: "+",
+    label: "Services Offered",
+    icon: BriefcaseBusiness,
+  },
+  {
+    value: 10,
+    suffix: "+",
+    label: "Key Industries",
+    icon: Factory,
+  },
+  {
+    value: 3,
+    suffix: "",
+    label: "Continents",
+    icon: Layers3,
+  },
 ];
 
 const easeOutCubic = (progress: number) => 1 - Math.pow(1 - progress, 3);
@@ -84,6 +112,13 @@ const AnimatedCounter = ({
   );
 };
 
+type StatItem = {
+  value: number;
+  suffix: string;
+  label: string;
+  icon: LucideIcon;
+};
+
 const cardVariants = {
   hidden: { opacity: 0, y: 34 },
   visible: (index: number) => ({
@@ -102,16 +137,43 @@ const StatsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section className='relative overflow-hidden bg-primary py-20' ref={ref}>
-      <div className='absolute inset-0 opacity-10'>
-        <div className='absolute left-0 top-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent blur-3xl' />
-        <div className='absolute bottom-0 right-0 h-96 w-96 translate-x-1/2 translate-y-1/2 rounded-full bg-accent blur-3xl' />
-      </div>
+    <section
+      className='relative min-h-[560px] overflow-hidden bg-[#012402] py-16 sm:py-20 lg:min-h-[620px]'
+      ref={ref}
+    >
+      <motion.img
+        src={statsBackground}
+        alt=''
+        aria-hidden='true'
+        className='absolute inset-0 h-full w-full object-cover'
+        initial={{ scale: 1.08 }}
+        animate={inView ? { scale: 1.01 } : { scale: 1.08 }}
+        transition={{ duration: 5, ease: [0.22, 1, 0.36, 1] }}
+      />
+      <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(1,36,2,0.42)_0%,rgba(1,36,2,0.68)_45%,rgba(0,0,0,0.95)_100%)]' />
+      <div className='absolute inset-0 bg-[linear-gradient(90deg,rgba(4,91,148,0.24)_0%,rgba(1,36,2,0.08)_45%,rgba(230,178,69,0.18)_100%)]' />
 
-      <div className='container relative z-10 mx-auto px-6'>
-        <div className='grid grid-cols-2 gap-8 lg:grid-cols-4'>
-          {stats.map((stat, index) => {
+      <div className='container relative z-10 mx-auto flex min-h-[430px] flex-col px-6 sm:min-h-[480px]'>
+        <motion.div
+          initial={{ opacity: 0, y: 28, scale: 0.96 }}
+          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className='ml-auto max-w-md rounded-[1.75rem] bg-white/92 px-8 py-9 text-left shadow-[0_24px_70px_rgba(0,0,0,0.26)] backdrop-blur-sm sm:px-10 lg:mr-10'
+        >
+          <p className='text-left text-2xl font-bold text-[#0d62b3]'>
+            Our Reach
+          </p>
+          <p className='mt-3 text-left text-base leading-7 text-[#27372a]'>
+            Global Experts Consultoria supports clients across multiple African
+            markets with practical expertise, strong delivery discipline, and
+            broad sector experience.
+          </p>
+        </motion.div>
+
+        <div className='mt-auto grid gap-y-8 pt-16 sm:grid-cols-2 lg:grid-cols-4 lg:pt-20'>
+          {stats.map((stat: StatItem, index) => {
             const counterDelay = index * 160;
+            const StatIcon = stat.icon;
 
             return (
               <motion.div
@@ -120,15 +182,16 @@ const StatsSection = () => {
                 variants={cardVariants}
                 initial='hidden'
                 animate={inView ? "visible" : "hidden"}
-                className='text-center'
+                className='relative flex min-h-[128px] flex-col items-center justify-center px-6 text-center lg:border-l lg:border-white/45 lg:first:border-l-0'
               >
-                <div className='mb-2 font-display text-4xl font-bold text-accent md:text-5xl'>
+                <div className='mb-4 flex items-center justify-center gap-3 font-display text-5xl font-bold leading-none text-white drop-shadow-sm md:text-6xl'>
                   <AnimatedCounter
                     target={stat.value}
                     suffix={stat.suffix}
                     inView={inView}
                     delay={counterDelay}
                   />
+                  <StatIcon className='h-9 w-9 text-[#f1d36b] md:h-10 md:w-10' />
                 </div>
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -140,7 +203,7 @@ const StatsSection = () => {
                     delay: 0.24 + index * 0.16,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className='text-sm font-medium text-primary-foreground/60'
+                  className='text-xs font-semibold uppercase tracking-[0.12em] text-white'
                 >
                   {stat.label}
                 </motion.div>

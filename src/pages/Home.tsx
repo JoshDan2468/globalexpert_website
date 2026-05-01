@@ -39,7 +39,7 @@ const Home = () => (
     </DeferredSection>
 
     {/* Floating business stats */}
-    <DeferredSection minHeight='220px'>
+    <DeferredSection minHeight='500px'>
       <FloatingStats />
     </DeferredSection>
 
